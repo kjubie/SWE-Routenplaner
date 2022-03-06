@@ -8,4 +8,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Handlebars.Net" Version="2.1.0" />
+  </ItemGroup>
+
 </Project>

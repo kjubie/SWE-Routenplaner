@@ -1,5 +1,7 @@
-﻿using System;
+﻿using HandlebarsDotNet.Collections;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,23 @@ namespace SWEN2_TourPlanner
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<string> TourNames = new ObservableCollection<string>();
         public MainWindow()
         {
             InitializeComponent();
+            TourList.ItemsSource = TourNames;
+        }
+
+        private void ListView_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
+        }
+
+
+        private void AddTour(object sender, RoutedEventArgs e)
+        {
+            TourNames.Add("Tour " + TourNames.Count);
+
         }
     }
 }

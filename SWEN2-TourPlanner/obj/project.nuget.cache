@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "638ntY7bjQvRE+Q+RL2Nwgvx7ZGeSum08d+1jNQtqPGJfZk7a5zdjiKIohi0nc6LwRLZFhWY0qOGtAcWaFqWbQ==",
+  "dgSpecHash": "VCtCOTYJOQ5hYzEUMb/j8nmqLMxIgmOvMIk794HFITZvb77cTN9g6ZVSMHA1q9OwOrndkZaEbo6vySnI3NOvGw==",
   "success": true,
   "projectFilePath": "D:\\FH_Technikum\\SWEN2\\TourPlanner\\SWE-Routenplaner\\SWEN2-TourPlanner\\SWEN2-TourPlanner.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Doris\\.nuget\\packages\\handlebars.net\\2.1.0\\handlebars.net.2.1.0.nupkg.sha512",
+    "C:\\Users\\Doris\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }
