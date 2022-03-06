@@ -83,7 +83,7 @@
                                 <ColumnDefinition Width="10*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label   Grid.Column="0" HorizontalAlignment="Left" Content="Tour name"/>
+                            <Label   Grid.Column="0" HorizontalAlignment="Left" Content="{Binding BindsDirectlyToSource=True}"/>
 
 
                             <Button  Grid.Column="1" HorizontalAlignment="Center">
@@ -100,7 +100,6 @@
                     </DataTemplate>
 
                 </ListView.ItemTemplate>
-
 
             </ListView>
 

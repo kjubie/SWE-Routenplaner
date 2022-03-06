@@ -50,7 +50,7 @@ namespace SWEN2_TourPlanner
 
         private void TourSearchBox_MouseLeave(object sender, MouseEventArgs e)
         {
-            TourSearchBox.Text = "Search Tour...";
+            TourSearchBox.Text = "Search Tours...";
 
         }
     }
