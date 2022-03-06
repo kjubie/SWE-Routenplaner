@@ -7,6 +7,59 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*" MinWidth="100"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
 
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" >
+            <TextBox Margin ="10">Search</TextBox>
+
+            <Grid  Margin ="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
+                <Button Click="AddTour"  Grid.Column="1" HorizontalAlignment="Center">+</Button>
+                <Button  Grid.Column="2" HorizontalAlignment="Center">Import</Button>
+            </Grid>
+
+
+            <ListView x:Name ="TourList" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="500">
+
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+
+                        <Grid HorizontalAlignment="Stretch" Width="Auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label   Grid.Column="0" HorizontalAlignment="Left" Content="Tour name"/>
+                            <Button  Grid.Column="1" HorizontalAlignment="Center">E</Button>
+                            <Button  Grid.Column="2" HorizontalAlignment="Center">I</Button>
+                            <Button  Grid.Column="3" HorizontalAlignment="Center" >X</Button>
+                        </Grid>
+
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+
+
+            </ListView>
+
+        </StackPanel>
     </Grid>
 </Window>
