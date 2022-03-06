@@ -9,6 +9,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="icons\delete.png" />
+    <None Remove="icons\export.png" />
+    <None Remove="icons\import.png" />
+    <None Remove="icons\pen.png" />
+    <None Remove="icons\plus.png" />
+    <None Remove="icons\search.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icons\delete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\export.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\import.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\plus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\search.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Handlebars.Net" Version="2.1.0" />
   </ItemGroup>
 

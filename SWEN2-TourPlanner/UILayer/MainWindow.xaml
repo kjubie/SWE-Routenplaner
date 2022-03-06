@@ -6,31 +6,64 @@
         xmlns:local="clr-namespace:SWEN2_TourPlanner"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="BorderBrush" Value="White"></Setter>
+        </Style>
+    </Window.Resources>
+
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*" MinWidth="100"/>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="30*" MaxWidth="400" MinWidth="200"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="35*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
 
+        <GridSplitter Grid.Column="1" 
+              Grid.RowSpan="2" 
+              HorizontalAlignment="Left" 
+              VerticalAlignment="Stretch"
+              Background="White" 
+              ShowsPreview="true"
+              Width="5"/>
+        <Border Grid.Column="1" Grid.RowSpan="2" BorderThickness="1 0 0 0" BorderBrush="Gray"></Border>
+
 
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" >
-            <TextBox Margin ="10">Search</TextBox>
 
-            <Grid  Margin ="10">
+            <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
+                <DockPanel Margin ="10">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/search.png"  />
+                    <TextBox BorderBrush="White" Foreground="Gray">Search Tours...</TextBox>
+                </DockPanel>
+
+
+            </Border>
+
+            <Grid  Margin ="10" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="25*"/>
-                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="15*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
-                <Button Click="AddTour"  Grid.Column="1" HorizontalAlignment="Center">+</Button>
-                <Button  Grid.Column="2" HorizontalAlignment="Center">Import</Button>
+                <Label FontSize="24" Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
+
+                <Button Click="AddTour"  Grid.Column="2" HorizontalAlignment="Center">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
+                </Button>
+
+                <Button  Grid.Column="1" HorizontalAlignment="Center">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/import.png"  />
+                </Button>
             </Grid>
 
 
@@ -48,9 +81,17 @@
                             </Grid.ColumnDefinitions>
 
                             <Label   Grid.Column="0" HorizontalAlignment="Left" Content="Tour name"/>
-                            <Button  Grid.Column="1" HorizontalAlignment="Center">E</Button>
-                            <Button  Grid.Column="2" HorizontalAlignment="Center">I</Button>
-                            <Button  Grid.Column="3" HorizontalAlignment="Center" >X</Button>
+
+
+                            <Button  Grid.Column="1" HorizontalAlignment="Center">
+                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/pen.png"  />
+                            </Button>
+                            <Button  Grid.Column="2" HorizontalAlignment="Center">
+                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/export.png"  />
+                            </Button>
+                            <Button  Grid.Column="3" HorizontalAlignment="Center" >
+                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/delete.png"  />
+                            </Button>
                         </Grid>
 
                     </DataTemplate>
@@ -61,5 +102,6 @@
             </ListView>
 
         </StackPanel>
+
     </Grid>
 </Window>
