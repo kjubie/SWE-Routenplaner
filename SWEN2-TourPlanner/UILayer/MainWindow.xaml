@@ -22,6 +22,7 @@
             <ColumnDefinition Width="35*"/>
             <ColumnDefinition Width="35*"/>
         </Grid.ColumnDefinitions>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
             <RowDefinition Height="40*"/>
@@ -34,6 +35,8 @@
               Background="White" 
               ShowsPreview="true"
               Width="5"/>
+        
+        
         <Border Grid.Column="1" Grid.RowSpan="2" BorderThickness="1 0 0 0" BorderBrush="Gray"></Border>
 
 
@@ -42,7 +45,7 @@
             <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
                 <DockPanel Margin ="10">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/search.png"  />
-                    <TextBox BorderBrush="White" Foreground="Gray">Search Tours...</TextBox>
+                    <TextBox Text="Search Tours..."  Name="TourSearchBox" MouseEnter="TourSearchBox_MouseEnter" MouseLeave="TourSearchBox_MouseLeave" BorderBrush="White" Foreground="Gray"></TextBox>
                 </DockPanel>
 
 

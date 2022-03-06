@@ -40,5 +40,18 @@ namespace SWEN2_TourPlanner
             TourNames.Add("Tour " + TourNames.Count);
 
         }
+      
+
+        private void TourSearchBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+            TourSearchBox.Text = "";
+        }
+
+        private void TourSearchBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            TourSearchBox.Text = "Search Tour...";
+
+        }
     }
 }
