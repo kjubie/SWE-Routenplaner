@@ -22,11 +22,32 @@ namespace SWEN2_TourPlanner
     /// </summary>
     public partial class MainWindow : Window
     {
+        public int Date = 10;
+
+        class Log
+        {
+            public int Date { get; set; }   
+            public int Duration { get; set; }
+            public float Distance { get; set; }
+            public string Comment { get; set; }
+            public Log()
+            {
+                Date = 10;
+                Duration = 10;
+                Distance = 10;
+                Comment = "Test";
+            }
+        }
+
+
         ObservableCollection<string> TourNames = new ObservableCollection<string>();
+        ObservableCollection<Log> LogListObject = new ObservableCollection<Log>();
         public MainWindow()
         {
             InitializeComponent();
             TourList.ItemsSource = TourNames;
+            LogListObject.Add(new Log());
+            LogGrid.DataContext = LogListObject;
         }
 
         private void ListView_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
@@ -52,6 +73,11 @@ namespace SWEN2_TourPlanner
         {
             TourSearchBox.Text = "Search Tours...";
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LogListObject.Add(new Log());
         }
     }
 }
