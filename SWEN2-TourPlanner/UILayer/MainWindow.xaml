@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
         xmlns:uc="clr-namespace:SWEN2_TourPlanner.UILayer"
+       
         
         xmlns:local="clr-namespace:SWEN2_TourPlanner"
         mc:Ignorable="d"
@@ -54,10 +55,8 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" >
 
             <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
-                <DockPanel Margin ="10">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/search.png"  />
-                    <TextBox Text="Search Tours..."  Name="TourSearchBox" MouseEnter="TourSearchBox_MouseEnter" MouseLeave="TourSearchBox_MouseLeave" BorderBrush="White" Foreground="Gray"></TextBox>
-                </DockPanel>
+
+                <uc:SearchBar Margin="10"/>
 
 
             </Border>
@@ -125,19 +124,15 @@
 
         <StackPanel Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3">
             <Border BorderBrush="Gray" BorderThickness="0 0 0 1"></Border>
-            <DockPanel Margin ="10">
-                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/search.png"  />
-                <TextBox Text="Search Tours..."  Name="LogSearchBox" MouseEnter="TourSearchBox_MouseEnter" MouseLeave="TourSearchBox_MouseLeave" BorderBrush="White" Foreground="Gray"></TextBox>
-            </DockPanel>
+            
+            <uc:SearchBar Margin="10"/>
+            
             <Border BorderBrush="Gray" BorderThickness="0 0 0 1"></Border>
             <DockPanel Margin="10">
                 <Label FontSize="24" FontWeight="Bold" HorizontalAlignment="Left">Logs</Label>
                 <Button Click="Button_Click" HorizontalAlignment="Right">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
                 </Button>
-
-
-
             </DockPanel>
 
 

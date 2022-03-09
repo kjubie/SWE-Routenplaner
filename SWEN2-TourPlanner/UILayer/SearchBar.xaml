@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="SWEN2_TourPlanner.UILayer.SearchBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWEN2_TourPlanner.UILayer"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/search.png"  />
+        <TextBox Text="Search ..."  Name="TourSearchBox"  BorderBrush="White" Foreground="Gray"></TextBox>
+    </DockPanel>
+</UserControl>
