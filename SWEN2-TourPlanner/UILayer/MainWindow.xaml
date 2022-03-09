@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
-        xmlns:uc="clr-namespace:SWEN2_TourPlanner.UILayer"
+        xmlns:uc="clr-namespace:SWEN2_TourPlanner.UILayer"       
        
         
         xmlns:local="clr-namespace:SWEN2_TourPlanner"
@@ -52,74 +52,15 @@
         <Border Grid.Column="1" Grid.RowSpan="2" BorderThickness="1 0 0 0" BorderBrush="Gray"></Border>
 
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" >
-
-            <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
-
-                <uc:SearchBar Margin="10"/>
 
 
-            </Border>
-
-            <Grid  Margin ="10" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70*"/>
-                    <ColumnDefinition Width="15*"/>
-                    <ColumnDefinition Width="15*"/>
-                </Grid.ColumnDefinitions>
-
-                <Label FontSize="24" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
-
-                <Button Click="AddTour"  Grid.Column="2" HorizontalAlignment="Center">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
-                </Button>
-
-                <Button  Grid.Column="1" HorizontalAlignment="Center">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/import.png"  />
-                </Button>
-            </Grid>
-
-
-            <ListView x:Name ="TourList" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700">
-
-                <ListView.ItemTemplate >
-                    <DataTemplate>
-
-                        <Grid HorizontalAlignment="Stretch" Width="Auto">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70*"/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition Width="10*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Label   Grid.Column="0" HorizontalAlignment="Left" Content="{Binding BindsDirectlyToSource=True}"/>
-
-
-                            <Button  Grid.Column="1" HorizontalAlignment="Center">
-                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/pen.png"  />
-                            </Button>
-                            <Button  Grid.Column="2" HorizontalAlignment="Center">
-                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/export.png"  />
-                            </Button>
-                            <Button  Grid.Column="3" HorizontalAlignment="Center" >
-                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/delete.png"  />
-                            </Button>
-                        </Grid>
-
-                    </DataTemplate>
-
-                </ListView.ItemTemplate>
-
-            </ListView>
-
-        </StackPanel>
-
+        <uc:TourList Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" />
 
         <uc:TourDetails  Grid.Row="0" Grid.Column="2" Margin="10"/>
 
 
         <Border Grid.Column="3"  BorderBrush="Gray" BorderThickness="0 0 1 0"/>
+        
         <Image Grid.Column="4" Grid.Row="0" Source="../mapImg/map_test.png" Margin="10" RenderOptions.BitmapScalingMode="HighQuality"></Image>
 
         <StackPanel Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3">
@@ -128,6 +69,9 @@
             <uc:SearchBar Margin="10"/>
             
             <Border BorderBrush="Gray" BorderThickness="0 0 0 1"></Border>
+            
+            
+            
             <DockPanel Margin="10">
                 <Label FontSize="24" FontWeight="Bold" HorizontalAlignment="Left">Logs</Label>
                 <Button Click="Button_Click" HorizontalAlignment="Right">
@@ -151,8 +95,6 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-
-
                                 <Button HorizontalAlignment="Center">
                                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/pen.png"  />
                                 </Button>
@@ -166,14 +108,10 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-
-
                                 <Button HorizontalAlignment="Center">
                                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/delete.png"  />
                                 </Button>
                             </DataTemplate>
-
-
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 

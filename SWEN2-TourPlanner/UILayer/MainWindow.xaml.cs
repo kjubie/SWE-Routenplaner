@@ -40,12 +40,11 @@ namespace SWEN2_TourPlanner
         }
 
 
-        ObservableCollection<string> TourNames = new ObservableCollection<string>();
         ObservableCollection<Log> LogListObject = new ObservableCollection<Log>();
         public MainWindow()
         {
             InitializeComponent();
-            TourList.ItemsSource = TourNames;
+            
             LogListObject.Add(new Log());
             LogGrid.DataContext = LogListObject;
         }
@@ -55,12 +54,7 @@ namespace SWEN2_TourPlanner
 
         }
 
-
-        private void AddTour(object sender, RoutedEventArgs e)
-        {
-            TourNames.Add("Tour " + TourNames.Count);
-
-        }      
+  
 
        
         private void Button_Click(object sender, RoutedEventArgs e)
