@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWEN2-TourPlanner\App.xaml
-1-1262411966
+2-1951339285
 7-582301720
-5-32226901
+61301823731
 195-1934327579
-UILayer\MainWindow.xaml;
+UILayer\MainWindow.xaml;UILayer\TourDetails.xaml;
 
-True
+False
 
