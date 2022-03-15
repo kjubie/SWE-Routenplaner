@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SWEN2_TourPlanner.UILayer
+namespace SWEN2_TourPlanner.View
 {
     /// <summary>
     /// Interaktionslogik für LogList.xaml

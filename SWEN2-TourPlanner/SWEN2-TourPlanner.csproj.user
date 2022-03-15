@@ -2,30 +2,30 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="UILayer\LogList.xaml.cs">
+    <Compile Update="View\LogList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UILayer\SearchBar.xaml.cs">
+    <Compile Update="View\SearchBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UILayer\TourDetails.xaml.cs">
+    <Compile Update="View\TourDetails.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UILayer\TourList.xaml.cs">
+    <Compile Update="View\TourList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="UILayer\LogList.xaml">
+    <Page Update="View\LogList.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UILayer\SearchBar.xaml">
+    <Page Update="View\SearchBar.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UILayer\TourDetails.xaml">
+    <Page Update="View\TourDetails.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UILayer\TourList.xaml">
+    <Page Update="View\TourList.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
