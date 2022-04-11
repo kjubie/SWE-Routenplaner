@@ -1,7 +1,5 @@
-namespace SWEN2_REST
-{
-    public class WeatherForecast
-    {
+namespace SWEN2_REST {
+    public class WeatherForecast {
         public DateTime Date { get; set; }
 
         public int TemperatureC { get; set; }
