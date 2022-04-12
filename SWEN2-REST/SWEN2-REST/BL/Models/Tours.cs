@@ -14,5 +14,9 @@
         public void RemoveTour(string name) {
             TourList.Remove(name);
         }
+
+        public Tour GetTour(string name) {
+            return TourList[name];
+        }
     }
 }

@@ -1,32 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SWEN2_REST.BL.Models;
+using System.Text.Json;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SWEN2_REST.BL.Controllers {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class TourController : ControllerBase {
-        private static readonly string[] Summaries = new[] {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly Tours _tours;
 
-        private readonly ILogger<TourController> _logger;
-
-        public TourController(ILogger<TourController> logger) {
-            _logger = logger;
+        public TourController(Tours tours) {
+            _tours = tours;
         }
 
-        [HttpGet(Name = "GetTour")]
-        public IEnumerable<Tour> Get() {
-            return Enumerable.Range(1, 5).Select(index => new Tour {
-                Name = "Best Tour Ever!",
-                Description = "Really the best tour ever!",
-                From = "Vienna",
-                To = "Not Vienna",
-                TransportType = "On Foot",
-                Distance = 1337,
-                Time = DateTime.Now.AddDays(index),
-                Info = "None"
-            })
-            .ToArray();
+        [HttpGet]
+        public string Get() {
+            return "Hallo";
+        }
+
+        [HttpGet("{name}")]
+        public string Get(string name) {
+            return JsonSerializer.Serialize(_tours.GetTour(name));
+        }
+
+        [HttpPost]
+        public void Post([FromBody] string value) {
+        }
+
+        [HttpPut("{name}")]
+        public void Put(string name, [FromBody] string value) {
+        }
+
+        [HttpDelete("{name}")]
+        public void Delete(string name) {
         }
     }
 }

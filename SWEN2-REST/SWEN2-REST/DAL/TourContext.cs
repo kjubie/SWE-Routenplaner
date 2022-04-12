@@ -20,18 +20,29 @@ namespace SWEN2_REST.DAL {
             connModel conn = JsonConvert.DeserializeObject<connModel>(jsonString);
             ConnectionString = "Host=" + conn.host + ";Username=" + conn.username + ";Password=" + conn.password + ";Database=" + conn.database;
             SqlConnection = new NpgsqlConnection(ConnectionString);
-            SqlConnection.Open();
+            //SqlConnection.Open();
         }
 
         ~TourContext() {
-            SqlConnection.Close();
+            //SqlConnection.Close();
         }
 
         public void LoadTours(Tours tours) {
-            NpgsqlCommand npgsqlCommand = new("select * from tour", SqlConnection);
-            npgsqlCommand.Prepare();
-            var result = npgsqlCommand.ExecuteNonQuery();
-            Console.WriteLine(result);
+            try {
+                SqlConnection.Open();
+                NpgsqlCommand npgsqlCommand = new("select * from tour", SqlConnection);
+                npgsqlCommand.Prepare();
+                NpgsqlDataReader reader = npgsqlCommand.ExecuteReader();
+
+                while (reader.Read()) {
+                    tours.AddTour(new Tour(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetTimeSpan(6), reader.GetString(7), reader.GetString(8)));
+                }
+
+                reader.Close();
+                SqlConnection.Close();
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void SaveTour(Tours tours, Tour tour) {

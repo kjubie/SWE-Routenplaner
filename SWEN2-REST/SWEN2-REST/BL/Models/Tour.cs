@@ -1,4 +1,7 @@
-﻿namespace SWEN2_REST {
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace SWEN2_REST {
     public class Tour {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -6,7 +9,7 @@
         public string To { get; set; }
         public string TransportType { get; set; }
         public int Distance { get; set; }
-        public DateTime Time { get; set; }
+        public TimeSpan Time { get; set; }
         public string Info { get; set; }
         public string ImageLocation { get; set; }
 
@@ -14,7 +17,7 @@
 
         }
 
-        public Tour(string Name, string Description, string From, string To, string TransportType, int Distance, DateTime Time, string Info, string ImageLocation) { 
+        public Tour(string Name, string Description, string From, string To, string TransportType, int Distance, TimeSpan Time, string Info, string ImageLocation) { 
             this.Name = Name;
             this.Description = Description;
             this.From = From;
