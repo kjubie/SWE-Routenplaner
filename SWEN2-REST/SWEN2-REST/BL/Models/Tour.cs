@@ -8,8 +8,8 @@ namespace SWEN2_REST {
         public string From { get; set; }
         public string To { get; set; }
         public string TransportType { get; set; }
-        public int Distance { get; set; }
-        public TimeSpan Time { get; set; }
+        public double Distance { get; set; }
+        public string Time { get; set; }
         public string Info { get; set; }
         public string ImageLocation { get; set; }
 
@@ -17,7 +17,7 @@ namespace SWEN2_REST {
 
         }
 
-        public Tour(string Name, string Description, string From, string To, string TransportType, int Distance, TimeSpan Time, string Info, string ImageLocation) { 
+        public Tour(string Name, string Description, string From, string To, string TransportType, double Distance, string Time, string Info, string ImageLocation) { 
             this.Name = Name;
             this.Description = Description;
             this.From = From;

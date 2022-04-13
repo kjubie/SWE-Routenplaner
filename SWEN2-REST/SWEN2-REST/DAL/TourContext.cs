@@ -35,7 +35,7 @@ namespace SWEN2_REST.DAL {
                 NpgsqlDataReader reader = npgsqlCommand.ExecuteReader();
 
                 while (reader.Read()) {
-                    tours.AddTour(new Tour(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetTimeSpan(6), reader.GetString(7), reader.GetString(8)));
+                    tours.AddTour(new Tour(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetDouble(5), reader.GetString(6), reader.GetString(7), reader.GetString(8)));
                 }
 
                 reader.Close();
@@ -45,21 +45,27 @@ namespace SWEN2_REST.DAL {
             }
         }
 
-        public void SaveTour(Tours tours, Tour tour) {
-            NpgsqlCommand npgsqlCommand = new("insert into tour(name, description, startpoint, endpoint, transportType, distance, tourTime, info, imageLocation) " +
-                                            "values(@name, @description, @startpoint, @endpoint, @transportType, @distance, @tourTime, @info, @imageLocation)", SqlConnection);
-            npgsqlCommand.Parameters.AddWithValue("name", tour.Name);
-            npgsqlCommand.Parameters.AddWithValue("description", tour.Description);
-            npgsqlCommand.Parameters.AddWithValue("startpoint", tour.From);
-            npgsqlCommand.Parameters.AddWithValue("endpopint", tour.To);
-            npgsqlCommand.Parameters.AddWithValue("transportType", tour.TransportType);
-            npgsqlCommand.Parameters.AddWithValue("distance", tour.Distance);
-            npgsqlCommand.Parameters.AddWithValue("tourTime", tour.Time);
-            npgsqlCommand.Parameters.AddWithValue("info", tour.Info);
-            npgsqlCommand.Parameters.AddWithValue("imageLocation", tour.ImageLocation);
-            npgsqlCommand.Prepare();
-            var result = npgsqlCommand.ExecuteNonQuery();
-            Console.WriteLine(result);
+        public void SaveTour(Tour tour) {
+            try {
+                SqlConnection.Open();
+                NpgsqlCommand npgsqlCommand = new("insert into tour(name, description, startpoint, endpoint, transportType, distance, tourTime, info, imageLocation) " +
+                                                "values(@name, @description, @startpoint, @endpoint, @transportType, @distance, @tourTime, @info, @imageLocation)", SqlConnection);
+                npgsqlCommand.Parameters.AddWithValue("name", tour.Name);
+                npgsqlCommand.Parameters.AddWithValue("description", tour.Description);
+                npgsqlCommand.Parameters.AddWithValue("startpoint", tour.From);
+                npgsqlCommand.Parameters.AddWithValue("endpoint", tour.To);
+                npgsqlCommand.Parameters.AddWithValue("transportType", tour.TransportType);
+                npgsqlCommand.Parameters.AddWithValue("distance", tour.Distance);
+                npgsqlCommand.Parameters.AddWithValue("tourTime", tour.Time);
+                npgsqlCommand.Parameters.AddWithValue("info", tour.Info);
+                npgsqlCommand.Parameters.AddWithValue("imageLocation", tour.ImageLocation);
+                npgsqlCommand.Prepare();
+                var result = npgsqlCommand.ExecuteNonQuery();
+                Console.WriteLine(result);
+                SqlConnection.Close();
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

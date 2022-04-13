@@ -6,9 +6,13 @@
             TourList = new Dictionary<string, Tour>();
         }
 
-        public void AddTour(Tour tour) {
-            TourList.Add(tour.Name, tour);
-
+        public int AddTour(Tour tour) {
+            try {
+                TourList.Add(tour.Name, tour);
+                return 0;
+            } catch (Exception ex) {
+                return -1;
+            }
         }
 
         public void RemoveTour(string name) {
