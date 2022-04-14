@@ -65,7 +65,8 @@ namespace SWEN2_REST.BL.Controllers {
         }
 
         [HttpDelete("{name}")]
-        public void Delete(string name) {
+        public string Delete(string name) {
+
         }
     }
 }

@@ -15,8 +15,11 @@
             }
         }
 
-        public void RemoveTour(string name) {
-            TourList.Remove(name);
+        public int RemoveTour(string name) {
+            if (TourList.Remove(name))
+                return 0;
+            else 
+                return -1;
         }
 
         public Tour GetTour(string name) {

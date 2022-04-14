@@ -45,7 +45,7 @@ namespace SWEN2_REST.DAL {
             }
         }
 
-        public void SaveTour(Tour tour) {
+        public int SaveTour(Tour tour) {
             try {
                 SqlConnection.Open();
                 NpgsqlCommand npgsqlCommand = new("insert into tour(name, description, startpoint, endpoint, transportType, distance, tourTime, info, imageLocation) " +
@@ -63,8 +63,26 @@ namespace SWEN2_REST.DAL {
                 var result = npgsqlCommand.ExecuteNonQuery();
                 Console.WriteLine(result);
                 SqlConnection.Close();
+                return 0;
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message);
+                return -1;
+            }
+        }
+
+        public int DeleteTour(string name) {
+            try {
+                SqlConnection.Open();
+                NpgsqlCommand npgsqlCommand = new("delete from tour where name = @name", SqlConnection);
+                npgsqlCommand.Parameters.AddWithValue("name", name);
+                npgsqlCommand.Prepare();
+                var result = npgsqlCommand.ExecuteNonQuery();
+                Console.WriteLine(result);
+                SqlConnection.Close();
+                return 0;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                return -1;
             }
         }
     }
