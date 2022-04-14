@@ -39,7 +39,10 @@ namespace SWEN2_TourPlanner.View
 
         private void AddTour(object sender, RoutedEventArgs e)
         {
-            TourNames.Add("Tour " + TourNames.Count);
+            CreateTour createTourWindow = new CreateTour();
+            createTourWindow.Show();
+
+            //TourNames.Add("Tour " + TourNames.Count);
 
         }
     }

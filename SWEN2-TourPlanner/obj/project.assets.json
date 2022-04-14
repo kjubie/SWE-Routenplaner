@@ -133,9 +133,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FH_Technikum\\SWEN2\\TourPlanner\\SWE-Routenplaner\\SWEN2-TourPlanner\\SWEN2-TourPlanner.csproj",
-      "projectName": "SWEN2-TourPlanner",
-      "projectPath": "D:\\FH_Technikum\\SWEN2\\TourPlanner\\SWE-Routenplaner\\SWEN2-TourPlanner\\SWEN2-TourPlanner.csproj",
+      "projectUniqueName": "D:\\FH_Technikum\\SWEN2\\TourPlanner\\SWE-Routenplaner\\SWEN2-TourPlanner\\SWEN2-TourPlanner-View.csproj",
+      "projectName": "SWEN2-TourPlanner-View",
+      "projectPath": "D:\\FH_Technikum\\SWEN2\\TourPlanner\\SWE-Routenplaner\\SWEN2-TourPlanner\\SWEN2-TourPlanner-View.csproj",
       "packagesPath": "C:\\Users\\Doris\\.nuget\\packages\\",
       "outputPath": "D:\\FH_Technikum\\SWEN2\\TourPlanner\\SWE-Routenplaner\\SWEN2-TourPlanner\\obj\\",
       "projectStyle": "PackageReference",
