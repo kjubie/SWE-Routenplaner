@@ -23,7 +23,11 @@
         }
 
         public Tour GetTour(string name) {
-            return TourList[name];
+            try {
+                return TourList[name];
+            } catch (Exception ex) {
+                return null;
+            }
         }
     }
 }

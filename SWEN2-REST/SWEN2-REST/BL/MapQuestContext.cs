@@ -21,7 +21,6 @@ namespace SWEN2_REST.BL {
         public async Task<string> GetRouteAsync(string from, string to, string type) {
             from = from.Replace(" ", "%20");
             to = to.Replace(" ", "%20");
-            Console.WriteLine(Api.Url + "?key=" + Api.Key + "&from=" + from + "&to=" + to + "&routeType=" + type + "&unit=k");
             var result = await HttpClient.GetAsync(Api.Url + "?key=" + Api.Key + "&from=" + from + "&to=" + to + "&routeType=" + type + "&unit=k");
             return await result.Content.ReadAsStringAsync();
         }

@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="SWEN2_TourPlanner.View.LogList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uc="clr-namespace:SWEN2_TourPlanner.View"       
+
+             xmlns:local="clr-namespace:SWEN2_TourPlanner.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <StackPanel >
+        <Border BorderBrush="Gray" BorderThickness="0 0 0 1"></Border>
+
+        <uc:SearchBar Margin="10"/>
+
+        <Border BorderBrush="Gray" BorderThickness="0 0 0 1"></Border>
+
+
+
+        <DockPanel Margin="10">
+            <Label FontSize="24" FontWeight="Bold" HorizontalAlignment="Left">Logs</Label>
+            <Button Click="Button_Click" HorizontalAlignment="Right">
+                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
+            </Button>
+        </DockPanel>
+
+
+
+
+        <DataGrid IsReadOnly="True" SelectionUnit="FullRow" Margin="10" MaxHeight="200"  Name="LogGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderThickness="0">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Width="12*" Header="Date" Binding="{Binding Date}"/>
+                <DataGridTextColumn Width="12*" Header="Duration"  Binding="{Binding Duration}"/>
+                <DataGridTextColumn Width="12*" Header="Distance"  Binding="{Binding Distance }"/>
+                <DataGridTextColumn Width="12*" Header="Difficulty"  Binding="{Binding Rating}"/>
+                <DataGridTextColumn Width="12*" Header="Rating"  Binding="{Binding Rating}"/>
+                <DataGridTextColumn Width="30*" Header="Comment"  Binding="{Binding Comment}"/>
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button HorizontalAlignment="Center">
+                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/pen.png"  />
+                            </Button>
+                        </DataTemplate>
+
+
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button HorizontalAlignment="Center">
+                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/delete.png"  />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </StackPanel>
+</UserControl>

@@ -48,25 +48,31 @@ namespace SWEN2_REST.BL.Controllers {
 
             dynamic res = JObject.Parse(result);
 
-            Console.WriteLine(res.route.formattedTime.ToString());
-
             Tour t = new(request.Name, request.Description, request.From, request.To, request.RouteType, (double)res.route.distance, res.route.formattedTime.ToString(), request.Info, request.ImageLocation);
 
-            if (_tours.AddTour(t) == 0) {
-                _tourContext.SaveTour(t);
-                return "Added new tour!";
-            } else {
+            if (_tours.AddTour(t) == 0)
+                if (_tourContext.SaveTour(t) == 0)
+                    return "Added new tour!";
+                else
+                    return "Error while saving tour to database!";
+            else
                 return "Tour with this name already exists!";
-            }
         }
 
         [HttpPut("{name}")]
         public void Put(string name, [FromBody] string value) {
+
         }
 
         [HttpDelete("{name}")]
         public string Delete(string name) {
-
+            if (_tours.RemoveTour(name) == 0)
+                if (_tourContext.DeleteTour(name) == 0)
+                    return "Deleted tour with name: " + name;
+                else
+                    return "Error while deleting tour from database!";
+            else
+                return "Error while deleting tour!";
         }
     }
 }
