@@ -23,5 +23,19 @@ namespace SWEN2_TourPlanner.View
         {
             InitializeComponent();
         }
+
+        private void SaveTour(object sender, RoutedEventArgs e)
+        {
+            string from = From.Text;
+            string to = To.Text;
+            string tourname = TourName.Text;
+            string meanOfTransport = MeanOfTransport.Text;
+            string description = Description.Text;   
+        }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

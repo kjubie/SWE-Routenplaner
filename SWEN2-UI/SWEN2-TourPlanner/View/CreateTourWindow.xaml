@@ -14,11 +14,11 @@
             <Setter Property="BorderBrush" Value="LightGray"></Setter>
             <Setter Property="Width" Value="100"></Setter>
         </Style>
-        
+
         <Style TargetType="ComboBox">
             <Setter Property="Background" Value="Transparent"></Setter>
             <Setter Property="BorderBrush" Value="Transparent"></Setter>
-            <Setter Property="BorderBrush" Value="LightGray"></Setter>           
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
 
         </Style>
 
@@ -33,15 +33,15 @@
             <Label>
                 From*
             </Label>
-            <TextBox></TextBox>
+            <TextBox x:Name="From"></TextBox>
             <Label>
                 To*
             </Label>
-            <TextBox></TextBox>
+            <TextBox x:Name="To"></TextBox>
             <Label>
                 Mean of transport
             </Label>
-            <ComboBox>
+            <ComboBox x:Name="MeanOfTransport">
                 <ComboBoxItem IsSelected="True">By Foot</ComboBoxItem>
                 <ComboBoxItem>Bike</ComboBoxItem>
                 <ComboBoxItem>Car</ComboBoxItem>
@@ -51,18 +51,16 @@
             <Label>
                 Tour name
             </Label>
-            <TextBox></TextBox>
+            <TextBox x:Name="TourName"></TextBox>
             <Label>
-                description
+                Description
             </Label>
-            <TextBox Height="100"></TextBox>
+            <TextBox x:Name="Description" Height="100"></TextBox>
             <DockPanel Margin="0 5 0 5">
                 <Button DockPanel.Dock="Left">Import...</Button>
-                <Button DockPanel.Dock="Right">Cancel</Button>
-                <Button DockPanel.Dock="Right">Save</Button>
+                <Button Click="CloseWindow" DockPanel.Dock="Right">Cancel</Button>
+                <Button Click="SaveTour" DockPanel.Dock="Right">Save</Button>
             </DockPanel>
-
-
         </StackPanel>
     </Grid>
 </Window>
