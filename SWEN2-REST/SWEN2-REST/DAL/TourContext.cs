@@ -61,7 +61,6 @@ namespace SWEN2_REST.DAL {
                 npgsqlCommand.Parameters.AddWithValue("imageLocation", tour.ImageLocation);
                 npgsqlCommand.Prepare();
                 var result = npgsqlCommand.ExecuteNonQuery();
-                Console.WriteLine(result);
                 SqlConnection.Close();
                 return 0;
             } catch (Exception ex) {
@@ -77,7 +76,6 @@ namespace SWEN2_REST.DAL {
                 npgsqlCommand.Parameters.AddWithValue("name", name);
                 npgsqlCommand.Prepare();
                 var result = npgsqlCommand.ExecuteNonQuery();
-                Console.WriteLine(result);
                 SqlConnection.Close();
                 return 0;
             } catch (Exception ex) {

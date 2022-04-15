@@ -13,6 +13,7 @@ namespace SWEN2_REST.BL.Controllers {
         private readonly Tours _tours;
         private readonly MapQuestContext _mapQuestContext;
         private readonly TourContext _tourContext;
+        private readonly FileHandler _fileHandler;
 
         public class Request {
             public string? Name { get; set; }
@@ -21,13 +22,13 @@ namespace SWEN2_REST.BL.Controllers {
             public string? To { get; set; }
             public string? RouteType { get; set; }
             public string? Info { get; set; }
-            public string? ImageLocation { get; set; }
         }
 
-        public TourController(Tours tours, MapQuestContext mapQuestContext, TourContext tourContext) {
+        public TourController(Tours tours, MapQuestContext mapQuestContext, TourContext tourContext, FileHandler fileHandler) {
             _tours = tours;
             _mapQuestContext = mapQuestContext;
             _tourContext = tourContext;
+            _fileHandler = fileHandler;
         }
 
         [HttpGet]
@@ -40,15 +41,29 @@ namespace SWEN2_REST.BL.Controllers {
             return JsonSerializer.Serialize(_tours.GetTour(name));
         }
 
+        [HttpGet("image/{name}")]
+        public string GetImage(string name) {
+            return _fileHandler.LoadFromFile(name);
+        }
+
         [HttpPost]
         public string Post(Request request) {
             var task = _mapQuestContext.GetRouteAsync(request.From, request.To, request.RouteType);
             task.Wait();
             var result = task.Result.ToString();
-
             dynamic res = JObject.Parse(result);
 
-            Tour t = new(request.Name, request.Description, request.From, request.To, request.RouteType, (double)res.route.distance, res.route.formattedTime.ToString(), request.Info, request.ImageLocation);
+            var mapTask = _mapQuestContext.GetMapAsync(request.From, request.To);
+            mapTask.Wait();
+            var mapResultString = Convert.ToBase64String(mapTask.Result);
+
+            var fileTask = _fileHandler.SaveToFileAsync(request.Name, mapResultString);
+            fileTask.Wait();
+
+            if(fileTask.Result == -1)
+                return "Error while saving image!";
+
+            Tour t = new(request.Name, request.Description, request.From, request.To, request.RouteType, (double)res.route.distance, res.route.formattedTime.ToString(), request.Info, "../../SWEN2-DB/routeImages/" + request.Name + ".txt");
 
             if (_tours.AddTour(t) == 0)
                 if (_tourContext.SaveTour(t) == 0)

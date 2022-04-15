@@ -11,7 +11,7 @@ namespace SWEN2_REST {
         public double Distance { get; set; }
         public string Time { get; set; }
         public string Info { get; set; }
-        public string ImageLocation { get; set; }
+        public string? ImageLocation { get; set; }
 
         public Tour() {
 

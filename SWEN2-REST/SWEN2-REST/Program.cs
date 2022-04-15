@@ -6,12 +6,15 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 MapQuestContext mapQuestContext = new();
 Tours tours = new();
 TourContext tourContext = new();
+FileHandler fileHandler = new();
+
 tourContext.LoadTours(tours);
 
 builder.Services.AddControllers();
 builder.Services.AddSingleton<Tours>(tours);
 builder.Services.AddSingleton<MapQuestContext>(mapQuestContext);
 builder.Services.AddSingleton<TourContext>(tourContext);
+builder.Services.AddSingleton<FileHandler>(fileHandler);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
