@@ -44,6 +44,13 @@
 
   <ItemGroup>
     <PackageReference Include="Handlebars.Net" Version="2.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SWEN2-REST\SWEN2-REST\SWEN2-REST.csproj" />
+    <ProjectReference Include="..\..\SWEN2-TourPlanner-Model\SWEN2-TourPlanner-Model.csproj" />
+    <ProjectReference Include="..\..\SWEN2-Tourplanner-ViewModel\SWEN2-TourPlanner-ViewModel.csproj" />
   </ItemGroup>
 
 </Project>

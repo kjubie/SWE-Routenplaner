@@ -2,7 +2,8 @@
 using Npgsql;
 using SWEN2_REST.BL.Models;
 
-namespace SWEN2_REST.DAL {
+namespace SWEN2_REST.DAL
+{
     public class TourContext {
         private string ConnectionString;
         public NpgsqlConnection SqlConnection;

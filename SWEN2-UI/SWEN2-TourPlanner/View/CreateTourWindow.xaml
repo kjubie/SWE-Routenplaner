@@ -43,8 +43,8 @@
             </Label>
             <ComboBox x:Name="MeanOfTransport">
                 <ComboBoxItem IsSelected="True">By Foot</ComboBoxItem>
-                <ComboBoxItem>Bike</ComboBoxItem>
-                <ComboBoxItem>Car</ComboBoxItem>
+                <ComboBoxItem>bicycle</ComboBoxItem>
+                <ComboBoxItem>car</ComboBoxItem>
                 <ComboBoxItem>Public Transport</ComboBoxItem>
             </ComboBox>
 

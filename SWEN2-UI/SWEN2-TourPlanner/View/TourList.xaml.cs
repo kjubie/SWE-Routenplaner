@@ -1,8 +1,11 @@
-﻿using System;
+﻿using SWEN2_REST.BL.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SWEN2_Tourplanner_ViewModel;
+
 
 namespace SWEN2_TourPlanner.View
 {
@@ -21,28 +26,43 @@ namespace SWEN2_TourPlanner.View
     /// </summary>
     /// 
 
-  
+
 
 
 
     public partial class TourList : UserControl
     {
-        ObservableCollection<string> TourNames = new ObservableCollection<string>();
+        //ObservableCollection<string> TourNames = new ObservableCollection<string>();
+
+        // Tours? tourlist = new Tours();
+
+        ToursViewModel ViewModel = new ToursViewModel();
+
 
         public TourList()
         {
+
             InitializeComponent();
-            TourListCollection.ItemsSource = TourNames;
+            this.DataContext = ViewModel;
+            //TourListCollection.ItemsSource = TourNames;             
+           
+
+
         }
 
-
+        
 
         private void AddTour(object sender, RoutedEventArgs e)
         {
-            CreateTour createTourWindow = new CreateTour();
-            createTourWindow.Show();
 
-            //TourNames.Add("Tour " + TourNames.Count);
+            /*
+            ViewModel.AddTour(new TourModel { From = "Hamburg", To = "Salzburg", Name = "TestTourAdd" });
+            */
+
+
+            CreateTour createTourWindow = new CreateTour();
+            createTourWindow.Show();    
+            
 
         }
     }

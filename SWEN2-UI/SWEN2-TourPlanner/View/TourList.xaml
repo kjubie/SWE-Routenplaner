@@ -26,7 +26,7 @@
 
             <Label FontSize="24" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
 
-            <Button Click="AddTour"  Grid.Column="2" HorizontalAlignment="Center">
+            <Button Click="AddTour"  Grid.Column="2" HorizontalAlignment="Center" >
                 <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
             </Button>
 
@@ -36,7 +36,8 @@
         </Grid>
 
 
-        <ListView x:Name ="TourListCollection" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700">
+
+        <ListView x:Name ="TourListCollection" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700" ItemsSource="{Binding TourListVM}">
 
             <ListView.ItemTemplate >
                 <DataTemplate>
@@ -49,7 +50,7 @@
                             <ColumnDefinition Width="10*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label   Grid.Column="0" HorizontalAlignment="Left" Content="{Binding BindsDirectlyToSource=True}"/>
+                        <Label  Grid.Column="0" HorizontalAlignment="Left" Content="{Binding Name}"/>
 
 
                         <Button  Grid.Column="1" HorizontalAlignment="Center">
