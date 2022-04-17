@@ -1,8 +1,16 @@
-﻿namespace SWEN2_REST.BL.Models {
+﻿using System.Text.Json;
+
+namespace SWEN2_REST.BL.Models
+{
     public class Tours {
         public Dictionary<string, Tour> TourList { get; set; }
 
         public Tours() {
+            TourList = new Dictionary<string, Tour>();
+        } 
+        
+        
+        public Tours(string urlRESTServer) {
             TourList = new Dictionary<string, Tour>();
         }
 
@@ -29,5 +37,7 @@
                 return null;
             }
         }
+
+       
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HandlebarsDotNet.Collections;
+using SWEN2_Tourplanner_ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,23 +23,24 @@ namespace SWEN2_TourPlanner
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
+
         
-
-       
-
 
         public MainWindow()
         {
             InitializeComponent();
-            
-           
+            var opt = MyTourListUC.TourListCollection.SelectedItem;          
+
+
         }
 
-       
 
-  
 
-       
-        
+
+
+
+
     }
 }

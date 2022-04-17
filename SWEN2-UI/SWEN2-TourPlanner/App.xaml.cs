@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWEN2_Tourplanner_ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,14 @@ namespace SWEN2_TourPlanner
     /// </summary>
     public partial class App : Application
     {
+
+
+
+    
+
     }
+
+
+
+
 }

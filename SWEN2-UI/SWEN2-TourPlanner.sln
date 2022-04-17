@@ -5,6 +5,12 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWEN2-TourPlanner-View", "SWEN2-TourPlanner\SWEN2-TourPlanner-View.csproj", "{8F75FFDB-2622-4D93-879D-239095D708FE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWEN2-TourPlanner-ViewModel", "..\SWEN2-Tourplanner-ViewModel\SWEN2-TourPlanner-ViewModel.csproj", "{5F747CA3-B431-4F45-884D-3DC20AFB5D67}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWEN2-TourPlanner-Model", "..\SWEN2-TourPlanner-Model\SWEN2-TourPlanner-Model.csproj", "{C4A63210-1FA6-4B69-92A8-F6AEF27CC130}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWEN2-REST", "..\SWEN2-REST\SWEN2-REST\SWEN2-REST.csproj", "{481DD658-73E4-4C86-ADBA-F3D7A9327E03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{8F75FFDB-2622-4D93-879D-239095D708FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F75FFDB-2622-4D93-879D-239095D708FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F75FFDB-2622-4D93-879D-239095D708FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F747CA3-B431-4F45-884D-3DC20AFB5D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F747CA3-B431-4F45-884D-3DC20AFB5D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F747CA3-B431-4F45-884D-3DC20AFB5D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F747CA3-B431-4F45-884D-3DC20AFB5D67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4A63210-1FA6-4B69-92A8-F6AEF27CC130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4A63210-1FA6-4B69-92A8-F6AEF27CC130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4A63210-1FA6-4B69-92A8-F6AEF27CC130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4A63210-1FA6-4B69-92A8-F6AEF27CC130}.Release|Any CPU.Build.0 = Release|Any CPU
+		{481DD658-73E4-4C86-ADBA-F3D7A9327E03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{481DD658-73E4-4C86-ADBA-F3D7A9327E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{481DD658-73E4-4C86-ADBA-F3D7A9327E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{481DD658-73E4-4C86-ADBA-F3D7A9327E03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

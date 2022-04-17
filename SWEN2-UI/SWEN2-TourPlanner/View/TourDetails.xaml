@@ -6,19 +6,24 @@
              xmlns:local="clr-namespace:SWEN2_TourPlanner.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- Content="{Binding selectedTour.Name}"-->
+
+
     <StackPanel>
 
-        <Label FontSize="24" FontWeight="Bold">Tour 1</Label>
-        <Label>From - To</Label>
-        <Label>Estimated Duration</Label>
-        <Label>Distance</Label>
+        <Label Content="{Binding SelectedTour.Name, Mode=OneWay}" FontSize="24" FontWeight="Bold" ></Label>
+        <Label Content="{Binding SelectedTour.FormatedFromTo, Mode=OneWay}" FontWeight="Bold"></Label >       
+        <Label Content="{Binding SelectedTour.FormatedTime, Mode=OneWay}"></Label>          
+        <Label Content="{Binding SelectedTour.FormatedDistance, Mode=OneWay}"></Label>
+        
         <Label FontWeight="Bold">Description</Label>
         <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto" Height="100">
 
-            <TextBlock  Width="Auto" TextWrapping="Wrap" Height="Auto">
-                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimataLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+            <TextBlock  Text="{Binding SelectedTour.Description}"  Width="Auto" TextWrapping="Wrap" Height="Auto">
 
             </TextBlock>
         </ScrollViewer>
     </StackPanel>
+
 </UserControl>

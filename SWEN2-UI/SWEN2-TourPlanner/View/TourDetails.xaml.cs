@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWEN2_Tourplanner_ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,16 @@ namespace SWEN2_TourPlanner.View
     /// </summary>
     public partial class TourDetails : UserControl
     {
+        ToursViewModel ViewModel = new ToursViewModel();
+
+
         public TourDetails()
         {
             InitializeComponent();
+            this.DataContext = ViewModel;
+
+            //var selItem = MyTourListUC.TourListCollection.SelectedItem;
+
         }
     }
 }
