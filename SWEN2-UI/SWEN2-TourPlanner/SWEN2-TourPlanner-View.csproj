@@ -48,7 +48,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SWEN2-REST\SWEN2-REST\SWEN2-REST.csproj" />
     <ProjectReference Include="..\..\SWEN2-TourPlanner-Model\SWEN2-TourPlanner-Model.csproj" />
     <ProjectReference Include="..\..\SWEN2-Tourplanner-ViewModel\SWEN2-TourPlanner-ViewModel.csproj" />
   </ItemGroup>
