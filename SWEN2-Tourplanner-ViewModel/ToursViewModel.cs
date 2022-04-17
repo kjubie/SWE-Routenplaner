@@ -11,33 +11,31 @@ namespace SWEN2_Tourplanner_ViewModel
 {
     public class ToursViewModel
     {
-        private static IList<TourModel> _tourlist;
+        private static IList<TourModel>? _tourlist;
+        private static Tours? _tours;
+        private static TourModel? _selectedTour;
 
         public ToursViewModel()
         {
             _tourlist = new ObservableCollection<TourModel>();
             _ = LoadToursAsync();
+            
         }
 
         async Task LoadToursAsync()
-        {
-            
+        {         
 
-            Tours tourlist = await RESTRequest.GetTours();
+            _tours = await RESTRequest.GetTours();
 
-            Dictionary<string, Tour>.ValueCollection values = tourlist.TourList.Values;
+            Dictionary<string, Tour>.ValueCollection values = _tours.TourList.Values;
             foreach (Tour val in values)
             {
                 _tourlist.Add(new TourModel(val));
             }
-
-
         }       
 
         public async static Task PostTourAsync(string from, string to, string tourname, string type, string description)
-        {
-            //string content = "{\"name\":\"" + tourname + ",\"description\":\"" + description + "\",\"from\":\"" + from + "\",\"to\":\"" + to + "\",\"routetype\":\"" + type + "\",\"info\":\"info\",\"imagelocation\":\"loc\"}";
-            // string content = "{\"name\":\"SuperAwesomeTour\",\"description\":\"desc\",\"from\":\"Vienna, AT\",\"to\":\"Graz, AT\",\"routetype\":\"bicycle\",\"info\":\"info\",\"imagelocation\":\"loc\"}";
+        {            
             string content = "{\"name\":\"" + tourname + "\",\"description\":\"" + description + "\",\"from\":\"" + from + "\",\"to\":\"" + to + "\",\"routetype\":\"" + type + "\",\"info\":\"info\",\"imagelocation\":\"loc\"}";
 
             var data = new StringContent(content, Encoding.UTF8, "application/json");
@@ -52,10 +50,28 @@ namespace SWEN2_Tourplanner_ViewModel
             Console.WriteLine(result);
 
             Tour tour = await RESTRequestModel.GetTour(tourname);
+            _tours.AddTour(tour);
             _tourlist.Add(new TourModel(tour));
         }
 
-        public IList<TourModel> TourListVM
+
+        public static event EventHandler SelectedTourChanged;
+
+        public static TourModel SelectedTour
+        {
+            get { return _selectedTour; }
+            set {
+                if (value != _selectedTour)
+                {
+                    _selectedTour = value;
+
+                    if (SelectedTourChanged != null)
+                        SelectedTourChanged(null, EventArgs.Empty);
+                }
+            }
+        }
+
+        public IList<TourModel>? TourListVM
         {
             get { return _tourlist; }
             set { _tourlist = value; }
@@ -66,25 +82,6 @@ namespace SWEN2_Tourplanner_ViewModel
             TourListVM.Add(tour);
         }
 
-        /*
-        private ICommand mUpdater;
-        public ICommand UpdateCommand
-        {
-            get
-            {
-                if (mUpdater == null)
-                {
-
-                    mUpdater = new Updater();
-                }
-                return mUpdater;
-            }
-            set
-            {
-                mUpdater = value;
-            }
-        }
-
-        */
+        
     }
 }

@@ -54,7 +54,7 @@
 
 
 
-        <uc:TourList Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" />
+        <uc:TourList Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" x:Name="MyTourListUC"/>
 
         <uc:TourDetails  Grid.Row="0" Grid.Column="2" Margin="10"/>
 

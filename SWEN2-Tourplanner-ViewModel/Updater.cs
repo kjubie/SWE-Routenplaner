@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 namespace SWEN2_Tourplanner_ViewModel
 {
+    /*
     internal class Updater : ICommand
     {
         #region ICommand Members  
@@ -25,4 +26,5 @@ namespace SWEN2_Tourplanner_ViewModel
 
         #endregion
     }
+    */
 }

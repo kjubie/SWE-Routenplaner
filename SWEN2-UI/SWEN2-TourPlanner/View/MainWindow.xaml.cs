@@ -31,7 +31,7 @@ namespace SWEN2_TourPlanner
         public MainWindow()
         {
             InitializeComponent();
-            
+            var opt = MyTourListUC.TourListCollection.SelectedItem;          
 
 
         }

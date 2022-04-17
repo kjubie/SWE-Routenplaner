@@ -36,34 +36,28 @@ namespace SWEN2_TourPlanner.View
 
         // Tours? tourlist = new Tours();
 
-        ToursViewModel ViewModel = new ToursViewModel();
+        ToursViewModel? ViewModel = new ToursViewModel();
 
 
         public TourList()
         {
-
             InitializeComponent();
             this.DataContext = ViewModel;
-            //TourListCollection.ItemsSource = TourNames;             
-           
-
 
         }
 
-        
+
 
         private void AddTour(object sender, RoutedEventArgs e)
         {
-
-            /*
-            ViewModel.AddTour(new TourModel { From = "Hamburg", To = "Salzburg", Name = "TestTourAdd" });
-            */
-
-
             CreateTour createTourWindow = new CreateTour();
-            createTourWindow.Show();    
-            
+            createTourWindow.Show();
+        }
 
+        private void UpdateTourDetails(object sender, SelectionChangedEventArgs e)
+        {
+            ToursViewModel.SelectedTour = (TourModel)TourListCollection.SelectedItem;
+            
         }
     }
 }

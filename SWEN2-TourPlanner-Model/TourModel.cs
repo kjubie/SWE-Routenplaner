@@ -32,6 +32,27 @@ namespace SWEN2_REST.BL.Models
             info = tour.Info;
             imageLocation = tour.ImageLocation;
         }
+
+        public string FormatedFromTo
+        {
+            get
+            {
+                return from + " - " + to;
+            }
+        }
+        public string FormatedTime
+        {
+            get
+            {
+                return "Estimated Time: " + time;
+            }
+        }public string FormatedDistance
+        {
+            get
+            {
+                return "Distance: " + Math.Round(distance, 2) + " km";
+            }
+        }
         public string Name
         {
             get

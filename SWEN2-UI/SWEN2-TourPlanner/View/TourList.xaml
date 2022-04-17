@@ -37,7 +37,7 @@
 
 
 
-        <ListView x:Name ="TourListCollection" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700" ItemsSource="{Binding TourListVM}">
+        <ListView SelectionChanged="UpdateTourDetails" x:Name ="TourListCollection" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700" ItemsSource="{Binding TourListVM}">
 
             <ListView.ItemTemplate >
                 <DataTemplate>
