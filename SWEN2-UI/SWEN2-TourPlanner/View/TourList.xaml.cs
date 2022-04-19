@@ -42,6 +42,7 @@ namespace SWEN2_TourPlanner.View
         public TourList()
         {
             InitializeComponent();
+            _ = ViewModel.LoadToursAsync();
             this.DataContext = ViewModel;
 
         }
@@ -52,12 +53,20 @@ namespace SWEN2_TourPlanner.View
         {
             CreateTour createTourWindow = new CreateTour();
             createTourWindow.Show();
-        }
+        } 
+        
+     
 
         private void UpdateTourDetails(object sender, SelectionChangedEventArgs e)
         {
             ToursViewModel.SelectedTour = (TourModel)TourListCollection.SelectedItem;
             
+        }
+
+        private void DeleteTour(object sender, RoutedEventArgs e)
+        {
+            var nameTourToDelete = ((Button)sender).Tag;
+            ViewModel.DeleteTour(nameTourToDelete.ToString());
         }
     }
 }

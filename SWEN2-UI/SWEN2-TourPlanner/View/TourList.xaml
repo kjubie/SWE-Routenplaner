@@ -52,14 +52,13 @@
 
                         <Label  Grid.Column="0" HorizontalAlignment="Left" Content="{Binding Name}"/>
 
-
                         <Button  Grid.Column="1" HorizontalAlignment="Center">
                             <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/pen.png"  />
                         </Button>
-                        <Button  Grid.Column="2" HorizontalAlignment="Center">
+                        <Button  Grid.Column="2" HorizontalAlignment="Center" >
                             <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/export.png"  />
                         </Button>
-                        <Button  Grid.Column="3" HorizontalAlignment="Center" >
+                        <Button Tag ="{Binding Name}" Click="DeleteTour" Grid.Column="3" HorizontalAlignment="Center"  >
                             <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/delete.png"  />
                         </Button>
                     </Grid>
