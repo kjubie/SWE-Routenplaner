@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
 
-namespace SWEN2_REST.BL.Models
+namespace SWEN2_Tourplanner_Model
 {
-    public class RESTRequestModel
+    public class RESTRequest
     {
 
         public async static Task<Tours> GetTours()
@@ -26,11 +26,6 @@ namespace SWEN2_REST.BL.Models
             var response = await client.GetStringAsync("https://localhost:7221/api/Tour");
             Tours? tours = JsonSerializer.Deserialize<Tours>(response.ToString());
             return tours;
-        } public async static Task DeleteTour(string Tourname)
-        {
-            //using var client = new HttpClient();
-            //var response = await client.GetStringAsync("https://localhost:7221/api/Tour");
-           
-        }
+        }        
     }
 }
