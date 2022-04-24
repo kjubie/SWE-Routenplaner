@@ -7,7 +7,7 @@
              xmlns:uc="clr-namespace:SWEN2_TourPlanner.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <StackPanel>
 
         <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
@@ -70,4 +70,5 @@
         </ListView>
 
     </StackPanel>
+
 </UserControl>

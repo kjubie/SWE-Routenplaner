@@ -13,10 +13,10 @@
     <StackPanel>
 
         <Label Content="{Binding SelectedTour.Name, Mode=OneWay}" FontSize="24" FontWeight="Bold" ></Label>
-        <Label Content="{Binding SelectedTour.FormatedFromTo, Mode=OneWay}" FontWeight="Bold"></Label >       
-        <Label Content="{Binding SelectedTour.FormatedTime, Mode=OneWay}"></Label>          
+        <Label Content="{Binding SelectedTour.FormatedFromTo, Mode=OneWay}" FontWeight="Bold"></Label >
+        <Label Content="{Binding SelectedTour.FormatedTime, Mode=OneWay}"></Label>
         <Label Content="{Binding SelectedTour.FormatedDistance, Mode=OneWay}"></Label>
-        
+
         <Label FontWeight="Bold">Description</Label>
         <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto" Height="100">
 

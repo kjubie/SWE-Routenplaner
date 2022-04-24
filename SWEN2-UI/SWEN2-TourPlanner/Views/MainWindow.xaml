@@ -40,17 +40,93 @@
 
 
         <Border Grid.Column="1" Grid.RowSpan="2" BorderThickness="1 0 0 0" BorderBrush="Gray"></Border>
+        
+        
+        <!-- TOURLIST -->
+        <StackPanel>
+
+            <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
+
+                <uc:SearchBar Margin="10"/>
+
+
+            </Border>
+
+            <Grid  Margin ="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label FontSize="24" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
+
+                <Button Click="AddTour"  Grid.Column="2" HorizontalAlignment="Center" >
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
+                </Button>
+
+                <Button  Grid.Column="1" HorizontalAlignment="Center">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/import.png"  />
+                </Button>
+            </Grid>
 
 
 
+            <ListView SelectionChanged="UpdateTourDetails" x:Name ="TourListCollection" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700" ItemsSource="{Binding TourListVM}">
 
-        <uc:TourList Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" x:Name="MyTourListUC"/>
+                <ListView.ItemTemplate >
+                    <DataTemplate>
 
-        <uc:TourDetails  Grid.Row="0" Grid.Column="2" Margin="10"/>
+                        <Grid HorizontalAlignment="Stretch" Width="Auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label  Grid.Column="0" HorizontalAlignment="Left" Content="{Binding Name}"/>
+
+                            <Button  Grid.Column="1" HorizontalAlignment="Center">
+                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/pen.png"  />
+                            </Button>
+                            <Button  Grid.Column="2" HorizontalAlignment="Center" >
+                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/export.png"  />
+                            </Button>
+                            <Button Tag ="{Binding Name}" Click="DeleteTour" Grid.Column="3" HorizontalAlignment="Center"  >
+                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/delete.png"  />
+                            </Button>
+                        </Grid>
+
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+        </StackPanel>
+
+
+        <!-- TOURDETAILS -->
+        <StackPanel>
+
+            <Label Content="{Binding SelectedTour.Name, Mode=OneWay}" FontSize="24" FontWeight="Bold" ></Label>
+            <Label Content="{Binding SelectedTour.FormatedFromTo, Mode=OneWay}" FontWeight="Bold"></Label >
+            <Label Content="{Binding SelectedTour.FormatedTime, Mode=OneWay}"></Label>
+            <Label Content="{Binding SelectedTour.FormatedDistance, Mode=OneWay}"></Label>
+
+            <Label FontWeight="Bold">Description</Label>
+            <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto" Height="100">
+
+                <TextBlock  Text="{Binding SelectedTour.Description}"  Width="Auto" TextWrapping="Wrap" Height="Auto">
+
+                </TextBlock>
+            </ScrollViewer>
+        </StackPanel>
 
         <Border Grid.Column="3"  BorderBrush="Gray" BorderThickness="0 0 1 0"/>
         
-        <!-- DUMMY -->
+        <!-- DUMMY PICTURE -->
         <Image Grid.Column="4" Grid.Row="0" Source="../mapImg/map_test.png" Margin="10" RenderOptions.BitmapScalingMode="HighQuality"></Image>
         <uc:LogList Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3"/>
 

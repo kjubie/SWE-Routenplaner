@@ -1,4 +1,6 @@
 ﻿using HandlebarsDotNet.Collections;
+using SWEN2_TourPlanner.View;
+using SWEN2_Tourplanner_Models;
 using SWEN2_Tourplanner_ViewModels;
 using System;
 using System.Collections.Generic;
@@ -25,19 +27,37 @@ namespace SWEN2_TourPlanner
     {
 
 
+        ToursViewModel ViewModel = new ToursViewModel();
 
-        
 
         public MainWindow()
         {
             InitializeComponent();
-            var opt = MyTourListUC.TourListCollection.SelectedItem;          
+            this.DataContext = ViewModel;
+            _ = ViewModel.LoadToursAsync();
+            this.DataContext = ViewModel;
+        }
 
 
+        private void AddTour(object sender, RoutedEventArgs e)
+        {
+            CreateTour createTourWindow = new CreateTour();
+            createTourWindow.Show();
         }
 
 
 
+        private void UpdateTourDetails(object sender, SelectionChangedEventArgs e)
+        {
+            ToursViewModel.SelectedTour = (TourModel)TourListCollection.SelectedItem;
+
+        }
+
+        private void DeleteTour(object sender, RoutedEventArgs e)
+        {
+            var nameTourToDelete = ((Button)sender).Tag;
+            ViewModel.DeleteTour(nameTourToDelete.ToString());
+        }
 
 
 

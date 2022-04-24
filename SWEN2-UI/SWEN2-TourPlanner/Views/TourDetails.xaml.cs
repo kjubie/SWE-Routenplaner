@@ -21,15 +21,14 @@ namespace SWEN2_TourPlanner.View
     /// </summary>
     public partial class TourDetails : UserControl
     {
-        ToursViewModel ViewModel = new ToursViewModel();
+       
 
 
         public TourDetails()
         {
-            InitializeComponent();
-            this.DataContext = ViewModel;
+            InitializeComponent();         
 
-            //var selItem = MyTourListUC.TourListCollection.SelectedItem;
+           
 
         }
     }
