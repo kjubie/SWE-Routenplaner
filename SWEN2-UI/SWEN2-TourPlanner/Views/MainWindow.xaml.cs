@@ -1,5 +1,5 @@
 ﻿using HandlebarsDotNet.Collections;
-using SWEN2_Tourplanner_ViewModel;
+using SWEN2_Tourplanner_ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

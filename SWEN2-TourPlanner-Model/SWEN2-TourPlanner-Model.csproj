@@ -8,8 +8,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\SWEN2-REST\SWEN2-REST\SWEN2-REST.csproj" />
-  </ItemGroup>
-
 </Project>

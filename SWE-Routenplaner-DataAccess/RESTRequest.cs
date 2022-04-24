@@ -1,6 +1,10 @@
-﻿using System.Text.Json;
+﻿using SWEN2_Tourplanner_Models;
+using System;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 
-namespace SWEN2_Tourplanner_Models
+namespace SWEN2_Tourplanner_DataAccess
 {
     public class RESTRequest
     {
@@ -20,7 +24,7 @@ namespace SWEN2_Tourplanner_Models
             Tour? tour = JsonSerializer.Deserialize<Tour>(response.ToString());
             return tour;
         }
-        public async static Task<Tours> PostTour(TourModel Tour)
+        public async static Task<Tours> PostTour()
         {
             using var client = new HttpClient();
             var response = await client.GetStringAsync("https://localhost:7221/api/Tour");

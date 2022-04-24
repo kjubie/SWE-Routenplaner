@@ -1,5 +1,4 @@
-﻿using SWEN2_REST.BL.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,8 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using SWEN2_Tourplanner_ViewModel;
-
+using SWEN2_Tourplanner_ViewModels;
+using SWEN2_Tourplanner_Models;
 
 namespace SWEN2_TourPlanner.View
 {

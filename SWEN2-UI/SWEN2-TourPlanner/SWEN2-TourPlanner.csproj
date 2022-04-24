@@ -43,13 +43,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Handlebars.Net" Version="2.1.0" />
+    <PackageReference Include="Handlebars.Net" Version="2.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SWEN2-TourPlanner-Model\SWEN2-TourPlanner-Model.csproj" />
-    <ProjectReference Include="..\..\SWEN2-Tourplanner-ViewModel\SWEN2-TourPlanner-ViewModel.csproj" />
+    <Folder Include="Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SWE-Routenplaner-Business\SWE-Routenplaner-Business.csproj" />
+    <ProjectReference Include="..\..\SWE-Routenplaner-DataAccess\SWE-Routenplaner-DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

@@ -15,8 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
-using SWEN2_REST.BL.Models;
-using SWEN2_Tourplanner_ViewModel;
+using SWEN2_Tourplanner_ViewModels;
 
 namespace SWEN2_TourPlanner.View
 {

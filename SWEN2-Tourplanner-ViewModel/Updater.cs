@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace SWEN2_Tourplanner_ViewModel
+namespace SWEN2_Tourplanner_ViewModels
 {
     /*
     internal class Updater : ICommand
