@@ -48,10 +48,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\SWE-Routenplaner-Business\SWE-Routenplaner-Business.csproj" />
     <ProjectReference Include="..\..\SWE-Routenplaner-DataAccess\SWE-Routenplaner-DataAccess.csproj" />
   </ItemGroup>

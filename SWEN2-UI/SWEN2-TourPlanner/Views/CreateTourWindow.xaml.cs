@@ -38,7 +38,7 @@ namespace SWEN2_TourPlanner.View
             string type = MeanOfTransport.Text;
             string description = Description.Text;
 
-            await ToursViewModel.PostTourAsync(from, to, tourname, type, description);
+           // await ToursViewModel.PostTourAsync(from, to, tourname, type, description);
 
             Close();
 

@@ -31,19 +31,17 @@ namespace SWEN2_TourPlanner.View
 
     public partial class TourList : UserControl
     {
-        //ObservableCollection<string> TourNames = new ObservableCollection<string>();
-
-        // Tours? tourlist = new Tours();
-
-        ToursViewModel? ViewModel = new ToursViewModel();
+        
+      
 
 
         public TourList()
         {
-            InitializeComponent();
-           
+            InitializeComponent();           
 
         }
+
+
 
 
 

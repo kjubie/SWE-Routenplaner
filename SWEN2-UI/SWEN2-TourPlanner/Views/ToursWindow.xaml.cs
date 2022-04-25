@@ -23,19 +23,18 @@ namespace SWEN2_TourPlanner
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ToursWindow : Window
     {
 
 
         ToursViewModel ViewModel = new ToursViewModel();
 
 
-        public MainWindow()
+        public ToursWindow()
         {
             InitializeComponent();
-            this.DataContext = ViewModel;
-            _ = ViewModel.LoadToursAsync();
-            this.DataContext = ViewModel;
+            this.DataContext = ViewModel;        
+          
         }
 
 
@@ -49,14 +48,13 @@ namespace SWEN2_TourPlanner
 
         private void UpdateTourDetails(object sender, SelectionChangedEventArgs e)
         {
-            ToursViewModel.SelectedTour = (TourModel)TourListCollection.SelectedItem;
+            //ToursViewModel.SelectedTour = (TourModel)TourListCollection.SelectedItem;
 
         }
 
         private void DeleteTour(object sender, RoutedEventArgs e)
         {
-            var nameTourToDelete = ((Button)sender).Tag;
-            ViewModel.DeleteTour(nameTourToDelete.ToString());
+            var nameTourToDelete = ((Button)sender).Tag;            
         }
 
 
