@@ -52,7 +52,7 @@ namespace SWEN2_TourPlanner_ViewModels
 
         public void SaveTour()
         {
-            if(_createdTour.From!= null && _createdTour.To != null && _createdTour.Name != null)
+            if(_createdTour.From != null && _createdTour.To != null && _createdTour.Name != null)
             _request.PostTour(_createdTour.From, _createdTour.To, _createdTour.Name, _createdTour.TransportType, _createdTour.Description);
             CloseAction();
         }            

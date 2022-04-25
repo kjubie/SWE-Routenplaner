@@ -59,22 +59,28 @@
             <Grid  Margin ="10" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="10*"/>
                     <ColumnDefinition Width="15*"/>
                     <ColumnDefinition Width="15*"/>
                     <ColumnDefinition Width="15*"/>
                 </Grid.ColumnDefinitions>
 
+                <Button Click="ReloadWindow"  Grid.Column="1" HorizontalAlignment="Center" >
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/refresh.png"  />
+                </Button>
+
+
                 <Label FontSize="24" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
 
-                <Button DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="1">
+                <Button DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
                 </Button>
 
-                <Button Click="OpenCreateWindow"  Grid.Column="3" HorizontalAlignment="Center" >
+                <Button Click="OpenCreateWindow"  Grid.Column="4" HorizontalAlignment="Center" >
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
                 </Button>
 
-                <Button  Grid.Column="2" HorizontalAlignment="Center">
+                <Button  Grid.Column="3" HorizontalAlignment="Center">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/import.png"  />
                 </Button>
             </Grid>

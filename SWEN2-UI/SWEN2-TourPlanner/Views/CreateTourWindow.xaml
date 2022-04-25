@@ -53,7 +53,7 @@
                 Tour name
             </Label>
             
-            <TextBox Text="{Binding CreatedTour.TourName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Text="{Binding CreatedTour.Name, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label>
                 Description
             </Label>

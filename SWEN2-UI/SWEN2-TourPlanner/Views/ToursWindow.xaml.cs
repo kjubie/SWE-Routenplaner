@@ -41,6 +41,11 @@ namespace SWEN2_TourPlanner
         {
             CreateTour createTourWindow = new CreateTour();
             createTourWindow.Show();
-        }     
+        }
+
+        private void ReloadWindow(object sender, RoutedEventArgs e)
+        {
+            ViewModel.LoadTourList();
+        }
     }
 }

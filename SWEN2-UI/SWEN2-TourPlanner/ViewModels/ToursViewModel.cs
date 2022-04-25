@@ -65,15 +65,8 @@ namespace SWEN2_Tourplanner_ViewModels
                 bi.EndInit();
 
                 _tourlist.Add(val, bi);
-
-            }
-
-           
-
-
+            }  
         }
-
-
 
         private ICommand _deleteSelectedCommand;
         public ICommand DeleteSelectedCommand
