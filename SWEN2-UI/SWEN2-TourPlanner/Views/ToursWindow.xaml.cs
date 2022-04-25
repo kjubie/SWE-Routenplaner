@@ -37,28 +37,10 @@ namespace SWEN2_TourPlanner
           
         }
 
-
-        private void AddTour(object sender, RoutedEventArgs e)
+        private void OpenCreateWindow(object sender, RoutedEventArgs e)
         {
             CreateTour createTourWindow = new CreateTour();
             createTourWindow.Show();
-        }
-
-
-
-        private void UpdateTourDetails(object sender, SelectionChangedEventArgs e)
-        {
-            //ToursViewModel.SelectedTour = (TourModel)TourListCollection.SelectedItem;
-
-        }
-
-        private void DeleteTour(object sender, RoutedEventArgs e)
-        {
-            var nameTourToDelete = ((Button)sender).Tag;            
-        }
-
-
-
-
+        }     
     }
 }

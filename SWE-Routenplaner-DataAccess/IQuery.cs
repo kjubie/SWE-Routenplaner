@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWE_Routenplaner_DataAccess
+namespace SWEN2_Tourplanner_DataAccess
 {
     public interface IQuery
     {
@@ -16,5 +16,7 @@ namespace SWE_Routenplaner_DataAccess
         public Task PostTour(string from, string to, string tourname, string type, string description);
 
         public void DeleteTour(string nameTourToDelete);
+
+        public Task<string> GetImageBase64(String tourname);
     }
 }

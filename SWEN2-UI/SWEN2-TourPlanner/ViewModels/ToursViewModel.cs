@@ -1,20 +1,27 @@
 ﻿
-using SWE_Routenplaner_DataAccess;
+using SWEN2_TourPlanner.Commands;
 using SWEN2_Tourplanner_DataAccess;
 using SWEN2_Tourplanner_Models;
-using SWEN2_TourPlanner_Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
+
 
 namespace SWEN2_Tourplanner_ViewModels
 {
     public class ToursViewModel
     {
-        private TourListModel _tourlist;
+        private TourListModel _tourlist;      
+        
+
+
         public ObservableCollection<TourModel> TourList
         {
             get { return _tourlist.TourList; }
@@ -25,6 +32,7 @@ namespace SWEN2_Tourplanner_ViewModels
         {
             get { return _selectedTour; }
             set { _selectedTour = value; }
+
         }
 
         private IQuery _request;
@@ -35,80 +43,64 @@ namespace SWEN2_Tourplanner_ViewModels
             _tourlist = new TourListModel();
             _selectedTour = null;
             LoadTourList();
-
         }
         public async void LoadTourList()
         {
+            _tourlist.TourList.Clear();
             Tours tours = await _request.GetTours();
 
             Dictionary<string, Tour>.ValueCollection values = tours.TourList.Values;
             foreach (Tour val in values)
             {
-                _tourlist.Add(val);
+
+
+                string img = await _request.GetImageBase64(val.Name);
+
+
+                byte[] binaryData = Convert.FromBase64String(img);
+
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.StreamSource = new MemoryStream(binaryData);
+                bi.EndInit();
+
+                _tourlist.Add(val, bi);
+
+            }
+
+           
+
+
+        }
+
+
+
+        private ICommand _deleteSelectedCommand;
+        public ICommand DeleteSelectedCommand
+        {
+            get
+            {
+                if (_deleteSelectedCommand != null)
+                {
+                    return _deleteSelectedCommand;
+                }
+                else
+                {
+
+                    _deleteSelectedCommand = new DeleteCommand(param => DeleteTour(param), true);
+                    return _deleteSelectedCommand;
+                }
+            }
+        }
+
+        public void DeleteTour(object TourName)
+        {
+            if (_selectedTour != null)
+            {
+                _request.DeleteTour(_selectedTour.Name);
+                LoadTourList();
             }
         }
     }
-
 }
 
-/*
-public async Task LoadToursAsync()
-{
-    _tours = await RESTRequest.GetTours();
-    _tourlist.Clear();
-
-    Dictionary<string, Tour>.ValueCollection values = _tours.TourList.Values;
-    foreach (Tour val in values)
-    {
-        TourModel t = new TourModel(val);
-        if (!(_tourlist.Contains(t)))
-        {
-            _tourlist.Add(t);
-        }
-    }
-}
-
-public void DeleteTour(string nameTourToDelete)
-{
-
-    string url = "https://localhost:7221/api/Tour/" + nameTourToDelete;
-    using var client = new HttpClient();
-    var response = client.DeleteAsync(url).Result;
-
-    _ = LoadToursAsync();
-}
-
-
-
-public static event EventHandler SelectedTourChanged;
-
-public static TourModel SelectedTour
-{
-    get { return _selectedTour; }
-    set
-    {
-        if (value != _selectedTour)
-        {
-            _selectedTour = value;
-
-            if (SelectedTourChanged != null)
-                SelectedTourChanged(null, EventArgs.Empty);
-        }
-    }
-}
-
-public TourListModel TourList
-{
-    get { return _tourlist; }
-    set { _tourlist = value; }
-}
-
-public void AddTour(TourModel tour)
-{
-    //TourList.Add(tour);
-}
-
-
-}
-}
-*/

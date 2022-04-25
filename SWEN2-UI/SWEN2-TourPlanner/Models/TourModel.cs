@@ -4,12 +4,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace SWEN2_Tourplanner_Models
 {
     public class TourModel : INotifyPropertyChanged
     {
-        
+
         private string name;
         private string description;
         private string from;
@@ -19,18 +20,20 @@ namespace SWEN2_Tourplanner_Models
         private string time;
         private string info;
         private string imageLocation;
+        private BitmapImage image;
 
         public TourModel(Tour tour)
         {
             name = tour.Name;
-            description = tour.Description; 
+            description = tour.Description;
             from = tour.From;
-            to = tour.To;                
+            to = tour.To;
             transportType = tour.TransportType;
             distance = tour.Distance;
             time = tour.Time;
             info = tour.Info;
             imageLocation = tour.ImageLocation;
+
         }
 
         public string FormatedFromTo
@@ -46,7 +49,8 @@ namespace SWEN2_Tourplanner_Models
             {
                 return "Estimated Time: " + time;
             }
-        }public string FormatedDistance
+        }
+        public string FormatedDistance
         {
             get
             {
@@ -163,10 +167,25 @@ namespace SWEN2_Tourplanner_Models
             }
         }
 
+        public BitmapImage Image
+        {
+            get
+            {
+                return image;
+            }
+            set
+            {
+                image = value;
+                OnPropertyChanged("Image");
+            }
+        }
+
         public TourModel()
         {
 
         }
+
+
 
         public TourModel(string Name, string Description, string From, string To, string TransportType, double Distance, string Time, string Info, string ImageLocation)
         {
