@@ -51,7 +51,7 @@
 
             <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
 
-                <!-- <uc:SearchBar Margin="10"/> -->
+                <uc:SearchBar Margin="10"/>
 
 
             </Border>
@@ -59,7 +59,6 @@
             <Grid  Margin ="10" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="70*"/>
-                    <ColumnDefinition Width="10*"/>
                     <ColumnDefinition Width="15*"/>
                     <ColumnDefinition Width="15*"/>
                     <ColumnDefinition Width="15*"/>
@@ -72,16 +71,14 @@
 
                 <Label FontSize="24" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
 
-                <Button DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
-                </Button>
 
-                <Button Click="OpenCreateWindow"  Grid.Column="4" HorizontalAlignment="Center" >
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
-                </Button>
-
-                <Button  Grid.Column="3" HorizontalAlignment="Center">
+                <Button  Grid.Column="2" HorizontalAlignment="Center">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/import.png"  />
+                </Button>
+
+
+                <Button Click="OpenCreateWindow"  Grid.Column="3" HorizontalAlignment="Center" >
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
                 </Button>
             </Grid>
 
@@ -92,24 +89,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate >
 
-                        <Grid HorizontalAlignment="Stretch" Width="Auto">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70*"/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition Width="10*"/>
-                            </Grid.ColumnDefinitions>
 
-                            <Label  Grid.Column="0" HorizontalAlignment="Left" Content="{Binding Name}"/>
 
-                            <Button  Grid.Column="1" HorizontalAlignment="Center">
-                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/pen.png"  />
-                            </Button>
-                            <Button  Grid.Column="2" HorizontalAlignment="Center" >
-                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/export.png"  />
-                            </Button>
+                        <Label  Grid.Column="0" HorizontalAlignment="Left" Content="{Binding Name}"/>
 
-                        </Grid>
+
+
+
 
                     </DataTemplate>
 
@@ -119,18 +105,20 @@
 
 
 
+
+
         </StackPanel>
 
 
         <!-- TOURDETAILS -->
         <StackPanel Grid.Row="0" Grid.Column="2">
             <DockPanel >
-               
+                <Image DockPanel.Dock="Right" RenderOptions.BitmapScalingMode="HighQuality"  Width ="40" Height="40" Source="{Binding SelectedTour.IconLocation}"  />
+                <Label DockPanel.Dock="Left" Content="{Binding SelectedTour.Name, Mode=OneWay}" FontSize="24" FontWeight="Bold" ></Label>
             </DockPanel>
-           
 
-            <Label Content="{Binding SelectedTour.Name, Mode=OneWay}" FontSize="24" FontWeight="Bold" ></Label>
-           
+
+
             <Label Content="{Binding SelectedTour.FormatedFromTo, Mode=OneWay}" FontWeight="Bold"></Label >
             <Label Content="{Binding SelectedTour.FormatedTime, Mode=OneWay}"></Label>
             <Label Content="{Binding SelectedTour.FormatedDistance, Mode=OneWay}"></Label>
@@ -142,12 +130,40 @@
                 </TextBlock>
             </ScrollViewer>
 
-            
+            <Grid  Margin ="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+
+
+
+
+                <Button DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
+                </Button>
+
+                <Button Grid.Column="4" HorizontalAlignment="Center" >
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pen.png"  />
+                </Button>
+
+                <Button  Grid.Column="3" HorizontalAlignment="Center">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/export.png"  />
+
+                </Button>
+
+
+            </Grid>
+
+
         </StackPanel>
 
         <Border Grid.Column="3"  BorderBrush="Gray" BorderThickness="0 0 1 0"/>
 
-        <!-- DUMMY PICTURE -->
+        <!-- PICTURE -->
         <Image Grid.Column="4" Grid.Row="0" Source="{Binding SelectedTour.Image}" Margin="10" RenderOptions.BitmapScalingMode="HighQuality"></Image>
 
 

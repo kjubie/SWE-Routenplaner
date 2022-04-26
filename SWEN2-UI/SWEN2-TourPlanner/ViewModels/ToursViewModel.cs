@@ -18,8 +18,8 @@ namespace SWEN2_Tourplanner_ViewModels
 {
     public class ToursViewModel
     {
-        private TourListModel _tourlist;      
-        
+        private TourListModel _tourlist;
+
 
 
         public ObservableCollection<TourModel> TourList
@@ -65,7 +65,7 @@ namespace SWEN2_Tourplanner_ViewModels
                 bi.EndInit();
 
                 _tourlist.Add(val, bi);
-            }  
+            }
         }
 
         private ICommand _deleteSelectedCommand;
