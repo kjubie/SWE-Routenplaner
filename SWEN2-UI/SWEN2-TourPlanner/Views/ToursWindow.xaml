@@ -1,0 +1,156 @@
+﻿<Window x:Class="SWEN2_TourPlanner.ToursWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        xmlns:uc="clr-namespace:SWEN2_TourPlanner.View" 
+        xmlns:local="clr-namespace:SWEN2_TourPlanner" 
+        xmlns:localViewModels="clr-namespace:SWEN2_Tourplanner_ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1000">
+
+
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style>
+
+
+
+    </Window.Resources>
+
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*" MaxWidth="400" MinWidth="200"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="35*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Column="1" Grid.RowSpan="2" BorderThickness="1 0 0 0" BorderBrush="Gray"></Border>
+
+
+        <!-- TOURLIST -->
+        <StackPanel>
+
+            <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
+
+                <uc:SearchBar Margin="10"/>
+
+
+            </Border>
+
+            <Grid  Margin ="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Click="ReloadWindow"  Grid.Column="1" HorizontalAlignment="Center" >
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/refresh.png"  />
+                </Button>
+
+
+                <Label FontSize="24" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
+
+                <Button DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
+                </Button>
+
+                <Button Click="OpenCreateWindow"  Grid.Column="4" HorizontalAlignment="Center" >
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
+                </Button>
+
+                <Button  Grid.Column="3" HorizontalAlignment="Center">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/import.png"  />
+                </Button>
+            </Grid>
+
+            <!--SelectionChanged="UpdateTourDetails"-->
+
+            <ListView SelectedItem="{Binding SelectedTour, Mode=TwoWay}" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700" ItemsSource="{Binding TourList}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+
+                        <Grid HorizontalAlignment="Stretch" Width="Auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label  Grid.Column="0" HorizontalAlignment="Left" Content="{Binding Name}"/>
+
+                            <Button  Grid.Column="1" HorizontalAlignment="Center">
+                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/pen.png"  />
+                            </Button>
+                            <Button  Grid.Column="2" HorizontalAlignment="Center" >
+                                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/export.png"  />
+                            </Button>
+
+                        </Grid>
+
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+
+
+        </StackPanel>
+
+
+        <!-- TOURDETAILS -->
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <DockPanel >
+               
+            </DockPanel>
+           
+
+            <Label Content="{Binding SelectedTour.Name, Mode=OneWay}" FontSize="24" FontWeight="Bold" ></Label>
+           
+            <Label Content="{Binding SelectedTour.FormatedFromTo, Mode=OneWay}" FontWeight="Bold"></Label >
+            <Label Content="{Binding SelectedTour.FormatedTime, Mode=OneWay}"></Label>
+            <Label Content="{Binding SelectedTour.FormatedDistance, Mode=OneWay}"></Label>
+            <Label FontWeight="Bold">Description</Label>
+            <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto" Height="100">
+
+                <TextBlock  Text="{Binding SelectedTour.Description}"  Width="Auto" TextWrapping="Wrap" Height="Auto">
+
+                </TextBlock>
+            </ScrollViewer>
+
+            
+        </StackPanel>
+
+        <Border Grid.Column="3"  BorderBrush="Gray" BorderThickness="0 0 1 0"/>
+
+        <!-- DUMMY PICTURE -->
+        <Image Grid.Column="4" Grid.Row="0" Source="{Binding SelectedTour.Image}" Margin="10" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+        <uc:LogList Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3"/>
+
+    </Grid>
+
+</Window>
