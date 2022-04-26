@@ -63,6 +63,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\SWE-Routenplaner-Business\SWE-Routenplaner-Business.csproj" />
     <ProjectReference Include="..\..\SWE-Routenplaner-DataAccess\SWE-Routenplaner-DataAccess.csproj" />
+    <ProjectReference Include="..\..\SWEN2-REST\SWEN2-REST\SWEN2-REST.csproj" />
   </ItemGroup>
 
 </Project>

@@ -16,7 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using SWEN2_Tourplanner_ViewModel;
+using SWEN2_Tourplanner_ViewModels;
 
 
 namespace SWEN2_TourPlanner.View
