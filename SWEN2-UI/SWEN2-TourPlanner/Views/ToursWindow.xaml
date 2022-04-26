@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
        
+        xmlns:dialog="clr-namespace:SWEN2_TourPlanner.Views"
+        
         xmlns:local="clr-namespace:SWEN2_TourPlanner" 
         xmlns:localViewModels="clr-namespace:SWEN2_Tourplanner_ViewModels" xmlns:uc="clr-namespace:SWEN2_TourPlanner.View"
         mc:Ignorable="d"
@@ -104,7 +106,7 @@
             </ListView>
 
 
-
+           
 
 
         </StackPanel>
