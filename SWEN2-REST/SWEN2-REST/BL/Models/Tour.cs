@@ -1,8 +1,17 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.ComponentModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SWEN2_REST {
-    public class Tour {
+
+namespace SWEN2_REST.BL.Models
+{
+    public class Tour
+    {
         public string Name { get; set; }
         public string Description { get; set; }
         public string From { get; set; }
@@ -13,11 +22,13 @@ namespace SWEN2_REST {
         public string Info { get; set; }
         public string? ImageLocation { get; set; }
 
-        public Tour() {
+        public Tour()
+        {
 
         }
 
-        public Tour(string Name, string Description, string From, string To, string TransportType, double Distance, string Time, string Info, string ImageLocation) { 
+        public Tour(string Name, string Description, string From, string To, string TransportType, double Distance, string Time, string Info, string ImageLocation)
+        {
             this.Name = Name;
             this.Description = Description;
             this.From = From;
@@ -28,5 +39,8 @@ namespace SWEN2_REST {
             this.Info = Info;
             this.ImageLocation = ImageLocation;
         }
+
+       
+       
     }
 }
