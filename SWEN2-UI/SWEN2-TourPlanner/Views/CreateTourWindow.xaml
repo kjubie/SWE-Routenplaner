@@ -42,11 +42,11 @@
             <Label>
                 Mean of transport
             </Label>
-            <ComboBox Text="{Binding CreatedTour.meanOfTransport, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox Text="{Binding CreatedTour.TransportType, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBoxItem IsSelected="True">bicycle</ComboBoxItem>
-                <ComboBoxItem>bicycle</ComboBoxItem>
-                <ComboBoxItem>car</ComboBoxItem>
-                <ComboBoxItem>Public Transport</ComboBoxItem>
+                <ComboBoxItem>pedestrian</ComboBoxItem>
+                <ComboBoxItem>fastest</ComboBoxItem>
+                <ComboBoxItem>shortest</ComboBoxItem>
             </ComboBox>
 
             <Label>

@@ -16,7 +16,7 @@ namespace SWEN2_TourPlanner_ViewModels
     {
 
         private TourModel? _createdTour;
-        
+
         public TourModel? CreatedTour
         {
             get { return _createdTour; }
@@ -52,10 +52,13 @@ namespace SWEN2_TourPlanner_ViewModels
 
         public void SaveTour()
         {
-            if(_createdTour.From != null && _createdTour.To != null && _createdTour.Name != null)
-            _request.PostTour(_createdTour.From, _createdTour.To, _createdTour.Name, _createdTour.TransportType, _createdTour.Description);
-            CloseAction();
-        }            
+            if (_createdTour.From != null && _createdTour.To != null && _createdTour.Name != null)
+            {
+                _request.PostTour(_createdTour.From, _createdTour.To, _createdTour.Name, _createdTour.TransportType, _createdTour.Description);
+                CloseAction();
+            }
+
+        }
 
         public Action CloseAction { get; set; }
     }
