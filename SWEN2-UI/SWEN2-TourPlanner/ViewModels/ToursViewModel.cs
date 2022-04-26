@@ -50,6 +50,20 @@ namespace SWEN2_Tourplanner_ViewModels
             Tours tours = await _request.GetTours();
 
             Dictionary<string, Tour>.ValueCollection values = tours.TourList.Values;
+
+            DirectoryInfo di = new DirectoryInfo("../../../mapImg");
+
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+
+
             foreach (Tour val in values)
             {
 
@@ -57,12 +71,20 @@ namespace SWEN2_Tourplanner_ViewModels
                 string img = await _request.GetImageBase64(val.Name);
 
 
+
+
                 byte[] binaryData = Convert.FromBase64String(img);
+                File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);
+
+
+            
 
                 BitmapImage bi = new BitmapImage();
                 bi.BeginInit();
                 bi.StreamSource = new MemoryStream(binaryData);
                 bi.EndInit();
+
+                
 
                 _tourlist.Add(val, bi);
             }

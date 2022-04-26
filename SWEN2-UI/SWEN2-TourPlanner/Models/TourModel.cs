@@ -52,6 +52,15 @@ namespace SWEN2_Tourplanner_Models
             {
                 return "../icons/" + transportType + ".png";
             }
+        } 
+        
+        
+        public BitmapImage TourImage
+        {
+            get
+            {
+                return new BitmapImage(new Uri(@"../mapImg/" + name + ".png", UriKind.Relative));             
+            }
         }
 
 

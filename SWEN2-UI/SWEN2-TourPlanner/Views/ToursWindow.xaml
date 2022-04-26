@@ -166,7 +166,7 @@
         <Border Grid.Column="3"  BorderBrush="Gray" BorderThickness="0 0 1 0"/>
 
         <!-- PICTURE -->
-        <Image Grid.Column="4" Grid.Row="0" Source="{Binding SelectedTour.Image}" Margin="10" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+        <Image Grid.Column="4" Grid.Row="0"  Source="{Binding SelectedTour.Image}" Margin="10" RenderOptions.BitmapScalingMode="HighQuality"></Image>
 
 
         <!-- LOG LIST -->

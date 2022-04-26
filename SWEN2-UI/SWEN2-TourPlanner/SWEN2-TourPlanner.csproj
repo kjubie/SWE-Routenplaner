@@ -20,7 +20,7 @@
     <None Remove="icons\refresh.png" />
     <None Remove="icons\search.png" />
     <None Remove="icons\shortest.png" />
-    <None Remove="mapImg\map_test.png" />
+    <Resource Include="mapImg\*.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,9 +57,7 @@
     <Content Include="icons\shortest.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mapImg\map_test.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+
   </ItemGroup>
 
   <ItemGroup>
