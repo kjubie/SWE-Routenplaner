@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
-        xmlns:uc="clr-namespace:SWEN2_TourPlanner.View" 
+       
         xmlns:local="clr-namespace:SWEN2_TourPlanner" 
         xmlns:localViewModels="clr-namespace:SWEN2_Tourplanner_ViewModels"
         mc:Ignorable="d"
@@ -51,7 +51,7 @@
 
             <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
 
-                <uc:SearchBar Margin="10"/>
+                <!-- <uc:SearchBar Margin="10"/> -->
 
 
             </Border>
@@ -149,7 +149,7 @@
 
         <!-- DUMMY PICTURE -->
         <Image Grid.Column="4" Grid.Row="0" Source="{Binding SelectedTour.Image}" Margin="10" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-        <uc:LogList Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3"/>
+        <!-- <uc:LogList Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3"/> -->
 
     </Grid>
 
