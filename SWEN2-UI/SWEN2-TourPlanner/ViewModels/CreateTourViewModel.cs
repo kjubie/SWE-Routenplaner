@@ -44,7 +44,7 @@ namespace SWEN2_TourPlanner_ViewModels
                 else
                 {
 
-                    _saveCreatedCommand = new SaveCommand(() => SaveTour(), true);
+                    _saveCreatedCommand = new Command(() => SaveTour(), true);
                     return _saveCreatedCommand;
                 }
             }

@@ -41,9 +41,20 @@
     <Content Include="icons\search.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mapImg\map_test.png">
+    <Content Include="icons\bicycle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\fastest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\shortest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pedestrian.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+
   </ItemGroup>
 
   <ItemGroup>
