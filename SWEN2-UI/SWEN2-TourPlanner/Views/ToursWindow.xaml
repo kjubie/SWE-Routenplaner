@@ -148,7 +148,7 @@
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
                 </Button>
 
-                <Button Grid.Column="4" HorizontalAlignment="Center" >
+                <Button Grid.Column="4" HorizontalAlignment="Center" Click="OpenModifyWindow" >
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pen.png"  />
                 </Button>
 

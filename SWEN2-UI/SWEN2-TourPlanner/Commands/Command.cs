@@ -7,11 +7,11 @@ using System.Windows.Input;
 
 namespace SWEN2_TourPlanner.Commands
 {
-    public class DeleteCommand : ICommand
+    public class Command : ICommand
     {
-        private Action<object> _action;
+        private Action _action;
         private bool _canExecute;
-        public DeleteCommand(Action<object> action, bool canExecute)
+        public Command(Action action, bool canExecute)
         {
             _action = action;
             _canExecute = canExecute;
@@ -26,7 +26,7 @@ namespace SWEN2_TourPlanner.Commands
 
         public void Execute(object parameter)
         {
-            _action(parameter);
+            _action();
         }
     }
 }

@@ -23,13 +23,12 @@ namespace SWEN2_TourPlanner.View
     /// <summary>
     /// Interaktionslogik für CreateTour.xaml
     /// </summary>
-    public partial class CreateTour : Window
+    public partial class CreateTourWindow : Window
     {
 
         CreateTourViewModel ViewModel = new CreateTourViewModel();
-
-        private static readonly HttpClient client = new HttpClient();
-        public CreateTour()
+       
+        public CreateTourWindow()
         {
             InitializeComponent();
             this.DataContext = ViewModel;

@@ -7,11 +7,11 @@ using System.Windows.Input;
 
 namespace SWEN2_TourPlanner.Commands
 {
-    public class SaveCommand : ICommand
+    public class ParaCommand : ICommand
     {
-        private Action _action;
+        private Action<object> _action;
         private bool _canExecute;
-        public SaveCommand(Action action, bool canExecute)
+        public ParaCommand(Action<object> action, bool canExecute)
         {
             _action = action;
             _canExecute = canExecute;
@@ -26,7 +26,7 @@ namespace SWEN2_TourPlanner.Commands
 
         public void Execute(object parameter)
         {
-            _action();
+            _action(parameter);
         }
     }
 }

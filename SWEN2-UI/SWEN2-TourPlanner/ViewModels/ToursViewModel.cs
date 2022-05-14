@@ -74,7 +74,7 @@ namespace SWEN2_Tourplanner_ViewModels
 
 
                 byte[] binaryData = Convert.FromBase64String(img);
-                File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);
+                //File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);
 
 
             
@@ -102,10 +102,15 @@ namespace SWEN2_Tourplanner_ViewModels
                 else
                 {
 
-                    _deleteSelectedCommand = new DeleteCommand(param => DeleteTour(param), true);
+                    _deleteSelectedCommand = new ParaCommand(param => DeleteTour(param), true);
                     return _deleteSelectedCommand;
                 }
             }
+        }
+
+        public TourModel GetSelectedTour()
+        {
+            return _selectedTour;
         }
 
         public void DeleteTour(object TourName)

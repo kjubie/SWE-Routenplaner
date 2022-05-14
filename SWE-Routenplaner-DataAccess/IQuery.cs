@@ -14,6 +14,7 @@ namespace SWEN2_Tourplanner_DataAccess
         public Task<Tour> GetTour(String tourname);
 
         public Task PostTour(string from, string to, string tourname, string type, string description);
+        public Task UpdateTour(string oldTourName, string from, string to, string tourname, string type, string description);
 
         public void DeleteTour(string nameTourToDelete);
 

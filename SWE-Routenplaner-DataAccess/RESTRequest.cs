@@ -26,15 +26,15 @@ namespace SWEN2_Tourplanner_DataAccess
             var response = await client.GetStringAsync("https://localhost:7221/api/Tour/" + tourname);
             Tour? tour = JsonSerializer.Deserialize<Tour>(response.ToString());
             return tour;
-        }  
-        
+        }
+
         public async Task<string> GetImageBase64(String tourname)
         {
             using var client = new HttpClient();
             var response = await client.GetStringAsync("https://localhost:7221/api/Tour/image/" + tourname);
-            
+
             return response.ToString();
-        }  
+        }
 
         public async Task PostTour(string from, string to, string tourname, string type, string description)
         {
@@ -50,7 +50,7 @@ namespace SWEN2_Tourplanner_DataAccess
             var result = await response.Content.ReadAsStringAsync();
             Console.WriteLine(result);
 
-        }    
+        }
 
         public void DeleteTour(string nameTourToDelete)
         {
@@ -58,6 +58,25 @@ namespace SWEN2_Tourplanner_DataAccess
             using var client = new HttpClient();
             var response = client.DeleteAsync(url).Result;
         }
+
+
+        public async Task UpdateTour(string oldTourName, string from, string to, string tourname, string type, string description)
+        {
+            var url = "https://localhost:7221/api/Tour/" + oldTourName;
+            string content = "{\"name\":\"" + tourname + "\",\"description\":\"" + description + "\",\"from\":\"" + from + "\",\"to\":\"" + to + "\",\"routetype\":\"" + type + "\",\"info\":\"info\",\"imagelocation\":\"loc\"}";
+
+            var data = new StringContent(content, Encoding.UTF8, "application/json");
+
+            using var client = new HttpClient();
+
+            var response = await client.PutAsync(url, data);
+
+            var result = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(result);
+
+        }
+
+     
 
     }
 }

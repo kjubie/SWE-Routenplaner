@@ -32,7 +32,9 @@ namespace SWEN2_TourPlanner_ViewModels
             _request = new RESTRequest();
             _modTour = tour;
             _oldTourname = tour.Name;
-        }
+        } 
+        
+      
 
         private ICommand _updateTourCommand;
         public ICommand UpdateTourCommand
@@ -46,17 +48,19 @@ namespace SWEN2_TourPlanner_ViewModels
                 else
                 {
 
-                    _updateTourCommand = new SaveCommand(() => SaveTour(), true);
+                    _updateTourCommand = new Command(() => UpdateTour(), true);
                     return _updateTourCommand;
                 }
             }
         }
 
-        public void SaveTour()
+        public void UpdateTour()
         {
+
             if (_modTour.From != null && _modTour.To != null && _modTour.Name != null)
             {
-                _request.PostTour(_modTour.From, _modTour.To, _modTour.Name, _modTour.TransportType, _modTour.Description);
+                
+                _request.UpdateTour(_oldTourname,_modTour.From, _modTour.To, _modTour.Name, _modTour.TransportType, _modTour.Description);
                 CloseAction();
             }
 
