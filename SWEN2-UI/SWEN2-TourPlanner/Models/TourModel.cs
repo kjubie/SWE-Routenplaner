@@ -20,6 +20,7 @@ namespace SWEN2_Tourplanner_Models
         private string time;
         private string info;
         private string imageLocation;
+        private string iconLocation;
         private BitmapImage image;
 
         public TourModel(Tour tour)
@@ -42,7 +43,27 @@ namespace SWEN2_Tourplanner_Models
             {
                 return from + " - " + to;
             }
+        } 
+        
+        
+        public string IconLocation
+        {
+            get
+            {
+                return "../icons/" + transportType + ".png";
+            }
+        } 
+        
+        
+        public BitmapImage TourImage
+        {
+            get
+            {
+                return new BitmapImage(new Uri(@"../mapImg/" + name + ".png", UriKind.Relative));             
+            }
         }
+
+
         public string FormatedTime
         {
             get
