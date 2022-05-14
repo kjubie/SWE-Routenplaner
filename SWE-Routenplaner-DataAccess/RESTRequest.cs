@@ -74,9 +74,7 @@ namespace SWEN2_Tourplanner_DataAccess
             var result = await response.Content.ReadAsStringAsync();
             Console.WriteLine(result);
 
-        }
-
-     
+        }    
 
     }
 }
