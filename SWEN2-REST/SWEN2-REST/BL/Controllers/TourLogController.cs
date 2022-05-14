@@ -7,29 +7,24 @@ using System.Text.Json;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SWEN2_REST.BL.Controllers {
-    [Route("api/Log/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TourLogController : ControllerBase {
         private readonly Tours _tours;
         private readonly TourContext _tourContext;
 
-        public class Request {
-            public string? Name { get; set; }
-            public string? Description { get; set; }
-            public string? From { get; set; }
-            public string? To { get; set; }
-            public string? RouteType { get; set; }
-            public string? Info { get; set; }
+        public class LogRequest {
+            public string? Tourname { get; set; }
+            public string? Date { get; set; }
+            public string? Comment { get; set; }
+            public string? Difficulty { get; set; }
+            public string? Time { get; set; }
+            public int Rating { get; set; }
         }
 
         public TourLogController(Tours tours, TourContext tourContext) {
             _tours = tours;
             _tourContext = tourContext;
-        }
-
-        [HttpGet]
-        public string Get() {
-            return JsonSerializer.Serialize(_tours);
         }
 
         [HttpGet("{name}")]
@@ -38,13 +33,33 @@ namespace SWEN2_REST.BL.Controllers {
         }
 
         [HttpPost]
-        public string Post(Request request) {
-            return "";
+        public string Post(LogRequest request) {
+            try {
+                TourLog tl = new TourLog(request.Tourname, request.Date, request.Comment, request.Difficulty, request.Time, request.Rating);
+
+                _tours.GetTour(request.Tourname).setLog(tl);
+                if(_tourContext.SaveTourLog(tl) != 0)
+                    return "Error while saving log to database";
+
+                return "Added Tourlog to " + request.Tourname;
+            } catch (Exception ex) {
+                return "Tour with name " + request.Tourname + " does not exist!";
+            }
         }
 
         [HttpPut("{name}")]
-        public string Put(string name, Request request) {
-            return "";
+        public string Put(string name, LogRequest request) {
+            try {
+                TourLog tl = new TourLog(request.Tourname, request.Date, request.Comment, request.Difficulty, request.Time, request.Rating);
+
+                _tours.GetTour(request.Tourname).setLog(tl);
+                if (_tourContext.UpdateTourLog(tl) != 0)
+                    return "Error while updating log in database";
+
+                return "Updated Tourlog " + request.Tourname;
+            } catch (Exception ex) {
+                return "Tour with name " + request.Tourname + " does not exist!";
+            }
         }
 
         [HttpDelete("{name}")]

@@ -70,6 +70,27 @@ namespace SWEN2_REST.DAL
             }
         }
 
+        public int SaveTourLog(TourLog tourLog) {
+            try {
+                SqlConnection.Open();
+                NpgsqlCommand npgsqlCommand = new("insert into tourLog(tourname, tourdate, tourcomment, difficulty, tourtime, rating) " +
+                                                "values(@tourname, @tourdate, @tourcomment, @difficulty, @tourtime, @rating)", SqlConnection);
+                npgsqlCommand.Parameters.AddWithValue("tourname", tourLog.Tourname);
+                npgsqlCommand.Parameters.AddWithValue("tourdate", tourLog.Date);
+                npgsqlCommand.Parameters.AddWithValue("tourcomment", tourLog.Comment);
+                npgsqlCommand.Parameters.AddWithValue("difficulty", tourLog.Difficulty);
+                npgsqlCommand.Parameters.AddWithValue("tourtime", tourLog.Time);
+                npgsqlCommand.Parameters.AddWithValue("rating", tourLog.Rating);
+                npgsqlCommand.Prepare();
+                var result = npgsqlCommand.ExecuteNonQuery();
+                SqlConnection.Close();
+                return 0;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+        }
+
         public int UpdateTour(string name, Tour tour) {
             try {
                 SqlConnection.Open();
@@ -96,13 +117,38 @@ namespace SWEN2_REST.DAL
             }
         }
 
+        public int UpdateTourLog(TourLog tourLog) {
+            try {
+                SqlConnection.Open();
+                NpgsqlCommand npgsqlCommand = new("update tourLog set (tourdate, tourcomment, difficulty, tourtime, rating) " +
+                                                "values(@tourdate, @tourcomment, @difficulty, @tourtime, @rating)", SqlConnection);
+                npgsqlCommand.Parameters.AddWithValue("tourdate", tourLog.Date);
+                npgsqlCommand.Parameters.AddWithValue("tourcomment", tourLog.Comment);
+                npgsqlCommand.Parameters.AddWithValue("difficulty", tourLog.Difficulty);
+                npgsqlCommand.Parameters.AddWithValue("tourtime", tourLog.Time);
+                npgsqlCommand.Parameters.AddWithValue("rating", tourLog.Rating);
+                npgsqlCommand.Prepare();
+                var result = npgsqlCommand.ExecuteNonQuery();
+                SqlConnection.Close();
+                return 0;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+        }
+
         public int DeleteTour(string name) {
             try {
                 SqlConnection.Open();
-                NpgsqlCommand npgsqlCommand = new("delete from tour where name = @name", SqlConnection);
+                NpgsqlCommand npgsqlCommand = new("delete from tourLog where tourname = @name", SqlConnection);
                 npgsqlCommand.Parameters.AddWithValue("name", name);
                 npgsqlCommand.Prepare();
                 var result = npgsqlCommand.ExecuteNonQuery();
+
+                npgsqlCommand = new("delete from tour where name = @name", SqlConnection);
+                npgsqlCommand.Parameters.AddWithValue("name", name);
+                npgsqlCommand.Prepare();
+                result = npgsqlCommand.ExecuteNonQuery();
                 SqlConnection.Close();
                 return 0;
             } catch (Exception ex) {

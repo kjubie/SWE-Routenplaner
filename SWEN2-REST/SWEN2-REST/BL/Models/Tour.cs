@@ -37,5 +37,9 @@ namespace SWEN2_REST.BL.Models {
             this.ImageLocation = ImageLocation;
             Log = new TourLog(Name);
         }
+
+        public void setLog(TourLog log) {
+            Log = log;
+        }
     }
 }
