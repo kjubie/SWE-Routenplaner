@@ -1,0 +1,95 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0-windows7.0": {
+      "SWE-Routenplaner-Business/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/SWE-Routenplaner-Business.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SWE-Routenplaner-Business.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SWE-Routenplaner-Business/1.0.0": {
+      "type": "project",
+      "path": "../SWE-Routenplaner-Business/SWE-Routenplaner-Business.csproj",
+      "msbuildProject": "../SWE-Routenplaner-Business/SWE-Routenplaner-Business.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0-windows7.0": [
+      "SWE-Routenplaner-Business >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Doris\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\FH_Technikum\\SWEN2\\TourPlanner\\SWE-Routenplaner\\SWE-Routenplaner-DataAccess\\SWE-Routenplaner-DataAccess.csproj",
+      "projectName": "SWE-Routenplaner-DataAccess",
+      "projectPath": "D:\\FH_Technikum\\SWEN2\\TourPlanner\\SWE-Routenplaner\\SWE-Routenplaner-DataAccess\\SWE-Routenplaner-DataAccess.csproj",
+      "packagesPath": "C:\\Users\\Doris\\.nuget\\packages\\",
+      "outputPath": "D:\\FH_Technikum\\SWEN2\\TourPlanner\\SWE-Routenplaner\\SWE-Routenplaner-DataAccess\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Doris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0-windows7.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "projectReferences": {
+            "D:\\FH_Technikum\\SWEN2\\TourPlanner\\SWE-Routenplaner\\SWE-Routenplaner-Business\\SWE-Routenplaner-Business.csproj": {
+              "projectPath": "D:\\FH_Technikum\\SWEN2\\TourPlanner\\SWE-Routenplaner\\SWE-Routenplaner-Business\\SWE-Routenplaner-Business.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0-windows7.0": {
+        "targetAlias": "net6.0-windows",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

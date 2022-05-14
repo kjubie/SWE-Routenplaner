@@ -1,0 +1,15 @@
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\bin\Debug\net6.0\SWE-Routenplaner-Business.exe
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\bin\Debug\net6.0\SWE-Routenplaner-Business.deps.json
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\bin\Debug\net6.0\SWE-Routenplaner-Business.runtimeconfig.json
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\bin\Debug\net6.0\SWE-Routenplaner-Business.dll
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\bin\Debug\net6.0\SWE-Routenplaner-Business.pdb
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\obj\Debug\net6.0\SWE-Routenplaner-Business.csproj.AssemblyReference.cache
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\obj\Debug\net6.0\SWE-Routenplaner-Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\obj\Debug\net6.0\SWE-Routenplaner-Business.AssemblyInfoInputs.cache
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\obj\Debug\net6.0\SWE-Routenplaner-Business.AssemblyInfo.cs
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\obj\Debug\net6.0\SWE-Routenplaner-Business.csproj.CoreCompileInputs.cache
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\obj\Debug\net6.0\SWE-Routenplaner-Business.dll
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\obj\Debug\net6.0\refint\SWE-Routenplaner-Business.dll
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\obj\Debug\net6.0\SWE-Routenplaner-Business.pdb
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\obj\Debug\net6.0\SWE-Routenplaner-Business.genruntimeconfig.cache
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-Business\obj\Debug\net6.0\ref\SWE-Routenplaner-Business.dll

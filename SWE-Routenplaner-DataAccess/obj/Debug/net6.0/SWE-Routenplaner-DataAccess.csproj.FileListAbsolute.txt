@@ -1,0 +1,5 @@
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-DataAccess\obj\Debug\net6.0\SWE-Routenplaner-DataAccess.csproj.AssemblyReference.cache
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-DataAccess\obj\Debug\net6.0\SWE-Routenplaner-DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-DataAccess\obj\Debug\net6.0\SWE-Routenplaner-DataAccess.AssemblyInfoInputs.cache
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-DataAccess\obj\Debug\net6.0\SWE-Routenplaner-DataAccess.AssemblyInfo.cs
+D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWE-Routenplaner-DataAccess\obj\Debug\net6.0\SWE-Routenplaner-DataAccess.csproj.CoreCompileInputs.cache

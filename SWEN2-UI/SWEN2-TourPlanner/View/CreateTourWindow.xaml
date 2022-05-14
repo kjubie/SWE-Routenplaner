@@ -49,7 +49,7 @@
             </ComboBox>
 
             <Label>
-                Tour name
+                Tour name*
             </Label>
             <TextBox x:Name="TourName"></TextBox>
             <Label>

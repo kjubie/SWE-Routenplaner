@@ -1,4 +1,5 @@
 {
 "Key":"KitTyuCq8kxKZUJpUIGQSMW833xGrvPs",
-"Url":"http://www.mapquestapi.com/directions/v2/route"
+"Url":"http://www.mapquestapi.com/directions/v2/route",
+"MapUrl":"https://open.mapquestapi.com/staticmap/v5/map"
 }
