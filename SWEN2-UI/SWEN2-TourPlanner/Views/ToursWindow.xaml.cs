@@ -1,5 +1,4 @@
-﻿using HandlebarsDotNet.Collections;
-using SWEN2_TourPlanner.View;
+﻿using SWEN2_TourPlanner.View;
 using SWEN2_Tourplanner_Models;
 using SWEN2_Tourplanner_ViewModels;
 using System;

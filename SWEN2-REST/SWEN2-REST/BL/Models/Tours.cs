@@ -1,7 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace SWEN2_REST.BL.Models
-{
+namespace SWEN2_REST.BL.Models {
     public class Tours {
         public Dictionary<string, Tour> TourList { get; set; }
 
@@ -38,6 +37,16 @@ namespace SWEN2_REST.BL.Models
             }
         }
 
-       
+        public int UpdateTour(string name, Tour tour) {
+            try {
+                //TourList[name] = tour;
+                if(RemoveTour(name) == 0)
+                    if(AddTour(tour) == 0)
+                        return 0;
+                return 0;
+            } catch (Exception ex) {
+                return -1;
+            }
+        }
     }
 }

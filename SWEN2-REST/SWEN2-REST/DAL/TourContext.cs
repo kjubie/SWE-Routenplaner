@@ -70,6 +70,32 @@ namespace SWEN2_REST.DAL
             }
         }
 
+        public int UpdateTour(string name, Tour tour) {
+            try {
+                SqlConnection.Open();
+                NpgsqlCommand npgsqlCommand = new("update tour set (name, description, startpoint, endpoint, transportType, distance, tourTime, info, imageLocation) " +
+                                                "= (@name, @description, @startpoint, @endpoint, @transportType, @distance, @tourTime, @info, @imageLocation)" +
+                                                "where name = @oldname", SqlConnection);
+                npgsqlCommand.Parameters.AddWithValue("name", tour.Name);
+                npgsqlCommand.Parameters.AddWithValue("description", tour.Description);
+                npgsqlCommand.Parameters.AddWithValue("startpoint", tour.From);
+                npgsqlCommand.Parameters.AddWithValue("endpoint", tour.To);
+                npgsqlCommand.Parameters.AddWithValue("transportType", tour.TransportType);
+                npgsqlCommand.Parameters.AddWithValue("distance", tour.Distance);
+                npgsqlCommand.Parameters.AddWithValue("tourTime", tour.Time);
+                npgsqlCommand.Parameters.AddWithValue("info", tour.Info);
+                npgsqlCommand.Parameters.AddWithValue("imageLocation", tour.ImageLocation);
+                npgsqlCommand.Parameters.AddWithValue("oldname", name);
+                npgsqlCommand.Prepare();
+                var result = npgsqlCommand.ExecuteNonQuery();
+                SqlConnection.Close();
+                return 0;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+        }
+
         public int DeleteTour(string name) {
             try {
                 SqlConnection.Open();

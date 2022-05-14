@@ -20,15 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <COMReference Include="{d37e2a3e-8545-3a39-9f4f-31827c9124ab}">
-      <WrapperTool>tlbimp</WrapperTool>
-      <VersionMinor>4</VersionMinor>
-      <VersionMajor>2</VersionMajor>
-      <Guid>d37e2a3e-8545-3a39-9f4f-31827c9124ab</Guid>
-    </COMReference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="icons\delete.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -56,14 +47,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Handlebars.Net" Version="2.1.2" />
+    <PackageReference Include="MessagePackAnalyzer" Version="2.1.152" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\SWE-Routenplaner-Business\SWE-Routenplaner-Business.csproj" />
     <ProjectReference Include="..\..\SWE-Routenplaner-DataAccess\SWE-Routenplaner-DataAccess.csproj" />
-    <ProjectReference Include="..\..\SWEN2-REST\SWEN2-REST\SWEN2-REST.csproj" />
   </ItemGroup>
 
 </Project>
