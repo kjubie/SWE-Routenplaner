@@ -1,20 +1,18 @@
 using SWEN2_REST.BL;
 using SWEN2_REST.BL.Models;
 using SWEN2_REST.DAL;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Log4Net.AspNetCore;
+
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-MapQuestContext mapQuestContext = new();
-Tours tours = new();
-TourContext tourContext = new();
-FileHandler fileHandler = new();
-
-tourContext.LoadTours(tours);
+builder.Logging.AddLog4Net();
 
 builder.Services.AddControllers();
-builder.Services.AddSingleton<Tours>(tours);
-builder.Services.AddSingleton<MapQuestContext>(mapQuestContext);
-builder.Services.AddSingleton<TourContext>(tourContext);
-builder.Services.AddSingleton<FileHandler>(fileHandler);
+builder.Services.AddSingleton<Tours>();
+builder.Services.AddSingleton<MapQuestContext>();
+builder.Services.AddSingleton<TourContext>();
+builder.Services.AddSingleton<FileHandler>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

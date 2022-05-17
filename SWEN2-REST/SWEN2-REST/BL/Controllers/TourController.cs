@@ -15,6 +15,7 @@ namespace SWEN2_REST.BL.Controllers
         private readonly MapQuestContext _mapQuestContext;
         private readonly TourContext _tourContext;
         private readonly FileHandler _fileHandler;
+        private readonly ILogger<TourController> _logger;
 
         public class Request {
             public string? Name { get; set; }
@@ -25,25 +26,29 @@ namespace SWEN2_REST.BL.Controllers
             public string? Info { get; set; }
         }
 
-        public TourController(Tours tours, MapQuestContext mapQuestContext, TourContext tourContext, FileHandler fileHandler) {
+        public TourController(Tours tours, MapQuestContext mapQuestContext, TourContext tourContext, FileHandler fileHandler, ILogger<TourController> logger) {
             _tours = tours;
             _mapQuestContext = mapQuestContext;
             _tourContext = tourContext;
             _fileHandler = fileHandler;
+            _logger = logger;
         }
 
         [HttpGet]
         public string Get() {
+            _logger.LogInformation("Get all tours");
             return JsonSerializer.Serialize(_tours);
         }
 
         [HttpGet("{name}")]
         public string Get(string name) {
+            _logger.LogInformation("Get " + name + " tour");
             return JsonSerializer.Serialize(_tours.GetTour(name));
         }
 
         [HttpGet("image/{name}")]
         public string GetImage(string name) {
+            _logger.LogInformation("Get " + name + " image");
             return _fileHandler.LoadFromFile(name);
         }
 
@@ -62,17 +67,22 @@ namespace SWEN2_REST.BL.Controllers
 
             Task<int> fileTask;
 
-            if (_tours.AddTour(t) == 0)
+            if (_tours.AddTour(t) == 0) {
                 if (_tourContext.SaveTour(t) == 0) {
                     fileTask = _fileHandler.SaveToFileAsync(request.Name, mapResultString);
                     fileTask.Wait();
-                    if (fileTask.Result == -1)
+                    if (fileTask.Result == -1) {
                         return "Error while saving image!";
+                    }
+                    _logger.LogInformation("Added new tour: " + request.Name);
                     return "Added new tour!";
-                } else
+                } else {
                     return "Error while saving tour to database!";
-            else
+                }
+            } else {
+                _logger.LogError("Tour with this name already exists: " + request.Name);
                 return "Tour with this name already exists!";
+            }
         }
 
         [HttpPut("{name}")]
@@ -90,25 +100,27 @@ namespace SWEN2_REST.BL.Controllers
 
             Task<int> fileTask;
 
-            if (_tours.UpdateTour(name, t) == 0)
+            if (_tours.UpdateTour(name, t) == 0) {
                 if (_tourContext.UpdateTour(name, t) == 0) {
                     fileTask = _fileHandler.SaveToFileAsync(request.Name, mapResultString);
                     fileTask.Wait();
                     if (fileTask.Result == -1)
                         return "Error while saving image!";
+                    _logger.LogInformation("Updated tour: " + request.Name);
                     return "Added new tour!";
                 } else
                     return "Error while saving tour to database!";
-            else
+            } else
                 return "Error while updating tour!";
         }
 
         [HttpDelete("{name}")]
         public string Delete(string name) {
             if (_tours.RemoveTour(name) == 0)
-                if (_tourContext.DeleteTour(name) == 0)
+                if (_tourContext.DeleteTour(name) == 0) {
+                    _logger.LogInformation("Deleted tour: " + name);
                     return "Deleted tour with name: " + name;
-                else
+                } else
                     return "Error while deleting tour from database!";
             else
                 return "Error while deleting tour!";

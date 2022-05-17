@@ -19,7 +19,10 @@ namespace SWEN2_REST.BL.Models {
         public string Time { get; set; }
         public string Info { get; set; }
         public string? ImageLocation { get; set; }
-        public TourLog Log { get; set; }
+        public int Popularity { get; set; }
+        public int Childfriendliness { get; set; }
+
+        public Dictionary<int, TourLog> Logs { get; set; }
 
         public Tour() {
 
@@ -35,11 +38,75 @@ namespace SWEN2_REST.BL.Models {
             this.Time = Time;
             this.Info = Info;
             this.ImageLocation = ImageLocation;
-            Log = new TourLog(Name);
+            Logs = new();
+            CalcPopularity();
+            CalcChildfriendliness();
         }
 
-        public void setLog(TourLog log) {
-            Log = log;
+        public void CalcChildfriendliness() {
+            if (Logs.Count > 0) {
+                int averageDiff = 0;
+                double averageTime = 0;
+
+                foreach (TourLog log in Logs.Values) {
+                    averageDiff += log.Difficulty;
+                    averageTime += TimeSpan.Parse(log.Time).TotalHours;
+                }
+
+                averageDiff /= Logs.Count;
+                averageTime /= Logs.Count;
+
+                Console.WriteLine((int)(averageDiff * 5 + averageTime * 2 + Distance));
+                Console.WriteLine("Diff: " + averageDiff);
+                Console.WriteLine("Time: " + averageTime);
+                Console.WriteLine("Dist: " + Distance);
+
+                int sum = (int)(averageDiff * 5 + averageTime * 2 + Distance);
+
+                if (sum <= 15)
+                    Childfriendliness = 5;
+                else if (sum <= 25)
+                    Childfriendliness = 4;
+                else if (sum <= 35)
+                    Childfriendliness = 3;
+                else if (sum <= 45)
+                    Childfriendliness = 2;
+                else
+                    Childfriendliness = 1;
+            }
+        }
+
+        public void CalcPopularity() {
+            if (Logs.Count() <= 5)
+                Popularity = 1;
+            else if (Logs.Count() <= 10)
+                Popularity = 2;
+            else if (Logs.Count() <= 15)
+                Popularity = 3;
+            else if (Logs.Count() <= 20)
+                Popularity = 4;
+            else if (Logs.Count() <= 25)
+                Popularity = 5;
+        }
+
+        public int AddLog(TourLog log) {
+            if (Logs.TryAdd(Logs.Count() + 1, log))
+                return 0;
+            return -1;
+        }
+
+        public int RemoveLog(int id) {
+            if (Logs.Remove(id))
+                return 0;
+            return -1;
+        }
+
+        public int UpdateLog(int id, TourLog log) {
+            if (Equals(Logs[id].Tourname, log.Tourname)) {
+                Logs[id] = log;
+                return 0;
+            }
+            return -1;
         }
     }
 }

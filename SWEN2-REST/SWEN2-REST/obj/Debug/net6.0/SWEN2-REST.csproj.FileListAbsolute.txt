@@ -553,3 +553,6 @@ D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWEN2-REST\SWEN2-REST\obj\Deb
 D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWEN2-REST\SWEN2-REST\obj\Debug\net6.0\SWEN2-REST.pdb
 D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWEN2-REST\SWEN2-REST\obj\Debug\net6.0\SWEN2-REST.genruntimeconfig.cache
 D:\FH_Technikum\SWEN2\TourPlanner\SWE-Routenplaner\SWEN2-REST\SWEN2-REST\obj\Debug\net6.0\ref\SWEN2-REST.dll
+C:\Users\abru1\source\repos\SWEN2-Project\SWEN2-REST\SWEN2-REST\bin\Debug\net6.0\log4net.config
+C:\Users\abru1\source\repos\SWEN2-Project\SWEN2-REST\SWEN2-REST\bin\Debug\net6.0\log4net.dll
+C:\Users\abru1\source\repos\SWEN2-Project\SWEN2-REST\SWEN2-REST\bin\Debug\net6.0\Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll
