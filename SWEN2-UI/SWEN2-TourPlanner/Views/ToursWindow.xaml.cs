@@ -1,6 +1,8 @@
 ﻿using SWEN2_TourPlanner.View;
+using SWEN2_TourPlanner.Views;
 using SWEN2_Tourplanner_Models;
 using SWEN2_Tourplanner_ViewModels;
+using SWEN2_TourPlanner_ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,13 +40,31 @@ namespace SWEN2_TourPlanner
 
         private void OpenCreateWindow(object sender, RoutedEventArgs e)
         {
-            CreateTour createTourWindow = new CreateTour();
+            CreateTourWindow createTourWindow = new CreateTourWindow();
             createTourWindow.Show();
+        }
+
+         private void OpenModifyWindow(object sender, RoutedEventArgs e)
+        {
+           ModifyTourWindow modifyTourWindow = new ModifyTourWindow();
+
+            ModifyTourViewModel modifyTourVM = new ModifyTourViewModel(ViewModel.GetSelectedTour());
+
+            modifyTourWindow.DataContext = modifyTourVM;
+            modifyTourWindow.Show();
+
+            if (modifyTourVM.CloseAction == null)
+            {
+                modifyTourVM.CloseAction = new Action(modifyTourWindow.Close);
+
+            }
         }
 
         private void ReloadWindow(object sender, RoutedEventArgs e)
         {
             ViewModel.LoadTourList();
         }
+
+     
     }
 }

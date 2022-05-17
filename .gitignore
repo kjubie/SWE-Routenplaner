@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 /SWEN2-DB/dbconn.json
+/SWEN2-DB/routeImages
