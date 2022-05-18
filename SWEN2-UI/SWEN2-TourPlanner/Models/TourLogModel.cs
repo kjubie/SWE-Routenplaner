@@ -4,7 +4,16 @@ namespace SWEN2_REST.BL.Models
 {
     public class TourLogModel
     {
+        public TourLogModel(TourLog tourlog)
+        {
+            _tourname = tourlog.Tourname;
+            _date = tourlog.Date;
+            _difficulty = tourlog.Difficulty;
+            _time = tourlog.Time;
+            _rating = tourlog.Rating;
+            _comment = tourlog.Comment;
 
+        }
         public string Tourname
         {
             get

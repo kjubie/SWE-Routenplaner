@@ -1,4 +1,5 @@
 ﻿
+using SWEN2_REST.BL.Models;
 using SWEN2_TourPlanner.Commands;
 using SWEN2_Tourplanner_DataAccess;
 using SWEN2_Tourplanner_Models;
@@ -20,7 +21,14 @@ namespace SWEN2_Tourplanner_ViewModels
     {
         private TourListModel _tourlist;
 
+        // private TourLogModel _tourLogsSelectedTour;
+        public ObservableCollection<TourLogModel> _tourLogList;
 
+        public ObservableCollection<TourLogModel> TourLogList
+        {
+            get { return _tourLogList; }
+            set { _tourLogList = value; }
+        }
 
         public ObservableCollection<TourModel> TourList
         {
@@ -43,6 +51,8 @@ namespace SWEN2_Tourplanner_ViewModels
             _tourlist = new TourListModel();
             _selectedTour = null;
             LoadTourList();
+            LoadTourLogList();
+           
         }
         public async void LoadTourList()
         {
@@ -51,6 +61,7 @@ namespace SWEN2_Tourplanner_ViewModels
 
             Dictionary<string, Tour>.ValueCollection values = tours.TourList.Values;
 
+            /*
             DirectoryInfo di = new DirectoryInfo("../../../mapImg");
 
 
@@ -62,22 +73,15 @@ namespace SWEN2_Tourplanner_ViewModels
             {
                 dir.Delete(true);
             }
-
+            */
 
             foreach (Tour val in values)
             {
 
 
                 string img = await _request.GetImageBase64(val.Name);
-
-
-
-
                 byte[] binaryData = Convert.FromBase64String(img);
-                //File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);
-
-
-            
+                //File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);            
 
                 BitmapImage bi = new BitmapImage();
                 bi.BeginInit();
@@ -87,6 +91,14 @@ namespace SWEN2_Tourplanner_ViewModels
                 
 
                 _tourlist.Add(val, bi);
+            }
+        }
+
+        void LoadTourLogList()
+        {
+            foreach (TourModel toursList in TourList)
+            {
+                //toursList.Name;
             }
         }
 
