@@ -1,4 +1,5 @@
-﻿using SWEN2_Tourplanner_Models;
+﻿using SWEN2_REST.BL.Models;
+using SWEN2_Tourplanner_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,11 @@ namespace SWEN2_Tourplanner_DataAccess
         public void DeleteTour(string nameTourToDelete);
 
         public Task<string> GetImageBase64(String tourname);
+
+        public Task<TourLog> GetTourLog(String tourname);
+
+
+
+
     }
 }

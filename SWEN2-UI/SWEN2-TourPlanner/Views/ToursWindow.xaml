@@ -181,7 +181,7 @@
 
             <DockPanel Margin="10">
                 <Label FontSize="24" FontWeight="Bold" HorizontalAlignment="Left">Logs</Label>
-                <Button HorizontalAlignment="Right">
+                <Button Click="OpenCreateTourLogWindow" HorizontalAlignment="Right">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
                 </Button>
             </DockPanel>
