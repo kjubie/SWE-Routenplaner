@@ -24,5 +24,15 @@
                 return null;
             }
         }
+
+        internal async Task<int> SaveImage(byte[] result, string name) {
+            try {
+                ;// await File.WriteAllTextAsync("../../SWEN2-DB/routeImages/" + name + ".jpg", result);
+            } catch (Exception ex) {
+                _logger.LogError("Error while saving image! " + ex);
+                return -1;
+            }
+            return 0;
+        }
     }
 }

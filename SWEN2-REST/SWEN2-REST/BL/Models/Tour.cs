@@ -6,7 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ceTe.DynamicPDF;
+using ceTe.DynamicPDF.PageElements;
 
 namespace SWEN2_REST.BL.Models {
     public class Tour {
@@ -107,6 +108,45 @@ namespace SWEN2_REST.BL.Models {
                 return 0;
             }
             return -1;
+        }
+
+        public Document GeneratePDF() {
+            Document document = new Document();
+
+            Page page = new Page(PageSize.Letter, PageOrientation.Portrait, 54.0f);
+            document.Pages.Add(page);
+
+            string Title = Name;
+            Label label = new Label(Title, 0, 0, 504, 100, Font.Helvetica, 18, TextAlign.Center);
+            page.Elements.Add(label);
+
+            TextArea text = new TextArea("\n\n" + Description, 0, 0, 504, 100, Font.Helvetica, 14, TextAlign.Left);
+            page.Elements.Add(text);
+
+            string formattedString = "\n\n\n\n\n\n\n\nFrom: " + From + "\nTo: " + To + "\nType: " + TransportType + "\nDistance: " + Distance +
+                "\nTime: " + Time + "\nInfo: " + Info + "\nPopularity: " + Popularity + "\nChild-friendliness: " + Childfriendliness;
+
+            text = new TextArea(formattedString, 0, 0, 504, 1000, Font.Helvetica, 12, TextAlign.Left);
+            page.Elements.Add(text);
+
+            foreach(TourLog log in Logs.Values) {
+                Page logPage = new Page(PageSize.Letter, PageOrientation.Portrait, 54.0f);
+                document.Pages.Add(logPage);
+
+                text = new TextArea("Log: ", 0, 0, 504, 100, Font.Helvetica, 16, TextAlign.Center);
+                logPage.Elements.Add(text);
+
+                formattedString = "\n\n\nDate: " + log.Date + "\nComment: " + log.Comment + "\nDifficulty: " + log.Difficulty +
+                    "\nTime: " + log.Time + "\nRating: " + log.Rating;
+
+                text = new TextArea(formattedString, 0, 0, 504, 100, Font.Helvetica, 12, TextAlign.Left);
+                logPage.Elements.Add(text);
+
+            }
+
+            document.Draw(Name + ".pdf");
+
+            return null;
         }
     }
 }

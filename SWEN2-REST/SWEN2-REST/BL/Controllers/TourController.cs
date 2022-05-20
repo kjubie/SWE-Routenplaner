@@ -46,6 +46,13 @@ namespace SWEN2_REST.BL.Controllers
             return JsonSerializer.Serialize(_tours.GetTour(name));
         }
 
+        [HttpGet("{name}/report")]
+        public string GetReport(string name) {
+            _logger.LogInformation("Get " + name + " report");
+            _tours.GetTour(name).GeneratePDF();
+            return JsonSerializer.Serialize(_tours.GetTour(name));
+        }
+
         [HttpGet("image/{name}")]
         public string GetImage(string name) {
             _logger.LogInformation("Get " + name + " image");
@@ -61,6 +68,9 @@ namespace SWEN2_REST.BL.Controllers
 
             var mapTask = _mapQuestContext.GetMapAsync(request.From, request.To);
             mapTask.Wait();
+
+            _fileHandler.SaveImage(mapTask.Result, request.Name);
+
             var mapResultString = Convert.ToBase64String(mapTask.Result);
 
             Tour t = new(request.Name, request.Description, request.From, request.To, request.RouteType, (double)res.route.distance, res.route.formattedTime.ToString(), request.Info, "../../SWEN2-DB/routeImages/" + request.Name + ".txt");
