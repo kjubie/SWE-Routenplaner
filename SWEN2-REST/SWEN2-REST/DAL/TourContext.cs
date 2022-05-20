@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Npgsql;
-using SWEN2_REST.BL.Models;
+using SWEN2_Tourplanner_Models;
 
 namespace SWEN2_REST.DAL
 {

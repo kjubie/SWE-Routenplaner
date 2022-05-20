@@ -33,9 +33,9 @@ namespace SWEN2_TourPlanner_ViewModels
         }
 
         private ICommand _saveCreatedCommand;
-        public ICommand SaveCreatedCommand
+        public ICommand SaveCreatedCommand  
         {
-            get
+            get 
             {
                 if (_saveCreatedCommand != null)
                 {

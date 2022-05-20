@@ -52,6 +52,20 @@ namespace SWEN2_Tourplanner_Models
             }
         }
 
-
+        public int UpdateTour(string name, Tour tour)
+        {
+            try
+            {
+                //TourList[name] = tour;
+                if (RemoveTour(name) == 0)
+                    if (AddTour(tour) == 0)
+                        return 0;
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
     }
 }
