@@ -1,4 +1,5 @@
-﻿using SWEN2_Tourplanner_Models;
+﻿using SWEN2_REST.BL.Models;
+using SWEN2_Tourplanner_Models;
 using System;
 using System.Net.Http;
 using System.Text;
@@ -76,7 +77,9 @@ namespace SWEN2_Tourplanner_DataAccess
 
         }
 
-     
-
+        public Task<TourLog> GetTourLog(string tourname)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

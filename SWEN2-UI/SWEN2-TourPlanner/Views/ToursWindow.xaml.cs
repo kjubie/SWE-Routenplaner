@@ -44,7 +44,13 @@ namespace SWEN2_TourPlanner
             createTourWindow.Show();
         }
 
-         private void OpenModifyWindow(object sender, RoutedEventArgs e)
+        private void OpenCreateTourLogWindow(object sender, RoutedEventArgs e)
+        {
+            CreateTourLogWindow createTourLogWindow = new CreateTourLogWindow();
+            createTourLogWindow.Show();
+        }
+
+        private void OpenModifyWindow(object sender, RoutedEventArgs e)
         {
            ModifyTourWindow modifyTourWindow = new ModifyTourWindow();
 
