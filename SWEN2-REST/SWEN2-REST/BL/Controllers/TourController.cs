@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using SWEN2_REST.BL.Models;
+using SWEN2_Tourplanner_Models;
 using SWEN2_REST.DAL;
 using System.Text.Json;
 

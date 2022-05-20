@@ -46,7 +46,12 @@ namespace SWEN2_TourPlanner
 
         private void OpenCreateTourLogWindow(object sender, RoutedEventArgs e)
         {
-            CreateTourLogWindow createTourLogWindow = new CreateTourLogWindow();
+            CreateTourLogViewModel CreateLogViewModel = new CreateTourLogViewModel(ViewModel.GetSelectedTour().Name);
+            CreateTourLogWindow createTourLogWindow = new CreateTourLogWindow(CreateLogViewModel);
+
+
+            //createTourLogWindow.DataContext = CreateLogViewModel;
+
             createTourLogWindow.Show();
         }
 

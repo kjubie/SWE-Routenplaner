@@ -1,4 +1,4 @@
-﻿using SWEN2_REST.BL.Models;
+﻿using SWEN2_Tourplanner_Models;
 using SWEN2_Tourplanner_Models;
 using System;
 using System.Net.Http;
@@ -77,9 +77,23 @@ namespace SWEN2_Tourplanner_DataAccess
 
         }
 
-        public Task<TourLog> GetTourLog(string tourname)
+
+        public async Task PostTourLog(string tourname, string date, string comment, string difficulty, string time, string rating)
         {
-            throw new NotImplementedException();
+
+            var url = "https://localhost:7221/api/TourLog/";
+            string content = "{\"tourname\":\"" + tourname + "\",\"date\":\"" + date + "\",\"comment\":\"" + comment + "\",\"difficulty\":\"" + difficulty + "\",\"time\":\"" + time + "\",\"rating\":\"" + rating + "\"}";
+
+            var data = new StringContent(content, Encoding.UTF8, "application/json");
+
+            using var client = new HttpClient();
+
+            var response = await client.PostAsync(url, data);
+
+            var result = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(result);
+
         }
+
     }
 }

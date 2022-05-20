@@ -1,9 +1,15 @@
 ﻿using System.ComponentModel;
 
-namespace SWEN2_REST.BL.Models
+namespace SWEN2_Tourplanner_Models
 {
     public class TourLogModel
     {
+
+        public TourLogModel()
+        {          
+
+        }
+
         public TourLogModel(TourLog tourlog)
         {
             _tourname = tourlog.Tourname;
@@ -12,7 +18,6 @@ namespace SWEN2_REST.BL.Models
             _time = tourlog.Time;
             _rating = tourlog.Rating;
             _comment = tourlog.Comment;
-
         }
         public string Tourname
         {
@@ -50,7 +55,7 @@ namespace SWEN2_REST.BL.Models
                 OnPropertyChanged("Description");
             }
         }
-        public string Difficulty
+        public int Difficulty
         {
             get
             {
@@ -90,7 +95,7 @@ namespace SWEN2_REST.BL.Models
         private string _tourname { get; set; }
         private string _date { get; set; }
         private string _comment { get; set; }
-        private string _difficulty { get; set; }
+        private int _difficulty { get; set; }
         private string _time { get; set; }
         private int _rating { get; set; }
 
@@ -99,7 +104,7 @@ namespace SWEN2_REST.BL.Models
             _tourname = tourname;
         }
 
-        public TourLogModel(string tourname, string date, string comment, string difficulty, string time, int rating)
+        public TourLogModel(string tourname, string date, string comment, int  difficulty, string time, int rating)
         {
             Tourname = tourname;
             Date = date;
