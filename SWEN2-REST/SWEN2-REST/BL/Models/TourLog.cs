@@ -1,4 +1,4 @@
-﻿namespace SWEN2_REST.BL.Models {
+﻿namespace SWEN2_Tourplanner_Models {
     public class TourLog {
         public string Tourname { get; set; }
         public string? Date { get; set; }

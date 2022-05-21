@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SWEN2_TourPlanner.Views"
         mc:Ignorable="d"
-       Title="CreateTourLogWindow" Height="350" Width="400">
+       Title="CreateTourLogWindow" Height="370" Width="400">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -29,39 +29,44 @@
             <Label FontSize="25" FontWeight="Bold">
                 Create Tour Log
             </Label>
+
+            <Label FontSize="14" Content="{Binding CreatedTourLog.Tourname}">
+            </Label>
+            
             <Border BorderThickness="0 0 0 1" Background="Black" BorderBrush ="Black"></Border>
+
             <Label>
                 Date
             </Label>
-            <TextBox Text="{Binding CreatedTour.From, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  x:Name="From"></TextBox>
+            <TextBox Text="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  x:Name="From"></TextBox>
             <Label>
                 Comment
             </Label>
-            <TextBox Text="{Binding CreatedTour.To, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Text="{Binding CreatedTourLog.Comment, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label>
                 Difficulty
             </Label>
-            <ComboBox Text="{Binding CreatedTour.TransportType, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
-                
-                <ComboBoxItem>easy</ComboBoxItem>
-                <ComboBoxItem>medium</ComboBoxItem>
-                <ComboBoxItem>hard</ComboBoxItem>
+            <ComboBox Text="{Binding CreatedTourLog.Difficulty, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+
+                <ComboBoxItem>0</ComboBoxItem>
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
             </ComboBox>
 
             <Label>
                 Time
             </Label>
 
-            <TextBox Text="{Binding CreatedTour.Name, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Text="{Binding CreatedTourLog.Time, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label>
                 Rating
             </Label>
 
-            <ComboBox Text="{Binding CreatedTour.TransportType, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox Text="{Binding CreatedTourLog.Rating, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
 
-                <ComboBoxItem>easy</ComboBoxItem>
-                <ComboBoxItem>medium</ComboBoxItem>
-                <ComboBoxItem>hard</ComboBoxItem>
+                <ComboBoxItem>0</ComboBoxItem>
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
                 
             </ComboBox>
 

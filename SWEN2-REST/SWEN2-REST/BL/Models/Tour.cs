@@ -1,7 +1,7 @@
 ﻿using ceTe.DynamicPDF;
 using ceTe.DynamicPDF.PageElements;
 
-namespace SWEN2_REST.BL.Models {
+namespace SWEN2_Tourplanner_Models {
     public class Tour {
         public string Name { get; set; }
         public string Description { get; set; }

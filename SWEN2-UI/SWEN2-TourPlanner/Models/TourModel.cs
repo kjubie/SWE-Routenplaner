@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,16 @@ namespace SWEN2_Tourplanner_Models
         private string info;
         private string imageLocation;
         private string iconLocation;
+        private int popularity;
+        private int childfriendliness;
+        public Dictionary<int, TourLog> Logs { get; set; }
+
         private BitmapImage image;
+
+        public TourModel()
+        {
+
+        }
 
         public TourModel(Tour tour)
         {
@@ -34,7 +44,16 @@ namespace SWEN2_Tourplanner_Models
             time = tour.Time;
             info = tour.Info;
             imageLocation = tour.ImageLocation;
+            childfriendliness = tour.Childfriendliness;
+            popularity = tour.Popularity;
+            Logs = tour.Logs;
 
+            TourLogList = new ObservableCollection<TourLogModel>();
+
+            foreach (KeyValuePair<int, TourLog> entry in Logs)
+            {
+                TourLogList.Add(new TourLogModel(entry.Value));
+            }
         }
 
         public string FormatedFromTo
@@ -43,23 +62,23 @@ namespace SWEN2_Tourplanner_Models
             {
                 return from + " - " + to;
             }
-        } 
-        
-        
+        }
+
+
         public string IconLocation
         {
             get
             {
                 return "../icons/" + transportType + ".png";
             }
-        } 
-        
-        
+        }
+
+
         public BitmapImage TourImage
         {
             get
             {
-                return new BitmapImage(new Uri(@"../mapImg/" + name + ".png", UriKind.Relative));             
+                return new BitmapImage(new Uri(@"../mapImg/" + name + ".png", UriKind.Relative));
             }
         }
 
@@ -71,6 +90,15 @@ namespace SWEN2_Tourplanner_Models
                 return "Estimated Time: " + time;
             }
         }
+
+        public int NumberLogs
+        {
+            get
+            {
+                return Logs.Count;
+            }
+        }
+
         public string FormatedDistance
         {
             get
@@ -188,6 +216,32 @@ namespace SWEN2_Tourplanner_Models
             }
         }
 
+        public int Popularity
+        {
+            get
+            {
+                return popularity;
+            }
+            set
+            {
+                popularity = value;
+                OnPropertyChanged("Popularity");
+            }
+        }
+
+        public int Childfriendliness
+        {
+            get
+            {
+                return childfriendliness;
+            }
+            set
+            {
+                childfriendliness = value;
+                OnPropertyChanged("Popularity");
+            }
+        }
+
         public BitmapImage Image
         {
             get
@@ -200,13 +254,17 @@ namespace SWEN2_Tourplanner_Models
                 OnPropertyChanged("Image");
             }
         }
+        private ObservableCollection<TourLogModel> _tourLogList;
 
-        public TourModel()
+        public ObservableCollection<TourLogModel> TourLogList
         {
+            get
+            {
+                return _tourLogList;
+            }
 
+            set { _tourLogList = value; }
         }
-
-
 
         public TourModel(string Name, string Description, string From, string To, string TransportType, double Distance, string Time, string Info, string ImageLocation)
         {

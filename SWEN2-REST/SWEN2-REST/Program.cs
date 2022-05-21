@@ -1,5 +1,5 @@
 using SWEN2_REST.BL;
-using SWEN2_REST.BL.Models;
+using SWEN2_Tourplanner_Models;
 using SWEN2_REST.DAL;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Log4Net.AspNetCore;

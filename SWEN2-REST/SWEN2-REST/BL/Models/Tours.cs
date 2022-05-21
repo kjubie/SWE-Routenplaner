@@ -2,7 +2,7 @@
 using ceTe.DynamicPDF.PageElements;
 using System.Text.Json;
 
-namespace SWEN2_REST.BL.Models {
+namespace SWEN2_Tourplanner_Models {
     public class Tours {
         public Dictionary<string, Tour> TourList { get; set; }
 

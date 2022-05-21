@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWEN2_TourPlanner_ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,19 @@ namespace SWEN2_TourPlanner.Views
     /// </summary>
     public partial class CreateTourLogWindow : Window
     {
-        public CreateTourLogWindow()
+        CreateTourLogViewModel ViewModel;
+        public CreateTourLogWindow(CreateTourLogViewModel viewModel)
         {
+
             InitializeComponent();
+            ViewModel = viewModel;
+            DataContext = ViewModel;
+
+
+            if (ViewModel.CloseAction == null)
+            {
+                ViewModel.CloseAction = new Action(this.Close);
+            }
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
