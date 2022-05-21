@@ -42,6 +42,13 @@ namespace SWEN2_REST.BL.Controllers
 
         [HttpGet("{name}")]
         public string Get(string name) {
+            if (name.Equals("sumreport")) {
+                _logger.LogInformation("Get summarized report");
+                if (_tours.GenerateSummarizedReport() == -1)
+                    return "Error while generating report!";
+                return "Report generated!";
+            }
+
             _logger.LogInformation("Get " + name + " tour");
             return JsonSerializer.Serialize(_tours.GetTour(name));
         }
@@ -49,8 +56,9 @@ namespace SWEN2_REST.BL.Controllers
         [HttpGet("{name}/report")]
         public string GetReport(string name) {
             _logger.LogInformation("Get " + name + " report");
-            _tours.GetTour(name).GeneratePDF();
-            return JsonSerializer.Serialize(_tours.GetTour(name));
+            if (_tours.GetTour(name).GeneratePDF() == -1)
+                return "Error while generating report!";
+            return "Report generated!";
         }
 
         [HttpGet("image/{name}")]

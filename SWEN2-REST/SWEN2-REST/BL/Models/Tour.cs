@@ -1,12 +1,4 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ceTe.DynamicPDF;
+﻿using ceTe.DynamicPDF;
 using ceTe.DynamicPDF.PageElements;
 
 namespace SWEN2_REST.BL.Models {
@@ -110,7 +102,7 @@ namespace SWEN2_REST.BL.Models {
             return -1;
         }
 
-        public Document GeneratePDF() {
+        public int GeneratePDF() {
             Document document = new Document();
 
             Page page = new Page(PageSize.Letter, PageOrientation.Portrait, 54.0f);
@@ -123,13 +115,18 @@ namespace SWEN2_REST.BL.Models {
             TextArea text = new TextArea("\n\n" + Description, 0, 0, 504, 100, Font.Helvetica, 14, TextAlign.Left);
             page.Elements.Add(text);
 
-            string formattedString = "\n\n\n\n\n\n\n\nFrom: " + From + "\nTo: " + To + "\nType: " + TransportType + "\nDistance: " + Distance +
+            string formattedString = "\n\n\n\n\n\n\n\nFrom: " + From + "\nTo: " + To + "\nType: " + TransportType + "\nDistance: " + Math.Round(Distance, 3) +
                 "\nTime: " + Time + "\nInfo: " + Info + "\nPopularity: " + Popularity + "\nChild-friendliness: " + Childfriendliness;
 
             text = new TextArea(formattedString, 0, 0, 504, 1000, Font.Helvetica, 12, TextAlign.Left);
             page.Elements.Add(text);
 
-            foreach(TourLog log in Logs.Values) {
+            page = new Page(PageSize.Letter, PageOrientation.Portrait, 54.0f);
+            document.Pages.Add(page);
+
+            page.Elements.Add(new Image("../../SWEN2-DB/routeImages/" + Name + ".jpg", 0, 0));
+
+            foreach (TourLog log in Logs.Values) {
                 Page logPage = new Page(PageSize.Letter, PageOrientation.Portrait, 54.0f);
                 document.Pages.Add(logPage);
 
@@ -144,9 +141,12 @@ namespace SWEN2_REST.BL.Models {
 
             }
 
-            document.Draw(Name + ".pdf");
-
-            return null;
+            try {
+                document.Draw(Name + ".pdf");
+            } catch (Exception ex) {
+                return -1;
+            }
+            return 0;
         }
     }
 }

@@ -74,6 +74,10 @@
               "target": "Package",
               "version": "[6.2.3, )"
             },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "ceTe.DynamicPDF.CoreSuite.NET": {
               "target": "Package",
               "version": "[11.30.0, )"

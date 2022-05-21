@@ -27,4 +27,4 @@ insert into tour(name, description, startpoint, endpoint, transportType, distanc
 curl -X POST https://localhost:7221/api/Tour -H "Content-Type: application/json" -d "{\"name\":\"SuperAwesomeTour\",\"description\":\"desc\",\"from\":\"Vienna, AT\",\"to\":\"Graz, AT\",\"routetype\":\"bicycle\",\"info\":\"info\",\"imagelocation\":\"loc\"}"
 curl -X PUT https://localhost:7221/api/Tour/<tourname> -H "Content-Type: application/json" -d "{\"name\":\"SuperAwesomeTour\",\"description\":\"desc\",\"from\":\"Vienna, AT\",\"to\":\"Graz, AT\",\"routetype\":\"bicycle\",\"info\":\"info\",\"imagelocation\":\"loc\"}"
 
-curl -X POST https://localhost:7221/api/TourLog -H "Content-Type: application/json" -d "{\"tourname\":\"SuperAwesomeTour\",\"date\":\"heuteLuL\",\"Comment\":\"War ganz ok\",\"difficulty\":\"ja\",\"time\":\"2 min\",\"rating\":1}"
+curl -X POST https://localhost:7221/api/TourLog -H "Content-Type: application/json" -d "{\"tourname\":\"SuperAwesomeTour\",\"date\":\"heuteLuL\",\"Comment\":\"War ganz ok\",\"difficulty\":\"2\",\"time\":\"2:31:31\",\"rating\":1}"

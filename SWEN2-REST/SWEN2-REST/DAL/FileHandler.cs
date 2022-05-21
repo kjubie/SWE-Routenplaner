@@ -1,4 +1,7 @@
-﻿namespace SWEN2_REST.DAL {
+﻿using System.Drawing;
+using System.Drawing.Imaging;
+
+namespace SWEN2_REST.DAL {
     public class FileHandler {
         private readonly ILogger<FileHandler> _logger;
 
@@ -25,9 +28,14 @@
             }
         }
 
-        internal async Task<int> SaveImage(byte[] result, string name) {
+        internal int SaveImage(byte[] imageByteArray, string name) {
             try {
-                ;// await File.WriteAllTextAsync("../../SWEN2-DB/routeImages/" + name + ".jpg", result);
+                Bitmap bmp;
+
+                using (var ms = new MemoryStream(imageByteArray)) {
+                    bmp = new Bitmap(ms);
+                    bmp.Save("../../SWEN2-DB/routeImages/" + name + ".jpg", ImageFormat.Jpeg);
+                }
             } catch (Exception ex) {
                 _logger.LogError("Error while saving image! " + ex);
                 return -1;
