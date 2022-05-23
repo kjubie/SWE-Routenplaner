@@ -47,7 +47,7 @@ namespace SWEN2_REST.DAL
                 reader = npgsqlCommand.ExecuteReader();
 
                 while (reader.Read()) {
-                    tours.GetTour(reader.GetString(0)).AddLog(new TourLog(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetString(4), reader.GetInt32(5)));
+                    tours.GetTour(reader.GetString(0)).AddLog(new TourLog(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetString(4), reader.GetInt32(5), reader.GetInt32(6)));
                 }
 
                 reader.Close();
@@ -174,6 +174,23 @@ namespace SWEN2_REST.DAL
                 return 0;
             } catch (Exception ex) {
                 _logger.LogError("Error while deleting tour from database: " + ex);
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+        }
+
+        public int DeleteTourLog(int id) {
+            _logger.LogInformation("Deleting tourlog " + id);
+            try {
+                SqlConnection.Open();
+                NpgsqlCommand npgsqlCommand = new("delete from tourLog where logID = @id", SqlConnection);
+                npgsqlCommand.Parameters.AddWithValue("id", id);
+                npgsqlCommand.Prepare();
+                var result = npgsqlCommand.ExecuteNonQuery();
+
+                return 0;
+            } catch (Exception ex) {
+                _logger.LogError("Error while deleting tourlog from database: " + ex);
                 Console.WriteLine(ex.Message);
                 return -1;
             }

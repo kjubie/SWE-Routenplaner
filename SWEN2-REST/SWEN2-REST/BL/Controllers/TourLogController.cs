@@ -21,6 +21,7 @@ namespace SWEN2_REST.BL.Controllers {
             public int Difficulty { get; set; }
             public string? Time { get; set; }
             public int Rating { get; set; }
+            public int Id { get; set; }
         }
 
         public TourLogController(Tours tours, TourContext tourContext, ILogger<TourLogController> logger) {
@@ -61,8 +62,10 @@ namespace SWEN2_REST.BL.Controllers {
             }
         }
 
-        [HttpPut("{name}")]
-        public string Put(int id, LogRequest request) {
+        [HttpPut("{name}/{id}")]
+        public string Put(string name, int id, LogRequest request) {
+            if (!name.Equals(request.Tourname))
+                return "Error: Name of the tour and the log must be the same!";
             try {
                 TourLog tl = new(request.Tourname, request.Date, request.Comment, request.Difficulty, request.Time, request.Rating);
 
@@ -87,9 +90,16 @@ namespace SWEN2_REST.BL.Controllers {
             }
         }
 
-        [HttpDelete("{name}")]
-        public string Delete(string name) {
-            return "";
+        [HttpDelete("{name}/{id}")]
+        public string Delete(string name, int id) {
+            if (_tours.GetTour(name).RemoveLog(id) == 0)
+                if (_tourContext.DeleteTourLog(id) == 0) {
+                    _logger.LogInformation("Deleted tourlog: " + id);
+                    return "Deleted tourlog with id: " + id;
+                } else
+                    return "Error while deleting tourlog from database!";
+            else
+                return "Error while deleting tourlog!";
         }
     }
 }
