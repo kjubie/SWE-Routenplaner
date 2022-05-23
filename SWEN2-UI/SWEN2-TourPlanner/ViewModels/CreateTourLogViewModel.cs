@@ -26,7 +26,7 @@ namespace SWEN2_TourPlanner_ViewModels
         private IQuery _request;
 
         public CreateTourLogViewModel(string tourname)
-        {
+        {            
             _createdTourLog = new TourLogModel();
             _createdTourLog.Tourname = tourname;
             _request = new RESTRequest();

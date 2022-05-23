@@ -50,6 +50,14 @@ namespace SWEN2_Tourplanner_ViewModels
 
         }
 
+        private TourLogModel? _selectedTourLog;
+        public TourLogModel? SelectedTourLog
+        {
+            get { return _selectedTourLog; }
+            set { _selectedTourLog = value; }
+
+        }
+
         private IQuery _request;
 
         public ToursViewModel()
@@ -57,13 +65,14 @@ namespace SWEN2_Tourplanner_ViewModels
             _request = new RESTRequest();
             _tourlist = new TourListModel();
             _selectedTour = null;
+            _selectedTourLog = null;
             LoadTourList();
 
         }
         public async void LoadTourList()
         {
 
-            //try
+            try
 
 
             {
@@ -100,9 +109,9 @@ namespace SWEN2_Tourplanner_ViewModels
                     _tourlist.Add(val, bi);
                 }
             }
-            // catch (Exception ex)
+            catch (Exception ex)
             {
-                // Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
             }
         }
 

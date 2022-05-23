@@ -125,12 +125,23 @@
             <Label Content="{Binding SelectedTour.FormatedTime, Mode=OneWay}"></Label>
             <Label Content="{Binding SelectedTour.FormatedDistance, Mode=OneWay}"></Label>
             <Label FontWeight="Bold">Description</Label>
-            <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto" Height="100">
+            <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto" Height="30">
 
                 <TextBlock  Text="{Binding SelectedTour.Description}"  Width="Auto" TextWrapping="Wrap" Height="Auto">
 
                 </TextBlock>
             </ScrollViewer>
+
+            <DockPanel Height="30">
+                <Label VerticalAlignment="Center" DockPanel.Dock="Left" FontWeight="Bold">Childfriendliness</Label>
+                <Image VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="70" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding SelectedTour.ChildfriendlinessImgPath}"  />
+            </DockPanel>
+
+            <DockPanel Height="30" >
+                <Label VerticalAlignment="Center" DockPanel.Dock="Left" FontWeight="Bold">Popularity</Label>
+                <Image VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="70" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding SelectedTour.PopularityImgPath}"  />
+            </DockPanel>
+
 
             <Grid  Margin ="10" >
                 <Grid.ColumnDefinitions>
@@ -203,8 +214,8 @@
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Width="12*" Header="Date" Binding="{Binding Date}"/>
-                    <DataGridTextColumn Width="12*" Header="Difficulty"  Binding="{Binding Rating}"/>
-                    <DataGridTextColumn Width="12*" Header="Rating"  Binding="{Binding Rating}"/>
+                    <DataGridTextColumn Width="12*" Header="Difficulty"  Binding="{Binding DifficultyString}"/>
+                    <DataGridTextColumn Width="12*" Header="Rating"  Binding="{Binding RatingString}"/>
                     <DataGridTextColumn Width="30*" Header="Comment"  Binding="{Binding Comment}"/>
 
                 </DataGrid.Columns>

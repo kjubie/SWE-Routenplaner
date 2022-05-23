@@ -6,7 +6,7 @@ namespace SWEN2_Tourplanner_Models
     {
 
         public TourLogModel()
-        {          
+        {
 
         }
 
@@ -28,7 +28,7 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 _tourname = value;
-                OnPropertyChanged("Description");
+                OnPropertyChanged("Tourname");
             }
         }
         public string Date
@@ -40,7 +40,7 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 _date = value;
-                OnPropertyChanged("Description");
+                OnPropertyChanged("Date");
             }
         }
         public string Comment
@@ -52,19 +52,45 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 _comment = value;
-                OnPropertyChanged("Description");
+                OnPropertyChanged("Comment");
             }
         }
         public int Difficulty
         {
             get
             {
+                if (DifficultyString == "very easy")
+                {
+                    return 1;
+                }
+
+                if (DifficultyString == "easy")
+                {
+                    return 2;
+                }
+
+                if (DifficultyString == "medium")
+                {
+                    return 3;
+                }
+
+                if (DifficultyString == "hard")
+                {
+                    return 4;
+                }
+
+                if (DifficultyString == "very hard")
+                {
+                    return 5;
+                }
+
                 return _difficulty;
+
             }
             set
             {
                 _difficulty = value;
-                OnPropertyChanged("Description");
+                OnPropertyChanged("Difficulty");
             }
         }
         public string Time
@@ -76,19 +102,44 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 _time = value;
-                OnPropertyChanged("Description");
+                OnPropertyChanged("Time");
             }
         }
         public int Rating
         {
             get
             {
+                if (RatingString == "very bad")
+                {
+                    return 1;
+                }
+
+                if (RatingString == "bad")
+                {
+                    return 2;
+                }
+
+                if (RatingString == "medium")
+                {
+                    return 3;
+                }
+
+                if (RatingString == "great")
+                {
+                    return 4;
+                }
+
+                if (RatingString == "very great")
+                {
+                    return 5;
+                }
+
                 return _rating;
             }
             set
             {
                 _rating = value;
-                OnPropertyChanged("Description");
+                OnPropertyChanged("Rating");
             }
         }
 
@@ -99,12 +150,95 @@ namespace SWEN2_Tourplanner_Models
         private string _time { get; set; }
         private int _rating { get; set; }
 
+      
+
+        private string _difficultyString { get; set; }
+        public string DifficultyString
+        {
+            get
+            {
+                if (_rating == 1)
+                {
+                    return "very easy";
+                }
+
+                if (_rating == 2)
+                {
+                    return "easy";
+                }
+
+                if (_rating == 3)
+                {
+                    return "medium";
+                }
+
+                if (_rating == 4)
+                {
+                    return "hard";
+                }
+
+                if (_rating == 5)
+                {
+                    return "very hard";
+                }
+
+                return "";
+            }
+            set
+            {
+                _difficultyString = value;
+                OnPropertyChanged("DifficultyString");
+            }
+        }
+
+        private string _ratingString { get; set; }
+        public string RatingString
+        {
+            get
+            {
+                if (_rating == 1)
+                {
+                    return "very bad";
+                }
+
+                if (_rating == 2)
+                {
+                    return "bad";
+                }
+
+                if (_rating == 3)
+                {
+                    return "medium";
+                }
+
+                if (_rating == 4)
+                {
+                    return "great";
+                }
+
+                if (_rating == 5)
+                {
+                    return "very great";
+                }
+
+                return "";
+            }
+            set
+            {
+                _ratingString = value;
+                OnPropertyChanged("RatingString");
+            }
+
+        }
+
+
+
         public TourLogModel(string tourname)
         {
             _tourname = tourname;
         }
 
-        public TourLogModel(string tourname, string date, string comment, int  difficulty, string time, int rating)
+        public TourLogModel(string tourname, string date, string comment, int difficulty, string time, int rating)
         {
             Tourname = tourname;
             Date = date;

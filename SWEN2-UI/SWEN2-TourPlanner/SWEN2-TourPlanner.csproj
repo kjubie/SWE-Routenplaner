@@ -16,6 +16,12 @@
     <None Remove="icons\plus.png" />
     <None Remove="icons\refresh.png" />
     <None Remove="icons\search.png" />
+    <None Remove="icons\star0.png" />
+    <None Remove="icons\star1.png" />
+    <None Remove="icons\star2.png" />
+    <None Remove="icons\star3.png" />
+    <None Remove="icons\star4.png" />
+    <None Remove="icons\star5.png" />
     <None Remove="mapImg\map_test.png" />
   </ItemGroup>
 
@@ -51,6 +57,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\pedestrian.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\star0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\star1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\star2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\star3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\star4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\star5.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
 
