@@ -18,6 +18,7 @@ namespace SWEN2_Tourplanner_Models
             _time = tourlog.Time;
             _rating = tourlog.Rating;
             _comment = tourlog.Comment;
+            _id = tourlog.Id;
         }
         public string Tourname
         {
@@ -105,8 +106,21 @@ namespace SWEN2_Tourplanner_Models
             }
         }
 
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                _id = value;
+                OnPropertyChanged("Time");
+            }
+        }
 
-       
+
+
         public int Rating
         {
             get
@@ -149,6 +163,7 @@ namespace SWEN2_Tourplanner_Models
         private int _difficulty { get; set; }
         private string _time { get; set; }
         private int _rating { get; set; }
+        private int _id { get; set; }
 
 
 
@@ -277,21 +292,6 @@ namespace SWEN2_Tourplanner_Models
 
         }
 
-
-        public TourLogModel(string tourname)
-        {
-            _tourname = tourname;
-        }
-
-        public TourLogModel(string tourname, string date, string comment, int difficulty, string time, int rating)
-        {
-            Tourname = tourname;
-            Date = date;
-            Comment = comment;
-            Difficulty = difficulty;
-            Time = time;
-            Rating = rating;
-        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

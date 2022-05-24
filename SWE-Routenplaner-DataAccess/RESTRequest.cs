@@ -95,9 +95,11 @@ namespace SWEN2_Tourplanner_DataAccess
 
         }
 
-        public void DeleteTourLog(string nameTourLogToDelete)
+        public void DeleteTourLog(string tourname, int logid)
         {
-            throw new NotImplementedException();
+            string url = "https://localhost:7221/api/TourLog/" + tourname + "/" + logid;
+            using var client = new HttpClient();
+            var response = client.DeleteAsync(url).Result;
         }
     }
 }

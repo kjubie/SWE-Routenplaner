@@ -72,7 +72,7 @@ namespace SWEN2_Tourplanner_ViewModels
         public async void LoadTourList()
         {
 
-            try
+            //try
 
 
             {
@@ -109,9 +109,9 @@ namespace SWEN2_Tourplanner_ViewModels
                     _tourlist.Add(val, bi);
                 }
             }
-            catch (Exception ex)
+           // catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                //Console.WriteLine(ex.Message);
             }
         }
 
@@ -181,20 +181,20 @@ namespace SWEN2_Tourplanner_ViewModels
 
         public void DeleteTourLog()
         {
-            try
+            //try
             {
 
                 if (_selectedTour != null)
                 {
 
 
-                    _request.DeleteTourLog(_selectedTourLog.Id, _selectedTourLog.Tourname );
+                    _request.DeleteTourLog(_selectedTourLog.Tourname, _selectedTourLog.Id);
                     LoadTourList();
                 }
             }
-            catch (Exception ex)
+           // catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                //Console.WriteLine(ex.Message);
             }
         }
     }
