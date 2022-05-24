@@ -141,13 +141,14 @@ namespace SWEN2_REST.DAL
             try {
                 SqlConnection.Open();
                 NpgsqlCommand npgsqlCommand = new("update tourLog set (tourdate, tourcomment, difficulty, tourtime, rating) " +
-                                                "= (@tourdate, @tourcomment, @difficulty, @tourtime, @rating) where logID = @logID", SqlConnection);
+                                                "= (@tourdate, @tourcomment, @difficulty, @tourtime, @rating) where logID = @logID and tourname = @tourname", SqlConnection);
                 npgsqlCommand.Parameters.AddWithValue("tourdate", tourLog.Date);
                 npgsqlCommand.Parameters.AddWithValue("tourcomment", tourLog.Comment);
                 npgsqlCommand.Parameters.AddWithValue("difficulty", tourLog.Difficulty);
                 npgsqlCommand.Parameters.AddWithValue("tourtime", tourLog.Time);
                 npgsqlCommand.Parameters.AddWithValue("rating", tourLog.Rating);
                 npgsqlCommand.Parameters.AddWithValue("logID", logID);
+                npgsqlCommand.Parameters.AddWithValue("tourname", tourLog.Tourname);
                 npgsqlCommand.Prepare();
                 var result = npgsqlCommand.ExecuteNonQuery();
                 SqlConnection.Close();
