@@ -112,7 +112,7 @@ namespace SWEN2_REST.BL.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("import")]
         public string PostImport(string request) {
             Tour t = JsonSerializer.Deserialize<Tour>(request);
             var image = t.ImageLocation;
