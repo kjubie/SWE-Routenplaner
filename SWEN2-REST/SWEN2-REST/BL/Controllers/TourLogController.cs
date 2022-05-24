@@ -92,6 +92,7 @@ namespace SWEN2_REST.BL.Controllers {
 
         [HttpDelete("{name}/{id}")]
         public string Delete(string name, int id) {
+            _logger.LogInformation("Delete " + name + " log");
             if (_tours.GetTour(name).RemoveLog(id) == 0)
                 if (_tourContext.DeleteTourLog(id) == 0) {
                     _logger.LogInformation("Deleted tourlog: " + id);

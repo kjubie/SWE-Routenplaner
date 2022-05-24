@@ -83,7 +83,7 @@ namespace SWEN2_Tourplanner_Models {
         }
 
         public int AddLog(TourLog log) {
-            if (Logs.TryAdd(Logs.Count() + 1, log))
+            if (Logs.TryAdd(log.Id, log))
                 return 0;
             return -1;
         }

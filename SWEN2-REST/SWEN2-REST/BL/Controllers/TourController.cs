@@ -5,8 +5,6 @@ using SWEN2_REST.DAL;
 using System.Text.Json;
 using System.Text;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace SWEN2_REST.BL.Controllers
 {
     [Route("api/[controller]")]
