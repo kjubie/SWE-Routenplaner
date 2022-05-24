@@ -56,6 +56,21 @@ namespace SWEN2_Tourplanner_Models
             }
         }
 
+        public string ChildfriendlinessImgPath
+        {
+            get
+            {
+                return "../icons/star" + childfriendliness.ToString() + ".png";
+            }
+        }
+        public string PopularityImgPath
+        {
+            get
+            {
+                return "../icons/star" + popularity.ToString() + ".png";
+            }
+        }
+
         public string FormatedFromTo
         {
             get

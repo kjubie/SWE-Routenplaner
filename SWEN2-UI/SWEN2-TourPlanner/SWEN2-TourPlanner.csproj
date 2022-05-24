@@ -16,6 +16,12 @@
     <None Remove="icons\plus.png" />
     <None Remove="icons\refresh.png" />
     <None Remove="icons\search.png" />
+    <None Remove="icons\star0.png" />
+    <None Remove="icons\star1.png" />
+    <None Remove="icons\star2.png" />
+    <None Remove="icons\star3.png" />
+    <None Remove="icons\star4.png" />
+    <None Remove="icons\star5.png" />
     <None Remove="mapImg\map_test.png" />
   </ItemGroup>
 
@@ -53,6 +59,24 @@
     <Content Include="icons\pedestrian.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\star0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\star1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\star2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\star3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\star4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\star5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
 
 
   </ItemGroup>
@@ -60,6 +84,7 @@
   <ItemGroup>
     <PackageReference Include="MessagePackAnalyzer" Version="2.1.152" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Syncfusion.SfInput.WPF" Version="20.1.0.57" />
   </ItemGroup>
 
   <ItemGroup>
