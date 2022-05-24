@@ -67,7 +67,7 @@ namespace SWEN2_Tourplanner_Models
         {
             get
             {
-                return "../icons/star" + childfriendliness.ToString() + ".png";
+                return "../icons/star" + popularity.ToString() + ".png";
             }
         }
 

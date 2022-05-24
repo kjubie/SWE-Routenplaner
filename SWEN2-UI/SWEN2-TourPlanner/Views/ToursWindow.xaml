@@ -23,6 +23,15 @@
             <Setter Property="Background" Value="White"></Setter>
             <Setter Property="BorderThickness" Value="0"></Setter>
         </Style>
+        <Style TargetType="ScrollViewer">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style>
 
 
 
@@ -90,15 +99,7 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate >
-
-
-
                         <Label  Grid.Column="0" HorizontalAlignment="Left" Content="{Binding Name}"/>
-
-
-
-
-
                     </DataTemplate>
 
                 </ListView.ItemTemplate>
@@ -114,12 +115,14 @@
 
         <!-- TOURDETAILS -->
         <StackPanel Grid.Row="0" Grid.Column="2">
+
+
+
+
             <DockPanel >
                 <Image DockPanel.Dock="Right" RenderOptions.BitmapScalingMode="HighQuality"  Width ="40" Height="40" Source="{Binding SelectedTour.IconLocation}"  />
                 <Label DockPanel.Dock="Left" Content="{Binding SelectedTour.Name, Mode=OneWay}" FontSize="24" FontWeight="Bold" ></Label>
             </DockPanel>
-
-
 
             <Label Content="{Binding SelectedTour.FormatedFromTo, Mode=OneWay}" FontWeight="Bold"></Label >
             <Label Content="{Binding SelectedTour.FormatedTime, Mode=OneWay}"></Label>
@@ -134,16 +137,18 @@
 
             <DockPanel Height="30">
                 <Label VerticalAlignment="Center" DockPanel.Dock="Left" FontWeight="Bold">Childfriendliness</Label>
+                <Label Content ="{Binding SelectedTour.Childfriendliness}"></Label>
                 <Image VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="70" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding SelectedTour.ChildfriendlinessImgPath}"  />
             </DockPanel>
 
             <DockPanel Height="30" >
                 <Label VerticalAlignment="Center" DockPanel.Dock="Left" FontWeight="Bold">Popularity</Label>
+                <Label Content ="{Binding SelectedTour.Popularity}"></Label>
                 <Image VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="70" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding SelectedTour.PopularityImgPath}"  />
             </DockPanel>
 
 
-            <Grid  Margin ="10" >
+            <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin ="10" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="70*"/>
                     <ColumnDefinition Width="15*"/>
@@ -151,7 +156,6 @@
                     <ColumnDefinition Width="15*"/>
                     <ColumnDefinition Width="15*"/>
                 </Grid.ColumnDefinitions>
-
 
 
 
@@ -167,10 +171,7 @@
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/export.png"  />
 
                 </Button>
-
-
             </Grid>
-
 
         </StackPanel>
 
@@ -192,34 +193,49 @@
 
             <DockPanel Margin="10">
                 <Label FontSize="24" FontWeight="Bold" HorizontalAlignment="Left">Logs</Label>
+                <DockPanel HorizontalAlignment="Right" DockPanel.Dock="Right">
 
-                <Button Click="OpenCreateTourLogWindow" HorizontalAlignment="Right">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
-                </Button>
+                    <Button HorizontalAlignment="Right" Command="{Binding DeleteSelectedLogCommand}">
+                        <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
+                    </Button>
+                    <Button Click="OpenCreateTourLogWindow" HorizontalAlignment="Right">
+                        <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
+                    </Button>
+                </DockPanel>
+
                 <!--
                 <Button HorizontalAlignment="Right">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pen.png"  />
                 </Button>
 
-                <Button HorizontalAlignment="Right">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
-                </Button>
                 -->
             </DockPanel>
 
 
 
+            <ScrollViewer Height="200">
 
-            <DataGrid IsReadOnly="True" SelectionUnit="FullRow" Margin="10" MaxHeight="200"  Name="LogGrid" ItemsSource="{Binding SelectedTour.TourLogList}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderThickness="0">
-                <DataGrid.Columns>
+                <DataGrid SelectedItem="{Binding SelectedTourLog, Mode=TwoWay}" IsReadOnly="True" SelectionUnit="FullRow" Margin="10" MaxHeight="200"  Name="LogGrid" ItemsSource="{Binding SelectedTour.TourLogList}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderThickness="0">
 
-                    <DataGridTextColumn Width="12*" Header="Date" Binding="{Binding Date}"/>
-                    <DataGridTextColumn Width="12*" Header="Difficulty"  Binding="{Binding DifficultyString}"/>
-                    <DataGridTextColumn Width="12*" Header="Rating"  Binding="{Binding RatingString}"/>
-                    <DataGridTextColumn Width="30*" Header="Comment"  Binding="{Binding Comment}"/>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Transparent" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
 
-                </DataGrid.Columns>
-            </DataGrid>
+
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Width="12*" Header="Date" Binding="{Binding Date}"/>
+                        <DataGridTextColumn Width="12*" Header="Time" Binding="{Binding Time}"/>
+                        <DataGridTextColumn Width="12*" Header="Difficulty"  Binding="{Binding DifficultyString}"/>
+                        <DataGridTextColumn Width="12*" Header="Rating"  Binding="{Binding RatingString}"/>
+                        <DataGridTextColumn Width="30*" Header="Comment"  Binding="{Binding Comment}"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
 
         </StackPanel>
 

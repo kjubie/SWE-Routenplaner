@@ -59,30 +59,6 @@ namespace SWEN2_Tourplanner_Models
         {
             get
             {
-                if (DifficultyString == "very easy")
-                {
-                    return 1;
-                }
-
-                if (DifficultyString == "easy")
-                {
-                    return 2;
-                }
-
-                if (DifficultyString == "medium")
-                {
-                    return 3;
-                }
-
-                if (DifficultyString == "hard")
-                {
-                    return 4;
-                }
-
-                if (DifficultyString == "very hard")
-                {
-                    return 5;
-                }
 
                 return _difficulty;
 
@@ -90,7 +66,30 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 _difficulty = value;
+
+                if (_difficulty == 1)
+                {
+                    DifficultyString = "very easy";
+                }
+                if (_difficulty == 2)
+                {
+                    DifficultyString = "easy";
+                }
+                if (_difficulty == 3)
+                {
+                    DifficultyString = "medium";
+                }
+                if (_difficulty == 4)
+                {
+                    DifficultyString = "hard";
+                }
+                if (_difficulty == 5)
+                {
+                    DifficultyString = "very hard";
+                }
+
                 OnPropertyChanged("Difficulty");
+
             }
         }
         public string Time
@@ -105,40 +104,41 @@ namespace SWEN2_Tourplanner_Models
                 OnPropertyChanged("Time");
             }
         }
+
+
+       
         public int Rating
         {
             get
             {
-                if (RatingString == "very bad")
-                {
-                    return 1;
-                }
-
-                if (RatingString == "bad")
-                {
-                    return 2;
-                }
-
-                if (RatingString == "medium")
-                {
-                    return 3;
-                }
-
-                if (RatingString == "great")
-                {
-                    return 4;
-                }
-
-                if (RatingString == "very great")
-                {
-                    return 5;
-                }
 
                 return _rating;
             }
             set
             {
                 _rating = value;
+
+
+                if (_rating == 1)
+                {
+                    RatingString = "very bad";
+                }
+                if (_rating == 2)
+                {
+                    RatingString = "bad";
+                }
+                if (_rating == 3)
+                {
+                    RatingString = "medium";
+                }
+                if (_rating == 4)
+                {
+                    RatingString = "great";
+                }
+                if (_rating == 5)
+                {
+                    RatingString = "very great";
+                }
                 OnPropertyChanged("Rating");
             }
         }
@@ -150,39 +150,35 @@ namespace SWEN2_Tourplanner_Models
         private string _time { get; set; }
         private int _rating { get; set; }
 
-      
+
 
         private string _difficultyString { get; set; }
         public string DifficultyString
         {
             get
             {
-                if (_rating == 1)
+                if (_difficulty == 1)
                 {
-                    return "very easy";
+                    _difficultyString = "very easy";
+                }
+                if (_difficulty == 2)
+                {
+                    _difficultyString = "easy";
+                }
+                if (_difficulty == 3)
+                {
+                    _difficultyString = "medium";
+                }
+                if (_difficulty == 4)
+                {
+                    _difficultyString = "hard";
+                }
+                if (_difficulty == 5)
+                {
+                    _difficultyString = "very hard";
                 }
 
-                if (_rating == 2)
-                {
-                    return "easy";
-                }
-
-                if (_rating == 3)
-                {
-                    return "medium";
-                }
-
-                if (_rating == 4)
-                {
-                    return "hard";
-                }
-
-                if (_rating == 5)
-                {
-                    return "very hard";
-                }
-
-                return "";
+                return _difficultyString;
             }
             set
             {
@@ -198,30 +194,26 @@ namespace SWEN2_Tourplanner_Models
             {
                 if (_rating == 1)
                 {
-                    return "very bad";
+                    _ratingString = "very bad";
                 }
-
                 if (_rating == 2)
                 {
-                    return "bad";
+                    _ratingString = "bad";
                 }
-
                 if (_rating == 3)
                 {
-                    return "medium";
+                    _ratingString = "medium";
                 }
-
                 if (_rating == 4)
                 {
-                    return "great";
+                    _ratingString = "great";
                 }
-
                 if (_rating == 5)
                 {
-                    return "very great";
+                    _ratingString = "very great";
                 }
 
-                return "";
+                return _ratingString;
             }
             set
             {
@@ -231,6 +223,59 @@ namespace SWEN2_Tourplanner_Models
 
         }
 
+
+        public int RatingStringToInt()
+        {
+            if (_ratingString == "very bad")
+            {
+                return 1;
+            }
+            if (_ratingString == "bad")
+            {
+                return 2;
+            }
+            if (_ratingString == "medium")
+            {
+                return 3;
+            }
+            if (_ratingString == "great")
+            {
+                return 4;
+            }
+            if (_ratingString == "very great")
+            {
+                return 5;
+            }
+
+            return 0;
+        }
+
+        public int DifficultyStringToInt()
+        {
+            if (_difficultyString == "very easy")
+            {
+                return 1;
+            }
+            if (_difficultyString == "easy")
+            {
+                return 2;
+            }
+            if (_difficultyString == "medium")
+            {
+                return 3;
+            }
+            if (_difficultyString == "hard")
+            {
+                return 4;
+            }
+            if (_difficultyString == "very hard")
+            {
+                return 5;
+            }
+
+            return 0;
+
+        }
 
 
         public TourLogModel(string tourname)

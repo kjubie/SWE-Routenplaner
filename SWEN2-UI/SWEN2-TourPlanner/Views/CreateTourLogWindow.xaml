@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SWEN2_TourPlanner.Views"
+         xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
         mc:Ignorable="d"
        Title="CreateTourLogWindow" Height="420" Width="400">
 
@@ -19,7 +20,6 @@
             <Setter Property="Background" Value="Transparent"></Setter>
             <Setter Property="BorderBrush" Value="Transparent"></Setter>
             <Setter Property="BorderBrush" Value="LightGray"></Setter>
-
         </Style>
 
 
@@ -32,7 +32,7 @@
 
             <Label FontSize="14" Content="{Binding CreatedTourLog.Tourname}">
             </Label>
-            
+
             <Border BorderThickness="0 0 0 1" Background="Black" BorderBrush ="Black"></Border>
 
             <Label>
@@ -41,8 +41,7 @@
 
 
             <DatePicker Text="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Height="25"  />
-<!--
-            <TextBox Text="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  x:Name="From"></TextBox> -->
+            <!--<TextBox Text="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  x:Name="From"></TextBox>-->
             <Label>
                 Comment
             </Label>
@@ -52,22 +51,23 @@
             </Label>
             <ComboBox Text="{Binding CreatedTourLog.DifficultyString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
 
-                <ComboBoxItem>easy</ComboBoxItem>
                 <ComboBoxItem>very easy</ComboBoxItem>
+                <ComboBoxItem>easy</ComboBoxItem>
                 <ComboBoxItem>medium</ComboBoxItem>
                 <ComboBoxItem>hard</ComboBoxItem>
                 <ComboBoxItem>very hard</ComboBoxItem>
+
             </ComboBox>
 
-            <Label>
-                Time
-            </Label>
+            <Label>Time</Label>
 
-            <TextBox Text="{Binding CreatedTourLog.Time, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Label>
-                Rating
-            </Label>
 
+            <syncfusion:TimeSpanEdit Format="hh:mm:ss" AllowNull="True" NullString="00:00:00" TextWrapping="Wrap" Text="{Binding CreatedTourLog.Time, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!--
+            <syncfusion:SfTimePicker Value=" SetValueOnLostFocus="True" AllowNull="True"  SelectorFormatString="HH:mm:ss" FormatString="HH:mm:ss" Watermark="Select time.."/> -->
+
+            <Label>Rating</Label>
             <ComboBox Text="{Binding CreatedTourLog.RatingString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
 
                 <ComboBoxItem>very bad</ComboBoxItem>
@@ -75,7 +75,7 @@
                 <ComboBoxItem>medium</ComboBoxItem>
                 <ComboBoxItem>great</ComboBoxItem>
                 <ComboBoxItem>very great</ComboBoxItem>
-                
+
             </ComboBox>
 
             <DockPanel Margin="0 5 0 5">

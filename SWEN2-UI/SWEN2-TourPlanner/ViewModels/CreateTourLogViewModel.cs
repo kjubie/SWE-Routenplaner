@@ -54,9 +54,9 @@ namespace SWEN2_TourPlanner_ViewModels
         {
 
             //Rating to string
-            string ratingstr = _createdTourLog.Rating.ToString();
+            string ratingstr = _createdTourLog.RatingStringToInt().ToString();
             //Difficulty to string
-            string diffstr = _createdTourLog.Difficulty.ToString();
+            string diffstr = _createdTourLog.DifficultyStringToInt().ToString();
 
             _request.PostTourLog(_createdTourLog.Tourname, _createdTourLog.Date, _createdTourLog.Comment, diffstr, _createdTourLog.Time, ratingstr);
             CloseAction();

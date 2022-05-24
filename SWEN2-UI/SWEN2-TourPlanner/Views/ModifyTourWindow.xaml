@@ -51,7 +51,7 @@
                 Tour name
             </Label>
 
-            <TextBox Text="{Binding ModTour.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox IsReadOnly="True" Text="{Binding ModTour.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label>
                 Description
             </Label>

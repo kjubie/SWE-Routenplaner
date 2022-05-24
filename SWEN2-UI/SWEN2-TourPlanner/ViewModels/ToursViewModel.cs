@@ -129,8 +129,28 @@ namespace SWEN2_Tourplanner_ViewModels
                 else
                 {
 
-                    _deleteSelectedCommand = new ParaCommand(param => DeleteTour(param), true);
+                    _deleteSelectedCommand = new Command(() => DeleteTour(), true);
                     return _deleteSelectedCommand;
+                }
+
+            }
+        }
+        private ICommand _deleteSelectedLogCommand;
+        public ICommand DeleteSelectedLogCommand
+        {
+            get
+            {
+
+
+                if (_deleteSelectedLogCommand != null)
+                {
+                    return _deleteSelectedLogCommand;
+                }
+                else
+                {
+
+                    _deleteSelectedLogCommand = new Command(() => DeleteTourLog(), true);
+                    return _deleteSelectedLogCommand;
                 }
 
             }
@@ -141,7 +161,7 @@ namespace SWEN2_Tourplanner_ViewModels
             return _selectedTour;
         }
 
-        public void DeleteTour(object TourName)
+        public void DeleteTour()
         {
             try
             {
@@ -149,6 +169,26 @@ namespace SWEN2_Tourplanner_ViewModels
                 if (_selectedTour != null)
                 {
                     _request.DeleteTour(_selectedTour.Name);
+                    LoadTourList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
+        public void DeleteTourLog()
+        {
+            try
+            {
+
+                if (_selectedTour != null)
+                {
+
+
+                    _request.DeleteTourLog(_selectedTourLog.Id, _selectedTourLog.Tourname );
                     LoadTourList();
                 }
             }

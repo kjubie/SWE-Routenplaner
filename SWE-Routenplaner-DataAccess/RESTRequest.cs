@@ -40,7 +40,7 @@ namespace SWEN2_Tourplanner_DataAccess
         public async Task PostTour(string from, string to, string tourname, string type, string description)
         {
             var url = "https://localhost:7221/api/Tour";
-            string content = "{\"name\":\"" + tourname + "\",\"description\":\"" + description + "\",\"from\":\"" + from + ", AT\",\"to\":\"" + to + ", AT\",\"routetype\":\"" + type + "\",\"info\":\"info\",\"imagelocation\":\"loc\"}";
+            string content = "{\"name\":\"" + tourname + "\",\"description\":\"" + description + "\",\"from\":\"" + from + "\",\"to\":\"" + to + "\",\"routetype\":\"" + type + "\",\"info\":\"info\",\"imagelocation\":\"loc\"}";
 
             var data = new StringContent(content, Encoding.UTF8, "application/json");
 
@@ -95,5 +95,9 @@ namespace SWEN2_Tourplanner_DataAccess
 
         }
 
+        public void DeleteTourLog(string nameTourLogToDelete)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
