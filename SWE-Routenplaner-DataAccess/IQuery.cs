@@ -17,8 +17,8 @@ namespace SWEN2_Tourplanner_DataAccess
         public Task PostTour(string from, string to, string tourname, string type, string description);
         public Task UpdateTour(string oldTourName, string from, string to, string tourname, string type, string description);
 
-        public void DeleteTour(string nameTourToDelete);
-        public void DeleteTourLog(string nameTourLogToDelete);
+        public void DeleteTour(string tourname);
+        public void DeleteTourLog(string nameTourLogToDelete, int logId);
 
         public Task<string> GetImageBase64(String tourname);
 

@@ -184,11 +184,12 @@ namespace SWEN2_Tourplanner_ViewModels
             try
             {
 
-                if (_selectedTour != null)
+                if (_selectedTourLog != null)
                 {
 
 
-                    _request.DeleteTourLog(_selectedTourLog.Id, _selectedTourLog.Tourname );
+                    _request.DeleteTourLog(_selectedTourLog.Tourname, _selectedTourLog.Id);
+
                     LoadTourList();
                 }
             }
