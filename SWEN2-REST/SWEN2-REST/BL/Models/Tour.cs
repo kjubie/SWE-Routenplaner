@@ -87,9 +87,10 @@ namespace SWEN2_Tourplanner_Models {
                 if (Logs.TryAdd(log.Id, log))
                     return log.Id;
 
-            log.Id = Logs.Count() + 1;
-            if (Logs.TryAdd(Logs.Count() + 1, log))
-                return Logs.Count() + 1;
+            var lid = Logs.Count() + 1;
+            log.Id = lid;
+            if (Logs.TryAdd(lid, log))
+                return lid;
             return -1;
         }
 

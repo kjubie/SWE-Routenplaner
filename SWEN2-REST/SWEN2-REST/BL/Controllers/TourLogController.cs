@@ -79,7 +79,7 @@ namespace SWEN2_REST.BL.Controllers {
                 _tours.GetTour(request.Tourname).CalcPopularity();
                 _tours.GetTour(request.Tourname).CalcChildfriendliness();
 
-                if (_tourContext.UpdateTourLog(tl) != 0) {
+                if (_tourContext.UpdateTourLog(tl, id) != 0) {
                     _logger.LogError("Error while updating log in database");
                     return "Error while updating log in database";
                 }
