@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using SWEN2_Tourplanner_Models;
 using SWEN2_REST.DAL;
 using System.Text.Json;
+using System.Text;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -53,6 +54,16 @@ namespace SWEN2_REST.BL.Controllers
             return JsonSerializer.Serialize(_tours.GetTour(name));
         }
 
+        [HttpGet("{name}/export")]
+        public string GetJSON(string name) {
+            _logger.LogInformation("Get " + name + " tour JSON");
+            Tour tour = _tours.GetTour(name);
+            var base64Image = _fileHandler.LoadFromFile(name);
+            tour.ImageLocation = base64Image;
+
+            return JsonSerializer.Serialize(tour);
+        }
+
         [HttpGet("{name}/report")]
         public string GetReport(string name) {
             _logger.LogInformation("Get " + name + " report");
@@ -101,6 +112,37 @@ namespace SWEN2_REST.BL.Controllers
                 _logger.LogError("Tour with this name already exists: " + request.Name);
                 return "Tour with this name already exists!";
             }
+        }
+
+        [HttpPost]
+        public string PostImport(string request) {
+            Tour t = JsonSerializer.Deserialize<Tour>(request);
+            var image = t.ImageLocation;
+            t.ImageLocation = "../../SWEN2-DB/routeImages/" + t.Name + ".txt";
+
+            _fileHandler.SaveImage(Encoding.ASCII.GetBytes(image), t.Name);
+            
+
+            Task<int> fileTask;
+
+            if (_tours.AddTour(t) == 0) {
+                if (_tourContext.SaveTour(t) == 0) {
+                    fileTask = _fileHandler.SaveToFileAsync(t.Name, image);
+                    fileTask.Wait();
+                    if (fileTask.Result == -1) {
+                        return "Error while saving image!";
+                    }
+                    _logger.LogInformation("Added new tour: " + t.Name);
+                    return "Added new tour!";
+                } else {
+                    return "Error while saving tour to database!";
+                }
+            } else {
+                _logger.LogError("Tour with this name already exists: " + t.Name);
+                return "Tour with this name already exists!";
+            }
+
+            return "";
         }
 
         [HttpPut("{name}")]
