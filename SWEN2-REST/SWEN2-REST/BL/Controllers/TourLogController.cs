@@ -41,7 +41,9 @@ namespace SWEN2_REST.BL.Controllers {
             try {
                 TourLog tl = new(request.Tourname, request.Date, request.Comment, request.Difficulty, request.Time, request.Rating);
 
-                if(_tours.GetTour(request.Tourname).AddLog(tl) == -1) {
+                var ret = _tours.GetTour(request.Tourname).AddLog(tl);
+
+                if (ret == -1) {
                     _logger.LogError("Error while adding log");
                     return "Error while adding log";
                 }
@@ -49,7 +51,7 @@ namespace SWEN2_REST.BL.Controllers {
                 _tours.GetTour(request.Tourname).CalcPopularity();
                 _tours.GetTour(request.Tourname).CalcChildfriendliness();
 
-                if (_tourContext.SaveTourLog(tl) != 0) {
+                if (_tourContext.SaveTourLog(tl, ret) != 0) {
                     _logger.LogError("Error while saving log to database");
                     return "Error while saving log to database";
                 }

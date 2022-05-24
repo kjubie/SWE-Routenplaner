@@ -6,7 +6,7 @@
         public int Difficulty { get; set; }
         public string? Time { get; set; }
         public int Rating { get; set; }
-        public int Id { get; set; }
+        public int Id { get; set; } = 0;
 
         public TourLog(string tourname) {
             Tourname = tourname;

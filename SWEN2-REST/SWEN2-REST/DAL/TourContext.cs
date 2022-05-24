@@ -84,18 +84,19 @@ namespace SWEN2_REST.DAL
             }
         }
 
-        public int SaveTourLog(TourLog tourLog) {
+        public int SaveTourLog(TourLog tourLog, int logID) {
             _logger.LogInformation("Saving tour log " + tourLog.ToString());
             try {
                 SqlConnection.Open();
-                NpgsqlCommand npgsqlCommand = new("insert into tourLog(tourname, tourdate, tourcomment, difficulty, tourtime, rating) " +
-                                                "values(@tourname, @tourdate, @tourcomment, @difficulty, @tourtime, @rating)", SqlConnection);
+                NpgsqlCommand npgsqlCommand = new("insert into tourLog(tourname, tourdate, tourcomment, difficulty, tourtime, rating, logID) " +
+                                                "values(@tourname, @tourdate, @tourcomment, @difficulty, @tourtime, @rating, @logID)", SqlConnection);
                 npgsqlCommand.Parameters.AddWithValue("tourname", tourLog.Tourname);
                 npgsqlCommand.Parameters.AddWithValue("tourdate", tourLog.Date);
                 npgsqlCommand.Parameters.AddWithValue("tourcomment", tourLog.Comment);
                 npgsqlCommand.Parameters.AddWithValue("difficulty", tourLog.Difficulty);
                 npgsqlCommand.Parameters.AddWithValue("tourtime", tourLog.Time);
                 npgsqlCommand.Parameters.AddWithValue("rating", tourLog.Rating);
+                npgsqlCommand.Parameters.AddWithValue("logID", logID);
                 npgsqlCommand.Prepare();
                 var result = npgsqlCommand.ExecuteNonQuery();
                 SqlConnection.Close();

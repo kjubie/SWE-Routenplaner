@@ -17,14 +17,15 @@ create table if not exists tourLog (
 	difficulty int,
 	tourtime varchar(32),
 	rating int,
-	logID serial primary key,
+	logID int,
+	PRIMARY KEY (tourname, logID)
 	foreign key (tourname) references tour(name)
 );
 
 insert into tour(name, description, startpoint, endpoint, transportType, distance, tourTime, info, imageLocation) values('name', 'description', 'startpoint', 'endpoint', 'transportType', 1.001, '10:00:33', 'info', 'imageLocation');
 insert into tour(name, description, startpoint, endpoint, transportType, distance, tourTime, info, imageLocation) values('Best tour ever!', 'Really the best!', 'Vienna, AT', 'Graz, AT', 'foot', 1.001, '12:45:53', 'Best info!', 'imageLocation');
 
-curl -X POST https://localhost:7221/api/Tour -H "Content-Type: application/json" -d "{\"name\":\"SuperAwesomeTour\",\"description\":\"desc\",\"from\":\"Vienna, AT\",\"to\":\"Graz, AT\",\"routetype\":\"bicycle\",\"info\":\"info\",\"imagelocation\":\"loc\"}"
+curl -X POST https://localhost:7221/api/Tour -H "Content-Type: application/json" -d "{\"name\":\"SuperAwesomeTour\",\"description\":\"desc\",\"from\":\"Vienna, AT\",\"to\":\"Graz, AT\",\"routetype\":\"bicycle\",\"info\":\"info\"}"
 curl -X PUT https://localhost:7221/api/Tour/<tourname> -H "Content-Type: application/json" -d "{\"name\":\"SuperAwesomeTour\",\"description\":\"desc\",\"from\":\"Vienna, AT\",\"to\":\"Graz, AT\",\"routetype\":\"bicycle\",\"info\":\"info\",\"imagelocation\":\"loc\"}"
 
 curl -X POST https://localhost:7221/api/TourLog -H "Content-Type: application/json" -d "{\"tourname\":\"SuperAwesomeTour\",\"date\":\"heuteLuL\",\"Comment\":\"War ganz ok\",\"difficulty\":\"2\",\"time\":\"2:31:31\",\"rating\":1}"
