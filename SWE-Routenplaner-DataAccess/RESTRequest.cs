@@ -94,6 +94,22 @@ namespace SWEN2_Tourplanner_DataAccess
             Console.WriteLine(result);
 
         }
+        public async Task UpdateTourLog(string tourname, string date, string comment, string difficulty, string time, string rating, int id)
+        {
+
+            var url = "https://localhost:7221/api/TourLog/" + tourname + "/" + id;
+            string content = "{\"tourname\":\"" + tourname + "\",\"date\":\"" + date + "\",\"comment\":\"" + comment + "\",\"difficulty\":\"" + difficulty + "\",\"time\":\"" + time + "\",\"rating\":\"" + rating + "\"}";
+
+            var data = new StringContent(content, Encoding.UTF8, "application/json");
+
+            using var client = new HttpClient();
+
+            var response = await client.PutAsync(url, data);
+
+            var result = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(result);
+
+        }
 
         public void DeleteTourLog(string tourname, int tourlogid)
         {
