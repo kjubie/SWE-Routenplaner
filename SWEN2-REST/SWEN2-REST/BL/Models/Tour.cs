@@ -102,6 +102,7 @@ namespace SWEN2_Tourplanner_Models {
 
         public int UpdateLog(int id, TourLog log) {
             if (Equals(Logs[id].Tourname, log.Tourname)) {
+                log.Id = id;
                 Logs[id] = log;
                 return 0;
             }
