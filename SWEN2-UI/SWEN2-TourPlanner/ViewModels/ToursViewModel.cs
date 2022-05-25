@@ -160,6 +160,10 @@ namespace SWEN2_Tourplanner_ViewModels
         {
             return _selectedTour;
         }
+        public TourLogModel GetSelectedTourLog()
+        {
+            return _selectedTourLog;
+        }
 
         public void DeleteTour()
         {

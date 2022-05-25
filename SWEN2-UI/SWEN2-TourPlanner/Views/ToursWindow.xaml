@@ -195,20 +195,19 @@
                 <Label FontSize="24" FontWeight="Bold" HorizontalAlignment="Left">Logs</Label>
                 <DockPanel HorizontalAlignment="Right" DockPanel.Dock="Right">
 
+
+                    <Button HorizontalAlignment="Right" Click="OpenModifyTourlogWindow">
+                        <Image  RenderOptions.BitmapScalingMode="HighQuality"   Width ="20" Height="20" Source="../icons/pen.png"  />
+                    </Button>
                     <Button HorizontalAlignment="Right" Command="{Binding DeleteSelectedLogCommand}">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
                     </Button>
                     <Button Click="OpenCreateTourLogWindow" HorizontalAlignment="Right">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
                     </Button>
+
                 </DockPanel>
 
-                <!--
-                <Button HorizontalAlignment="Right">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pen.png"  />
-                </Button>
-
-                -->
             </DockPanel>
 
 

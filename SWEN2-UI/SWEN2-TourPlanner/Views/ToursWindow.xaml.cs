@@ -71,6 +71,23 @@ namespace SWEN2_TourPlanner
             }
         }
 
+        private void OpenModifyTourlogWindow(object sender, RoutedEventArgs e)
+        {
+            ModifyTourLogWindow modifyTourLogWindow = new ModifyTourLogWindow();
+
+            ModifyTourLogsViewModel modifyTourLogVM = new ModifyTourLogsViewModel(ViewModel.GetSelectedTourLog());
+
+            modifyTourLogWindow.DataContext = modifyTourLogVM;
+            modifyTourLogWindow.Show();
+
+            if (modifyTourLogVM.CloseAction == null)
+            {
+                modifyTourLogVM.CloseAction = new Action(modifyTourLogWindow.Close);
+
+            }
+        }
+
+
         private void ReloadWindow(object sender, RoutedEventArgs e)
         {
             ViewModel.LoadTourList();
