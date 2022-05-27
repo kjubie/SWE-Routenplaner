@@ -18,6 +18,7 @@
             <Setter Property="Background" Value="Transparent"></Setter>
             <Setter Property="BorderBrush" Value="Transparent"></Setter>
         </Style>
+ 
 
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="White"></Setter>
@@ -95,7 +96,7 @@
 
 
 
-            <ListView SelectedItem="{Binding SelectedTour, Mode=TwoWay}" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700" ItemsSource="{Binding TourList}">
+            <ListView SelectedItem="{Binding SelectedTour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700" ItemsSource="{Binding TourList}">
 
                 <ListView.ItemTemplate>
                     <DataTemplate >
@@ -158,15 +159,15 @@
 
 
 
-                <Button DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
+                <Button IsEnabled="{Binding IsTourSelected}" DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
                 </Button>
 
-                <Button Grid.Column="4" HorizontalAlignment="Center" Click="OpenModifyWindow" >
+                <Button IsEnabled="{Binding IsTourSelected}" Grid.Column="4" HorizontalAlignment="Center" Click="OpenModifyWindow" >
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pen.png"  />
                 </Button>
 
-                <Button  Grid.Column="3" HorizontalAlignment="Center">
+                <Button IsEnabled="{Binding IsTourSelected}"  Grid.Column="3" HorizontalAlignment="Center">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/export.png"  />
 
                 </Button>
@@ -195,10 +196,10 @@
                 <DockPanel HorizontalAlignment="Right" DockPanel.Dock="Right">
 
 
-                    <Button HorizontalAlignment="Right" Click="OpenModifyTourlogWindow">
+                    <Button IsEnabled="{Binding IsTourLogSelected}" HorizontalAlignment="Right" Click="OpenModifyTourlogWindow">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"   Width ="20" Height="20" Source="../icons/pen.png"  />
                     </Button>
-                    <Button HorizontalAlignment="Right" Command="{Binding DeleteSelectedLogCommand}">
+                    <Button IsEnabled="{Binding IsTourLogSelected}" HorizontalAlignment="Right" Command="{Binding DeleteSelectedLogCommand}">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
                     </Button>
                     <Button Click="OpenCreateTourLogWindow" HorizontalAlignment="Right">

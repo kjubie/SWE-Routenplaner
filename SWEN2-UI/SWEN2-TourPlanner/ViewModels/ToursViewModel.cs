@@ -19,18 +19,6 @@ namespace SWEN2_Tourplanner_ViewModels
     public class ToursViewModel : INotifyPropertyChanged
     {
 
-        // private TourLogModel _tourLogsSelectedTour;
-
-        /*
-        public ObservableCollection<TourLogModel> _tourLogList;
-
-        public ObservableCollection<TourLogModel> TourLogList
-        {
-            get { return _tourLogList; }
-            set { _tourLogList = value; }
-        }
-        */
-
         private TourListModel _tourlist;
 
         public ObservableCollection<TourModel> TourList
@@ -43,6 +31,7 @@ namespace SWEN2_Tourplanner_ViewModels
             set
             {
                 _tourlist.TourList = value;
+                OnPropertyChanged("TourList");
             }
         }
         private TourModel? _selectedTour;
@@ -51,10 +40,21 @@ namespace SWEN2_Tourplanner_ViewModels
             get { return _selectedTour; }
             set
             {
+                if (value != null)
+                {
+                    IsTourSelected = true;
+                    IsTourLogSelected = false;
 
-                IsTourSelected = true;
+                }
+
+                if (value == null)
+                {
+                    IsTourSelected = false;
+                    IsTourLogSelected = false;
+
+                }
                 _selectedTour = value;
-
+                OnPropertyChanged("SelectedTour");
             }
 
         }
@@ -74,16 +74,15 @@ namespace SWEN2_Tourplanner_ViewModels
 
         }
 
-           private bool _isTourSelected;
+        private bool _isTourSelected;
         public bool IsTourSelected
         {
             get { return _isTourSelected; }
 
             set
             {
-
                 _isTourSelected = value;
-                OnPropertyChanged("IsTourLogSelected");
+                OnPropertyChanged("IsTourSelected");
 
             }
 
@@ -98,9 +97,22 @@ namespace SWEN2_Tourplanner_ViewModels
             set
             {
 
-                IsTourLogSelected = true;
+                if (value != null)
+                {
+                    
+                    IsTourLogSelected = true;
 
+                }
+
+                if (value == null)
+                {
+                    
+                    IsTourLogSelected = false;
+
+                }               
                 _selectedTourLog = value;
+                OnPropertyChanged("SelectedTourLog");
+
             }
 
         }

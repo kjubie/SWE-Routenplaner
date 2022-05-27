@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 
 namespace SWEN2_Tourplanner_Models
 {
-    public class TourModel : INotifyPropertyChanged
+    public class TourModel
     {
 
         private string name;
