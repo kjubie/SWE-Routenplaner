@@ -62,6 +62,8 @@
                 <Button Click="CloseWindow" DockPanel.Dock="Right">Cancel</Button>
                 <Button Command="{Binding UpdateTourCommand}" DockPanel.Dock="Right">Save</Button>
             </DockPanel>
+            <Label Foreground="red" FontWeight="Light" FontStyle="Italic" Content="{Binding ErrorMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
         </StackPanel>
     </Grid>
 </Window>

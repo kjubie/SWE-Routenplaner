@@ -60,6 +60,11 @@ namespace SWEN2_Tourplanner_Models
             }
         }
 
+        internal bool ToIsNullOrWhiteSpace()
+        {
+            throw new NotImplementedException();
+        }
+
         public string ChildfriendlinessImgPath
         {
             get

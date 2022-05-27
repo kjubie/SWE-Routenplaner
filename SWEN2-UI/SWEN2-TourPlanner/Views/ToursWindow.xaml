@@ -93,7 +93,7 @@
                 </Button>
             </Grid>
 
-            <!--SelectionChanged="UpdateTourDetails"-->
+
 
             <ListView SelectedItem="{Binding SelectedTour, Mode=TwoWay}" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700" ItemsSource="{Binding TourList}">
 
@@ -107,6 +107,7 @@
             </ListView>
 
 
+            <Label Foreground="red" FontWeight="UltraLight" Content="{Binding ErrorMsg, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 
 
@@ -157,7 +158,7 @@
 
 
 
-                <Button  DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
+                <Button DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
                 </Button>
 

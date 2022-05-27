@@ -16,7 +16,7 @@ using System.ComponentModel;
 
 namespace SWEN2_Tourplanner_ViewModels
 {
-    public class ToursViewModel
+    public class ToursViewModel : INotifyPropertyChanged
     {
 
         // private TourLogModel _tourLogsSelectedTour;
@@ -51,6 +51,8 @@ namespace SWEN2_Tourplanner_ViewModels
             get { return _selectedTour; }
             set
             {
+
+                IsTourSelected = true;
                 _selectedTour = value;
 
             }
@@ -72,15 +74,21 @@ namespace SWEN2_Tourplanner_ViewModels
 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
+           private bool _isTourSelected;
+        public bool IsTourSelected
         {
-            if (PropertyChanged != null)
+            get { return _isTourSelected; }
+
+            set
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+
+                _isTourSelected = value;
+                OnPropertyChanged("IsTourLogSelected");
+
             }
+
         }
+
 
 
         private TourLogModel? _selectedTourLog;
@@ -90,7 +98,7 @@ namespace SWEN2_Tourplanner_ViewModels
             set
             {
 
-                this.IsTourLogSelected = true;
+                IsTourLogSelected = true;
 
                 _selectedTourLog = value;
             }
@@ -150,7 +158,7 @@ namespace SWEN2_Tourplanner_ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ErrorMsg = ex.Message;
             }
         }
 
@@ -216,7 +224,7 @@ namespace SWEN2_Tourplanner_ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ErrorMsg = ex.Message;
             }
         }
 
@@ -237,9 +245,35 @@ namespace SWEN2_Tourplanner_ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ErrorMsg = ex.Message;
             }
         }
+
+        private string _errorMsg { get; set; }
+
+        public string ErrorMsg
+        {
+            get
+            {
+                return _errorMsg;
+            }
+            set
+            {
+                _errorMsg = value;
+                OnPropertyChanged("ErrorMsg");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
     }
 }
 

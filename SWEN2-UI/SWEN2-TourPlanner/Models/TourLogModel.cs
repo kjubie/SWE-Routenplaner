@@ -258,7 +258,24 @@ namespace SWEN2_Tourplanner_Models
                 throw new ArgumentException("Required field is empty");
             }
         }
-     
+
+
+        private string _errorMsg { get; set; }
+
+        public string ErrorMsg
+        {
+            get
+            {
+                return _errorMsg;
+            }
+            set
+            {
+                _errorMsg = value;
+                OnPropertyChanged("ErrorMsg");
+            }
+        }
+
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChanged(string propertyName)

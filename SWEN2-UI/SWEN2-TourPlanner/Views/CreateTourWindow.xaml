@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SWEN2_TourPlanner.View"
         mc:Ignorable="d"
-        Title="CreateTour" Height="450" Width="400">
+        Title="CreateTour" Height="500" Width="400">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -28,7 +28,7 @@
     <Grid>
         <StackPanel Margin ="15" >
             <Label FontSize="25" FontWeight="Bold">
-               Create Tour
+                Create Tour
             </Label>
             <Border BorderThickness="0 0 0 1" Background="Black" BorderBrush ="Black"></Border>
             <Label>
@@ -64,6 +64,10 @@
                 <Button Click="CloseWindow" DockPanel.Dock="Right">Cancel</Button>
                 <Button Command="{Binding SaveCreatedCommand}" DockPanel.Dock="Right">Save</Button>
             </DockPanel>
+
+            <Label Foreground="red" FontWeight="Light" FontStyle="Italic" Content="{Binding ErrorMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+
         </StackPanel>
     </Grid>
 </Window>
