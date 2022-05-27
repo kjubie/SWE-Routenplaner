@@ -1,0 +1,7 @@
+@startuml
+class ModifyTourWindow <<partial>> {
+    + ModifyTourWindow()
+    - CloseWindow(sender:object, e:RoutedEventArgs) : void
+}
+Window <|-- ModifyTourWindow
+@enduml

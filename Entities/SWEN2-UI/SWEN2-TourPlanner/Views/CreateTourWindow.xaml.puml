@@ -1,0 +1,8 @@
+@startuml
+class CreateTourWindow <<partial>> {
+    + CreateTourWindow()
+    - CloseWindow(sender:object, e:RoutedEventArgs) : void
+}
+Window <|-- CreateTourWindow
+CreateTourWindow o-> "ViewModel" CreateTourViewModel
+@enduml

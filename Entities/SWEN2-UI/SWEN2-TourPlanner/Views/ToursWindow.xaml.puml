@@ -1,0 +1,12 @@
+@startuml
+class ToursWindow <<partial>> {
+    + ToursWindow()
+    - OpenCreateWindow(sender:object, e:RoutedEventArgs) : void
+    - OpenCreateTourLogWindow(sender:object, e:RoutedEventArgs) : void
+    - OpenModifyWindow(sender:object, e:RoutedEventArgs) : void
+    - OpenModifyTourlogWindow(sender:object, e:RoutedEventArgs) : void
+    - ReloadWindow(sender:object, e:RoutedEventArgs) : void
+}
+Window <|-- ToursWindow
+ToursWindow o-> "ViewModel" ToursViewModel
+@enduml

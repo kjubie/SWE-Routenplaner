@@ -1,0 +1,12 @@
+@startuml
+class CreateTourViewModel {
+    - _createdTour : TourModel?
+    + CreatedTour : TourModel? <<get>> <<set>>
+    + CreateTourViewModel()
+    + SaveTour() : void
+}
+CreateTourViewModel --> "_request" IQuery
+CreateTourViewModel --> "_saveCreatedCommand" ICommand
+CreateTourViewModel --> "SaveCreatedCommand" ICommand
+CreateTourViewModel --> "CloseAction" Action
+@enduml

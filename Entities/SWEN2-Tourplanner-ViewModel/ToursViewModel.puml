@@ -1,0 +1,14 @@
+@startuml
+class ToursViewModel {
+    - {static} _tourlist : IList<TourModel>?
+    - {static} _tours : Tours?
+    - {static} _selectedTour : TourModel?
+    + ToursViewModel()
+    <<async>> LoadToursAsync() : Task
+    + <<async>> {static} PostTourAsync(from:string, to:string, tourname:string, type:string, description:string) : Task
+    + {static}  <<event>> SelectedTourChanged : EventHandler 
+    + TourListVM : IList<TourModel>? <<get>> <<set>>
+    + AddTour(tour:TourModel) : void
+}
+ToursViewModel --> "SelectedTour" TourModel
+@enduml

@@ -1,0 +1,106 @@
+﻿<Window x:Class="SWEN2_TourPlanner.Views.CreateTourLogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SWEN2_TourPlanner.Views"
+         xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+        mc:Ignorable="d"
+       Title="CreateTourLogWindow" Height="420" Width="400">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
+        </Style>
+
+
+    </Window.Resources>
+    <Grid>
+        <StackPanel Margin ="15" >
+            <Label FontSize="25" FontWeight="Bold">
+                Create Tour Log
+            </Label>
+
+            <Label FontSize="14" Content="{Binding CreatedTourLog.Tourname}">
+            </Label>
+
+            <Border BorderThickness="0 0 0 1" Background="Black" BorderBrush ="Black"></Border>
+
+            <Label>
+                Date
+            </Label>
+
+<!--
+            <DatePicker SelectedDate="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:dd.MM.yyyy}}" Height="25">
+                <DatePicker.Resources>
+                    <Style TargetType="DatePickerTextBox">
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, StringFormat = {}{0:dd.MM.yyyy}, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+-->
+
+            <DatePicker SelectedDate="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, StringFormat = {}{0:dd/MM/yyyy}}"/>
+          
+
+
+
+            <!--<TextBox Text="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  x:Name="From"></TextBox>-->
+            <Label>
+                Comment
+            </Label>
+            <TextBox Text="{Binding CreatedTourLog.Comment, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label>
+                Difficulty
+            </Label>
+            <ComboBox Text="{Binding CreatedTourLog.DifficultyString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+
+                <ComboBoxItem>very easy</ComboBoxItem>
+                <ComboBoxItem>easy</ComboBoxItem>
+                <ComboBoxItem>medium</ComboBoxItem>
+                <ComboBoxItem>hard</ComboBoxItem>
+                <ComboBoxItem>very hard</ComboBoxItem>
+
+            </ComboBox>
+
+            <Label>Time</Label>
+
+
+            <syncfusion:TimeSpanEdit Format="hh:mm:ss" AllowNull="True" NullString="00:00:00" TextWrapping="Wrap" Text="{Binding CreatedTourLog.Time, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!--
+            <syncfusion:SfTimePicker Value=" SetValueOnLostFocus="True" AllowNull="True"  SelectorFormatString="HH:mm:ss" FormatString="HH:mm:ss" Watermark="Select time.."/> -->
+
+            <Label>Rating</Label>
+            <ComboBox Text="{Binding CreatedTourLog.RatingString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+
+                <ComboBoxItem>very bad</ComboBoxItem>
+                <ComboBoxItem>bad</ComboBoxItem>
+                <ComboBoxItem>medium</ComboBoxItem>
+                <ComboBoxItem>great</ComboBoxItem>
+                <ComboBoxItem>very great</ComboBoxItem>
+
+            </ComboBox>
+
+            <DockPanel Margin="0 5 0 5">
+                <Button Click="CloseWindow" DockPanel.Dock="Right">Cancel</Button>
+                <Button Command="{Binding SaveCreatedCommand}" DockPanel.Dock="Right">Save</Button>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>

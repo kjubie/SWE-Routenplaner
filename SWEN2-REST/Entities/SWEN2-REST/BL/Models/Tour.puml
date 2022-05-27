@@ -1,0 +1,26 @@
+@startuml
+class Tour {
+    + Name : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + From : string <<get>> <<set>>
+    + To : string <<get>> <<set>>
+    + TransportType : string <<get>> <<set>>
+    + Distance : double <<get>> <<set>>
+    + Time : string <<get>> <<set>>
+    + Info : string <<get>> <<set>>
+    + ImageLocation : string? <<get>> <<set>>
+    + Popularity : int <<get>> <<set>>
+    + Childfriendliness : int <<get>> <<set>>
+    + Tour()
+    + Tour(Name:string, Description:string, From:string, To:string, TransportType:string, Distance:double, Time:string, Info:string, ImageLocation:string)
+    + CalcChildfriendliness() : void
+    + CalcPopularity() : void
+    + AddLog(log:TourLog) : int
+    + RemoveLog(id:int) : int
+    + UpdateLog(id:int, log:TourLog) : int
+    + GeneratePDF() : int
+}
+class "Dictionary`2"<T1,T2> {
+}
+Tour --> "Logs<int,TourLog>" "Dictionary`2"
+@enduml

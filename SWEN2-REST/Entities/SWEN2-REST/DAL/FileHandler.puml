@@ -1,0 +1,11 @@
+@startuml
+class FileHandler {
+    + FileHandler(logger:ILogger<FileHandler>)
+    + <<async>> SaveToFileAsync(name:string, base64:string) : Task<int>
+    + LoadFromFile(name:string) : string
+    <<internal>> SaveImage(imageByteArray:byte[], name:string) : int
+}
+class "ILogger`1"<T> {
+}
+FileHandler --> "_logger<FileHandler>" "ILogger`1"
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+class RESTRequest {
+    - _url : string = "https://localhost:7221/api/Tour"
+    + <<async>> GetTours() : Task<Tours>
+    + <<async>> GetTour(tourname:String) : Task<Tour>
+    + <<async>> GetImageBase64(tourname:String) : Task<string>
+    + <<async>> PostTour(from:string, to:string, tourname:string, type:string, description:string) : Task
+    + DeleteTour(nameTourToDelete:string) : void
+    + <<async>> UpdateTour(oldTourName:string, from:string, to:string, tourname:string, type:string, description:string) : Task
+    + <<async>> PostTourLog(tourname:string, date:string, comment:string, difficulty:int, time:string, rating:int) : Task
+    + <<async>> UpdateTourLog(tourname:string, date:string, comment:string, difficulty:int, time:string, rating:int, id:int) : Task
+    + DeleteTourLog(tourname:string, tourlogid:int) : void
+}
+IQuery <|-- RESTRequest
+@enduml

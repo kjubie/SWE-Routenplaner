@@ -1,0 +1,4 @@
+@startuml
+class "AddSingleton`1"<T> {
+}
+@enduml

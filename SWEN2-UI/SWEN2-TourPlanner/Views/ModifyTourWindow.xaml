@@ -1,0 +1,67 @@
+﻿<Window x:Class="SWEN2_TourPlanner.Views.ModifyTourWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SWEN2_TourPlanner.Views"
+        mc:Ignorable="d"
+        Title="ModifyTourWindow" Height="450" Width="400">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
+
+        </Style>
+
+
+    </Window.Resources>
+    <Grid>
+        <StackPanel Margin ="15" >
+            <Label FontSize="25" FontWeight="Bold">
+                Modify Tour
+            </Label>
+            <Border BorderThickness="0 0 0 1" Background="Black" BorderBrush ="Black"></Border>
+            <Label>
+                From*
+            </Label>
+            <TextBox Text="{Binding ModTour.From, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  x:Name="From"></TextBox>
+            <Label>
+                To*
+            </Label>
+            <TextBox Text="{Binding ModTour.To, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label>
+                Mean of transport
+            </Label>
+            <ComboBox Text="{Binding ModTour.TransportType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem IsSelected="True">bicycle</ComboBoxItem>
+                <ComboBoxItem>pedestrian</ComboBoxItem>
+                <ComboBoxItem>fastest</ComboBoxItem>
+                <ComboBoxItem>shortest</ComboBoxItem>
+            </ComboBox>
+
+            <Label>
+                Tour name
+            </Label>
+
+            <TextBox IsReadOnly="True" Text="{Binding ModTour.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label>
+                Description
+            </Label>
+
+            <TextBox Text="{Binding ModTour.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="100"></TextBox>
+            <DockPanel Margin="0 5 0 5">
+                <Button DockPanel.Dock="Left">Import...</Button>
+                <Button Click="CloseWindow" DockPanel.Dock="Right">Cancel</Button>
+                <Button Command="{Binding UpdateTourCommand}" DockPanel.Dock="Right">Save</Button>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>
