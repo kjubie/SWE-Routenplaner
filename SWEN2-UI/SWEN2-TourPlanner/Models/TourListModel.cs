@@ -26,7 +26,12 @@ namespace SWEN2_Tourplanner_Models
         public void Add(Tour tour, BitmapImage img)
         {
 
+           
+
             TourModel tourmodel = new TourModel(tour);
+
+          
+
             tourmodel.Image = img;
             _tourlist.Add(tourmodel);
         }

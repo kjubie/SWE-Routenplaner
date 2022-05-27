@@ -14,7 +14,7 @@ namespace SWEN2_TourPlanner_ViewModels
     {
 
         private TourLogModel? _modTourLog;
-       //private string _oldTourname;
+        //private string _oldTourname;
 
         public TourLogModel? ModTourLog
         {
@@ -56,11 +56,11 @@ namespace SWEN2_TourPlanner_ViewModels
         {
 
             //Rating to string
-            string ratingstr = _modTourLog.RatingStringToInt().ToString();
+            _modTourLog.SetRatingByString();
             //Difficulty to string
-            string diffstr = _modTourLog.DifficultyStringToInt().ToString();
+            _modTourLog.SetDifficultyByString();
 
-            _request.UpdateTourLog(_modTourLog.Tourname, _modTourLog.Date, _modTourLog.Comment, diffstr, _modTourLog.Time, ratingstr, _modTourLog.Id);
+            _request.UpdateTourLog(_modTourLog.Tourname, _modTourLog.Date, _modTourLog.Comment, _modTourLog.Difficulty, _modTourLog.Time, _modTourLog.Rating, _modTourLog.Id);
             CloseAction();
 
         }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-
+using System.ComponentModel;
 
 namespace SWEN2_Tourplanner_ViewModels
 {
@@ -40,21 +40,60 @@ namespace SWEN2_Tourplanner_ViewModels
                 return _tourlist.TourList;
             }
 
-            set { _tourlist.TourList = value; }
+            set
+            {
+                _tourlist.TourList = value;
+            }
         }
         private TourModel? _selectedTour;
         public TourModel? SelectedTour
         {
             get { return _selectedTour; }
-            set { _selectedTour = value; }
+            set
+            {
+                _selectedTour = value;
+
+            }
 
         }
+
+        private bool _isTourLogSelected;
+        public bool IsTourLogSelected
+        {
+            get { return _isTourLogSelected; }
+
+            set
+            {
+
+                _isTourLogSelected = value;
+                OnPropertyChanged("IsTourLogSelected");
+
+            }
+
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
 
         private TourLogModel? _selectedTourLog;
         public TourLogModel? SelectedTourLog
         {
             get { return _selectedTourLog; }
-            set { _selectedTourLog = value; }
+            set
+            {
+
+                this.IsTourLogSelected = true;
+
+                _selectedTourLog = value;
+            }
 
         }
 
@@ -95,9 +134,9 @@ namespace SWEN2_Tourplanner_ViewModels
                 }
                 */
 
-                foreach (Tour val in values)
+                foreach (Tour tour in values)
                 {
-                    string img = await _request.GetImageBase64(val.Name);
+                    string img = await _request.GetImageBase64(tour.Name);
                     byte[] binaryData = Convert.FromBase64String(img);
                     //File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);            
 
@@ -106,7 +145,7 @@ namespace SWEN2_Tourplanner_ViewModels
                     bi.StreamSource = new MemoryStream(binaryData);
                     bi.EndInit();
 
-                    _tourlist.Add(val, bi);
+                    _tourlist.Add(tour, bi);
                 }
             }
             catch (Exception ex)
@@ -148,7 +187,6 @@ namespace SWEN2_Tourplanner_ViewModels
                 }
                 else
                 {
-
                     _deleteSelectedLogCommand = new Command(() => DeleteTourLog(), true);
                     return _deleteSelectedLogCommand;
                 }

@@ -137,13 +137,11 @@
 
             <DockPanel Height="30">
                 <Label VerticalAlignment="Center" DockPanel.Dock="Left" FontWeight="Bold">Childfriendliness</Label>
-                <Label Content ="{Binding SelectedTour.Childfriendliness}"></Label>
                 <Image VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="70" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding SelectedTour.ChildfriendlinessImgPath}"  />
             </DockPanel>
 
             <DockPanel Height="30" >
                 <Label VerticalAlignment="Center" DockPanel.Dock="Left" FontWeight="Bold">Popularity</Label>
-                <Label Content ="{Binding SelectedTour.Popularity}"></Label>
                 <Image VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="70" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding SelectedTour.PopularityImgPath}"  />
             </DockPanel>
 
@@ -159,7 +157,7 @@
 
 
 
-                <Button DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
+                <Button  DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
                 </Button>
 

@@ -52,7 +52,10 @@ namespace SWEN2_Tourplanner_Models
 
             foreach (KeyValuePair<int, TourLog> entry in Logs)
             {
-                TourLogList.Add(new TourLogModel(entry.Value));
+                TourLogModel newtourLog = new TourLogModel(entry.Value);
+                            
+
+                TourLogList.Add(newtourLog);
             }
         }
 

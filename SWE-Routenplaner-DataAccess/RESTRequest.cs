@@ -78,7 +78,7 @@ namespace SWEN2_Tourplanner_DataAccess
         }
 
 
-        public async Task PostTourLog(string tourname, string date, string comment, string difficulty, string time, string rating)
+        public async Task PostTourLog(string tourname, string date, string comment, int difficulty, string time, int rating)
         {
 
             var url = "https://localhost:7221/api/TourLog/";
@@ -94,7 +94,7 @@ namespace SWEN2_Tourplanner_DataAccess
             Console.WriteLine(result);
 
         }
-        public async Task UpdateTourLog(string tourname, string date, string comment, string difficulty, string time, string rating, int id)
+        public async Task UpdateTourLog(string tourname, string date, string comment, int difficulty, string time, int rating, int id)
         {
 
             var url = "https://localhost:7221/api/TourLog/" + tourname + "/" + id;

@@ -22,8 +22,8 @@ namespace SWEN2_Tourplanner_DataAccess
 
         public Task<string> GetImageBase64(String tourname);
 
-        public Task PostTourLog(string tourname, string date, string comment, string difficulty, string time, string rating);
-        public Task UpdateTourLog(string tourname, string date, string comment, string difficulty, string time, string rating, int id);
+        public Task PostTourLog(string tourname, string date, string comment, int difficulty, string time, int rating);
+        public Task UpdateTourLog(string tourname, string date, string comment, int difficulty, string time, int rating, int id);
 
 
 

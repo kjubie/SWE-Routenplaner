@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace SWEN2_Tourplanner_Models
 {
@@ -19,7 +20,13 @@ namespace SWEN2_Tourplanner_Models
             _rating = tourlog.Rating;
             _comment = tourlog.Comment;
             _id = tourlog.Id;
+
+            SetDifficultyStringByInt();
+            SetRatingStringByInt();
         }
+
+
+
         public string Tourname
         {
             get
@@ -67,28 +74,6 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 _difficulty = value;
-
-                if (_difficulty == 1)
-                {
-                    DifficultyString = "very easy";
-                }
-                if (_difficulty == 2)
-                {
-                    DifficultyString = "easy";
-                }
-                if (_difficulty == 3)
-                {
-                    DifficultyString = "medium";
-                }
-                if (_difficulty == 4)
-                {
-                    DifficultyString = "hard";
-                }
-                if (_difficulty == 5)
-                {
-                    DifficultyString = "very hard";
-                }
-
                 OnPropertyChanged("Difficulty");
 
             }
@@ -106,7 +91,7 @@ namespace SWEN2_Tourplanner_Models
             }
         }
 
-            public int Id
+        public int Id
         {
             get
             {
@@ -120,7 +105,7 @@ namespace SWEN2_Tourplanner_Models
         }
 
 
-       
+
         public int Rating
         {
             get
@@ -131,28 +116,6 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 _rating = value;
-
-
-                if (_rating == 1)
-                {
-                    RatingString = "very bad";
-                }
-                if (_rating == 2)
-                {
-                    RatingString = "bad";
-                }
-                if (_rating == 3)
-                {
-                    RatingString = "medium";
-                }
-                if (_rating == 4)
-                {
-                    RatingString = "great";
-                }
-                if (_rating == 5)
-                {
-                    RatingString = "very great";
-                }
                 OnPropertyChanged("Rating");
             }
         }
@@ -172,26 +135,6 @@ namespace SWEN2_Tourplanner_Models
         {
             get
             {
-                if (_difficulty == 1)
-                {
-                    _difficultyString = "very easy";
-                }
-                if (_difficulty == 2)
-                {
-                    _difficultyString = "easy";
-                }
-                if (_difficulty == 3)
-                {
-                    _difficultyString = "medium";
-                }
-                if (_difficulty == 4)
-                {
-                    _difficultyString = "hard";
-                }
-                if (_difficulty == 5)
-                {
-                    _difficultyString = "very hard";
-                }
 
                 return _difficultyString;
             }
@@ -207,27 +150,6 @@ namespace SWEN2_Tourplanner_Models
         {
             get
             {
-                if (_rating == 1)
-                {
-                    _ratingString = "very bad";
-                }
-                if (_rating == 2)
-                {
-                    _ratingString = "bad";
-                }
-                if (_rating == 3)
-                {
-                    _ratingString = "medium";
-                }
-                if (_rating == 4)
-                {
-                    _ratingString = "great";
-                }
-                if (_rating == 5)
-                {
-                    _ratingString = "very great";
-                }
-
                 return _ratingString;
             }
             set
@@ -237,76 +159,69 @@ namespace SWEN2_Tourplanner_Models
             }
 
         }
+             
 
-
-        public int RatingStringToInt()
+        public Dictionary<string, int> ratingDictionary = new Dictionary<string, int>()
         {
-            if (_ratingString == "very bad")
-            {
-                return 1;
-            }
-            if (_ratingString == "bad")
-            {
-                return 2;
-            }
-            if (_ratingString == "medium")
-            {
-                return 3;
-            }
-            if (_ratingString == "great")
-            {
-                return 4;
-            }
-            if (_ratingString == "very great")
-            {
-                return 5;
-            }
+            { "not rated", 0 },
+            { "very bad", 1 },
+            { "bad", 2},
+            { "medium", 3},
+            { "great", 4},
+            { "very great", 5}
 
-            return 0;
+        };
+        public Dictionary<string, int> difficultyDictionary = new Dictionary<string, int>()
+        {
+            { "not rated", 0 },
+            { "very easy", 1 },
+            { "easy", 2},
+            { "medium", 3},
+            { "hard", 4},
+            { "very hard", 5}
+        };
+
+
+        public Dictionary<int, string> ratingDictionaryinverted = new Dictionary<int, string>()
+        {
+            { 0,"not rated" },
+            { 1, "very bad" },
+            { 2,"bad"},
+            { 3,"medium"},
+            { 4,"great"},
+            { 5,"very great"}
+
+        };
+        public Dictionary<int, string> difficultyDictionaryinverted = new Dictionary<int, string>()
+        {
+            { 0,"not rated"},
+            { 1,"very easy"},
+            { 2,"easy"},
+            { 3,"medium"},
+            { 4,"hard"},
+            { 5,"very hard"}
+        };
+
+
+        public void SetDifficultyByString()
+        {
+            _difficulty = difficultyDictionary[_difficultyString];
         }
 
-        public int DifficultyStringToInt()
+        public void SetRatingByString()
         {
-            if (_difficultyString == "very easy")
-            {
-                return 1;
-            }
-            if (_difficultyString == "easy")
-            {
-                return 2;
-            }
-            if (_difficultyString == "medium")
-            {
-                return 3;
-            }
-            if (_difficultyString == "hard")
-            {
-                return 4;
-            }
-            if (_difficultyString == "very hard")
-            {
-                return 5;
-            }
-
-            return 0;
-
+            _rating = ratingDictionary[_ratingString];
+        }
+        public void SetDifficultyStringByInt()
+        {
+            _difficultyString = difficultyDictionaryinverted[_difficulty];
         }
 
-
-        public TourLogModel(string tourname)
+        public void SetRatingStringByInt()
         {
-            _tourname = tourname;
+            _ratingString = ratingDictionaryinverted[_rating];
         }
 
-        public TourLogModel(string tourname, string date, string comment, int difficulty, string time, int rating)
-        {
-            Tourname = tourname;
-            Date = date;
-            Comment = comment;
-            Difficulty = difficulty;
-            Time = time;
-            Rating = rating;
-        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
