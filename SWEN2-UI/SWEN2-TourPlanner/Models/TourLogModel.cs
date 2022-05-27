@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.Windows.Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -49,6 +50,7 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 _date = value;
+                ValidateStringIfEmpty(_date);
                 OnPropertyChanged("Date");
             }
         }
@@ -56,14 +58,16 @@ namespace SWEN2_Tourplanner_Models
         {
             get
             {
-                DateTime datetime = Convert.ToDateTime(_date);
+                if (_date != null)
+                {
+                    DateTime datetime = Convert.ToDateTime(_date);
+                    string formateddate = datetime.Month + "/" + datetime.Day + "/" + datetime.Year;
+                    return formateddate;
 
-                string formateddate = datetime.Month + "/" + datetime.Day + "/" + datetime.Year;
-                return formateddate;
+                }
+
+                return "-";
             }
-
-
-
         }
 
         public string Comment
@@ -89,6 +93,7 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 _difficulty = value;
+                ValidateIntIfEmpty(_difficulty);
                 OnPropertyChanged("Difficulty");
 
             }
@@ -102,6 +107,7 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 _time = value;
+                ValidateStringIfEmpty(_time);
                 OnPropertyChanged("Time");
             }
         }
@@ -131,6 +137,7 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 _rating = value;
+                ValidateIntIfEmpty(_rating);
                 OnPropertyChanged("Rating");
             }
         }
@@ -237,7 +244,21 @@ namespace SWEN2_Tourplanner_Models
             _ratingString = ratingDictionaryinverted[_rating];
         }
 
-
+        void ValidateStringIfEmpty(string? text)
+        {
+            if (text.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentException("Required field is empty");
+            }
+        }
+        void ValidateIntIfEmpty(int? num)
+        {
+            if (num == null)
+            {
+                throw new ArgumentException("Required field is empty");
+            }
+        }
+     
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChanged(string propertyName)

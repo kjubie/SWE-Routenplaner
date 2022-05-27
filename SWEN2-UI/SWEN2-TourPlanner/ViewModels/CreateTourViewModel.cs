@@ -3,6 +3,7 @@ using SWEN2_TourPlanner.Commands;
 using SWEN2_Tourplanner_DataAccess;
 using SWEN2_Tourplanner_Models;
 using SWEN2_Tourplanner_ViewModels;
+using Syncfusion.Windows.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,9 @@ namespace SWEN2_TourPlanner_ViewModels
         }
 
         private ICommand _saveCreatedCommand;
-        public ICommand SaveCreatedCommand  
+        public ICommand SaveCreatedCommand
         {
-            get 
+            get
             {
                 if (_saveCreatedCommand != null)
                 {
@@ -52,10 +53,22 @@ namespace SWEN2_TourPlanner_ViewModels
 
         public void SaveTour()
         {
-            if (_createdTour.From != null && _createdTour.To != null && _createdTour.Name != null)
+            try
             {
-                _request.PostTour(_createdTour.From, _createdTour.To, _createdTour.Name, _createdTour.TransportType, _createdTour.Description);
-                CloseAction();
+
+                if (_createdTour.From != null && _createdTour.To != null && _createdTour.Name != null)
+                {
+                    if (_createdTour.Description.IsNullOrWhiteSpace())
+                    {
+                        _createdTour.Description = "";
+                    }
+                    _request.PostTour(_createdTour.From, _createdTour.To, _createdTour.Name, _createdTour.TransportType, _createdTour.Description);
+                    CloseAction();
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
 
         }

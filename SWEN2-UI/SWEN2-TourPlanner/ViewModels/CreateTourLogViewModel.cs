@@ -26,7 +26,7 @@ namespace SWEN2_TourPlanner_ViewModels
         private IQuery _request;
 
         public CreateTourLogViewModel(string tourname)
-        {            
+        {
             _createdTourLog = new TourLogModel();
             _createdTourLog.Tourname = tourname;
             _request = new RESTRequest();
@@ -52,16 +52,24 @@ namespace SWEN2_TourPlanner_ViewModels
 
         void SaveTourLog()
         {
+            try
+            {
 
-            //Rating to string
-            _createdTourLog.SetRatingByString();
-            //Difficulty to string
-            _createdTourLog.SetDifficultyByString();
+                if (_createdTourLog.FormatedDate != null && _createdTourLog.Difficulty != null && _createdTourLog.Time != null && _createdTourLog.Rating != null)
+                {
+                    //Rating to string
+                    _createdTourLog.SetRatingByString();
+                    //Difficulty to string
+                    _createdTourLog.SetDifficultyByString();
 
-            _request.PostTourLog(_createdTourLog.Tourname, _createdTourLog.FormatedDate, _createdTourLog.Comment, _createdTourLog.Difficulty, _createdTourLog.Time, _createdTourLog.Rating);
-            CloseAction();
+                    _request.PostTourLog(_createdTourLog.Tourname, _createdTourLog.FormatedDate, _createdTourLog.Comment, _createdTourLog.Difficulty, _createdTourLog.Time, _createdTourLog.Rating);
+                    CloseAction();
+                }
+            }
+            catch (Exception ex)
+            {
 
-
+            }
         }
 
         public Action CloseAction { get; set; }

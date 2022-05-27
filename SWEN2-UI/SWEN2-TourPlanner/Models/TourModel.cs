@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Syncfusion.Windows.Shared;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
@@ -53,7 +55,6 @@ namespace SWEN2_Tourplanner_Models
             foreach (KeyValuePair<int, TourLog> entry in Logs)
             {
                 TourLogModel newtourLog = new TourLogModel(entry.Value);
-                            
 
                 TourLogList.Add(newtourLog);
             }
@@ -133,6 +134,7 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 name = value;
+                ValidateStringIfEmpty(name);
                 OnPropertyChanged("Name");
             }
         }
@@ -158,6 +160,8 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 from = value;
+                ValidateStringIfEmpty(from);
+                ValidateStringOnSpecialCharacters(from);
                 OnPropertyChanged("From");
             }
         }
@@ -170,6 +174,8 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 to = value;
+                ValidateStringIfEmpty(to);
+                ValidateStringOnSpecialCharacters(to);
                 OnPropertyChanged("To");
             }
         }
@@ -182,6 +188,7 @@ namespace SWEN2_Tourplanner_Models
             set
             {
                 transportType = value;
+                ValidateStringIfEmpty(transportType);
                 OnPropertyChanged("TransportType");
             }
         }
@@ -284,18 +291,30 @@ namespace SWEN2_Tourplanner_Models
             set { _tourLogList = value; }
         }
 
-        public TourModel(string Name, string Description, string From, string To, string TransportType, double Distance, string Time, string Info, string ImageLocation)
+
+        void ValidateStringIfEmpty(string? text)
         {
-            this.Name = Name;
-            this.Description = Description;
-            this.From = From;
-            this.To = To;
-            this.TransportType = TransportType;
-            this.Distance = Distance;
-            this.Time = Time;
-            this.Info = Info;
-            this.ImageLocation = ImageLocation;
+            if (text.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentException("Required field is empty");
+            }
         }
+
+
+        void ValidateStringOnSpecialCharacters(string? text)
+        {
+         
+            var regexItem = new Regex("^[a-zA-Z]*$");
+
+            if (!regexItem.IsMatch(text))
+            {
+                throw new ArgumentException("No special Characters allowed!");
+            }
+
+        }
+
+
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

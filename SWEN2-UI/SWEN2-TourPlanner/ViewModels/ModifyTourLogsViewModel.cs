@@ -55,14 +55,24 @@ namespace SWEN2_TourPlanner_ViewModels
         public void UpdateTourLog()
         {
 
-            //Rating to string
-            _modTourLog.SetRatingByString();
-            //Difficulty to string
-            _modTourLog.SetDifficultyByString();
+            try
+            {
 
-            _request.UpdateTourLog(_modTourLog.Tourname, _modTourLog.Date, _modTourLog.Comment, _modTourLog.Difficulty, _modTourLog.Time, _modTourLog.Rating, _modTourLog.Id);
-            CloseAction();
+                if (_modTourLog.FormatedDate != null && _modTourLog.Difficulty != null && _modTourLog.Time != null && _modTourLog.Rating != null)
+                {
+                    //Rating to string
+                    _modTourLog.SetRatingByString();
+                    //Difficulty to string
+                    _modTourLog.SetDifficultyByString();
 
+                    _request.UpdateTourLog(_modTourLog.Tourname, _modTourLog.Date, _modTourLog.Comment, _modTourLog.Difficulty, _modTourLog.Time, _modTourLog.Rating, _modTourLog.Id);
+                    CloseAction();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public Action CloseAction { get; set; }

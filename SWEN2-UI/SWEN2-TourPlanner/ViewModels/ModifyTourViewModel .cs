@@ -3,6 +3,7 @@ using SWEN2_TourPlanner.Commands;
 using SWEN2_Tourplanner_DataAccess;
 using SWEN2_Tourplanner_Models;
 using SWEN2_Tourplanner_ViewModels;
+using Syncfusion.Windows.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +33,9 @@ namespace SWEN2_TourPlanner_ViewModels
             _request = new RESTRequest();
             _modTour = tour;
             _oldTourname = tour.Name;
-        } 
-        
-      
+        }
+
+
 
         private ICommand _updateTourCommand;
         public ICommand UpdateTourCommand
@@ -56,12 +57,23 @@ namespace SWEN2_TourPlanner_ViewModels
 
         public void UpdateTour()
         {
-
-            if (_modTour.From != null && _modTour.To != null && _modTour.Name != null)
+            try
             {
-                
-                _request.UpdateTour(_oldTourname,_modTour.From, _modTour.To, _modTour.Name, _modTour.TransportType, _modTour.Description);
-                CloseAction();
+
+                if (_modTour.From != null && _modTour.To != null && _modTour.Name != null)
+                {
+                    if (_modTour.Description.IsNullOrWhiteSpace())
+                    {
+                        _modTour.Description = "";
+                    }
+
+                    _request.UpdateTour(_oldTourname, _modTour.From, _modTour.To, _modTour.Name, _modTour.TransportType, _modTour.Description);
+                    CloseAction();
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
 
         }
