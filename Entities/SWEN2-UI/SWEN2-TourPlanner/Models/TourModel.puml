@@ -1,0 +1,50 @@
+@startuml
+class TourModel {
+    - name : string
+    - description : string
+    - from : string
+    - to : string
+    - transportType : string
+    - distance : double
+    - time : string
+    - info : string
+    - imageLocation : string
+    - iconLocation : string
+    - popularity : int
+    - childfriendliness : int
+    + TourModel()
+    + TourModel(tour:Tour)
+    + ChildfriendlinessImgPath : string <<get>>
+    + PopularityImgPath : string <<get>>
+    + FormatedFromTo : string <<get>>
+    + IconLocation : string <<get>>
+    + FormatedTime : string <<get>>
+    + NumberLogs : int <<get>>
+    + FormatedDistance : string <<get>>
+    + Name : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + From : string <<get>> <<set>>
+    + To : string <<get>> <<set>>
+    + TransportType : string <<get>> <<set>>
+    + Distance : double <<get>> <<set>>
+    + Time : string <<get>> <<set>>
+    + Info : string <<get>> <<set>>
+    + ImageLocation : string <<get>> <<set>>
+    + Popularity : int <<get>> <<set>>
+    + Childfriendliness : int <<get>> <<set>>
+    + TourModel(Name:string, Description:string, From:string, To:string, TransportType:string, Distance:double, Time:string, Info:string, ImageLocation:string)
+    +  <<event>> PropertyChanged : PropertyChangedEventHandler? 
+    - OnPropertyChanged(propertyName:string) : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "ObservableCollection`1"<T> {
+}
+INotifyPropertyChanged <|-- TourModel
+TourModel --> "Logs<int,TourLog>" "Dictionary`2"
+TourModel --> "image" BitmapImage
+TourModel --> "TourImage" BitmapImage
+TourModel --> "Image" BitmapImage
+TourModel --> "_tourLogList<TourLogModel>" "ObservableCollection`1"
+TourModel --> "TourLogList<TourLogModel>" "ObservableCollection`1"
+@enduml

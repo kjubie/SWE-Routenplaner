@@ -149,7 +149,7 @@ namespace SWEN2_Tourplanner_Models {
             }
 
             try {
-                document.Draw(Name + ".pdf");
+                document.Draw("../../" + Name + ".pdf");
             } catch (Exception ex) {
                 return -1;
             }

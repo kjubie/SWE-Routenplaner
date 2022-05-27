@@ -25,8 +25,6 @@ namespace SWEN2_Tourplanner_DataAccess
         public Task PostTourLog(string tourname, string date, string comment, int difficulty, string time, int rating);
         public Task UpdateTourLog(string tourname, string date, string comment, int difficulty, string time, int rating, int id);
 
-        public void GetPDFTourReport(string tourname);
-        public void GetPDFSummarizedTourReport();
 
         public Task<Tours> GetToursBySearchAll(string searchterm);
 
