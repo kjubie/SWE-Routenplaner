@@ -214,6 +214,49 @@ namespace SWEN2_Tourplanner_ViewModels
             }
         }
 
+        private ICommand _generateTourReport;
+        public ICommand GenerateTourReport
+        {
+            get
+            {
+
+
+                if (_generateTourReport != null)
+                {
+                    return _generateTourReport;
+                }
+                else
+                {
+                    _generateTourReport = new Command(() => GeneratePDFTour(), true);
+                    return _generateTourReport;
+                }
+
+            }
+        }
+
+        
+        private ICommand _generateSummarizedTourReport;
+        public ICommand GenerateSummarizedTourReport
+        {
+            get
+            {
+
+
+                if (_generateSummarizedTourReport != null)
+                {
+                    return _generateSummarizedTourReport;
+                }
+                else
+                {
+                    _generateSummarizedTourReport = new Command(() => GeneratePDFTour(), true);
+                    return _generateSummarizedTourReport;
+                }
+
+            }
+        }
+
+
+
         public TourModel GetSelectedTour()
         {
             return _selectedTour;
@@ -260,6 +303,47 @@ namespace SWEN2_Tourplanner_ViewModels
                 ErrorMsg = ex.Message;
             }
         }
+
+
+
+        public void GeneratePDFTour()
+        {
+            try
+            {
+
+                if (_selectedTourLog != null)
+                {
+
+
+                    _request.GetPDFTourReport(_selectedTourLog.Tourname);
+
+                    LoadTourList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+        }
+
+        
+        public void GeneratePDFSummarizedTour()
+        {
+            try
+            {
+
+
+                    _request.GetPDFSummarizedTourReport();
+
+                  ;
+                
+            }
+            catch (Exception ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+        }
+
 
         private string _errorMsg { get; set; }
 

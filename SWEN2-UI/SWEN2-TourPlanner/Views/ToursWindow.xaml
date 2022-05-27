@@ -18,7 +18,7 @@
             <Setter Property="Background" Value="Transparent"></Setter>
             <Setter Property="BorderBrush" Value="Transparent"></Setter>
         </Style>
- 
+
 
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="White"></Setter>
@@ -80,7 +80,9 @@
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/refresh.png"  />
                 </Button>
 
-
+                <Button HorizontalAlignment="Right" Command="{Binding GenerateSummarizedTourReport}">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pdf.png"  />
+                </Button>
                 <Label FontSize="24" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
 
 
@@ -167,6 +169,10 @@
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pen.png"  />
                 </Button>
 
+                <Button IsEnabled="{Binding IsTourSelected}" HorizontalAlignment="Right" Command="{Binding GenerateTourReport}">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pdf.png"  />
+                </Button>
+                
                 <Button IsEnabled="{Binding IsTourSelected}"  Grid.Column="3" HorizontalAlignment="Center">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/export.png"  />
 
@@ -202,6 +208,9 @@
                     <Button IsEnabled="{Binding IsTourLogSelected}" HorizontalAlignment="Right" Command="{Binding DeleteSelectedLogCommand}">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
                     </Button>
+
+
+
                     <Button Click="OpenCreateTourLogWindow" HorizontalAlignment="Right">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
                     </Button>
