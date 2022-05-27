@@ -63,7 +63,12 @@
 
             <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
 
-                <uc:SearchBar Margin="10"/>
+                <!--<uc:SearchBar Margin="10"/>-->
+
+                <DockPanel Margin="10">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/search.png"  />
+                    <TextBox Text="Search ..."  Name="TourSearchBox"  BorderBrush="White" Foreground="Gray"></TextBox>
+                </DockPanel>
 
 
             </Border>
@@ -191,7 +196,12 @@
         <StackPanel  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
             <Border BorderBrush="Gray" BorderThickness="0 0 0 1"></Border>
 
-            <uc:SearchBar Margin="10"/>
+            <!--<uc:SearchBar Margin="10"/>-->
+            <DockPanel Margin="10">
+                <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/search.png"  />
+                <TextBox Text="Search ..." BorderBrush="White" Foreground="Gray"></TextBox>
+            </DockPanel>
+
 
             <Border BorderBrush="Gray" BorderThickness="0 0 0 1"></Border>
 
