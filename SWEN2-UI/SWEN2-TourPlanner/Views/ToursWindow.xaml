@@ -67,7 +67,11 @@
 
                 <DockPanel Margin="10">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/search.png"  />
-                    <TextBox Text="Search ..."  Name="TourSearchBox"  BorderBrush="White" Foreground="Gray"></TextBox>
+                    <TextBox Text="{Binding SearchToursText}"  Name="TourSearchBox"  BorderBrush="White" Foreground="Gray">
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding SearchTours}" Key="Return" />
+                        </TextBox.InputBindings>
+                    </TextBox>
                 </DockPanel>
 
 

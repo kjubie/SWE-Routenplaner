@@ -87,6 +87,32 @@ namespace SWEN2_Tourplanner_ViewModels
             }
 
         }
+        private string _searchToursText;
+        public string SearchToursText
+        {
+            get { return _searchToursText; }
+
+            set
+            {
+                _searchToursText = value;
+                OnPropertyChanged("SearchToursText");
+
+            }
+
+        }
+        private string _searchTourLogsText;
+        public string SearchTourLogsText
+        {
+            get { return _searchTourLogsText; }
+
+            set
+            {
+                _searchTourLogsText = value;
+                OnPropertyChanged("SearchTourLogsText");
+
+            }
+
+        }
 
 
 
@@ -132,15 +158,13 @@ namespace SWEN2_Tourplanner_ViewModels
         {
 
             try
-
-
             {
                 _tourlist.TourList.Clear();
                 Tours tours = await _request.GetTours();
 
                 Dictionary<string, Tour>.ValueCollection values = tours.TourList.Values;
 
-                /*
+
                 DirectoryInfo di = new DirectoryInfo("../../../mapImg");
 
 
@@ -152,7 +176,50 @@ namespace SWEN2_Tourplanner_ViewModels
                 {
                     dir.Delete(true);
                 }
-                */
+
+
+                foreach (Tour tour in values)
+                {
+                    string img = await _request.GetImageBase64(tour.Name);
+                    byte[] binaryData = Convert.FromBase64String(img);
+                    //File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);            
+
+                    BitmapImage bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.StreamSource = new MemoryStream(binaryData);
+                    bi.EndInit();
+
+                    _tourlist.Add(tour, bi);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+        }
+           public async void LoadTourListBySearch()
+        {
+
+            try
+            {
+                _tourlist.TourList.Clear();
+                Tours tours = await _request.GetToursBySearchAll(SearchToursText);
+
+                Dictionary<string, Tour>.ValueCollection values = tours.TourList.Values;
+
+
+                DirectoryInfo di = new DirectoryInfo("../../../mapImg");
+
+
+                foreach (FileInfo file in di.GetFiles())
+                {
+                    file.Delete();
+                }
+                foreach (DirectoryInfo dir in di.GetDirectories())
+                {
+                    dir.Delete(true);
+                }
+
 
                 foreach (Tour tour in values)
                 {
@@ -250,6 +317,26 @@ namespace SWEN2_Tourplanner_ViewModels
                 {
                     _generateSummarizedTourReport = new Command(() => GeneratePDFSummarizedTour(), true);
                     return _generateSummarizedTourReport;
+                }
+
+            }
+        }
+        
+        private ICommand _searchTours;
+        public ICommand SearchTours
+        {
+            get
+            {
+
+
+                if (_searchTours != null)
+                {
+                    return _searchTours;
+                }
+                else
+                {
+                    _searchTours = new Command(() => LoadTourListBySearch(), true);
+                    return _searchTours;
                 }
 
             }
