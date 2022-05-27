@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace SWEN2_Tourplanner_Models
@@ -51,6 +52,20 @@ namespace SWEN2_Tourplanner_Models
                 OnPropertyChanged("Date");
             }
         }
+        public string FormatedDate
+        {
+            get
+            {
+                DateTime datetime = Convert.ToDateTime(_date);
+
+                string formateddate = datetime.Month + "/" + datetime.Day + "/" + datetime.Year;
+                return formateddate;
+            }
+
+
+
+        }
+
         public string Comment
         {
             get
@@ -159,7 +174,7 @@ namespace SWEN2_Tourplanner_Models
             }
 
         }
-             
+
 
         public Dictionary<string, int> ratingDictionary = new Dictionary<string, int>()
         {

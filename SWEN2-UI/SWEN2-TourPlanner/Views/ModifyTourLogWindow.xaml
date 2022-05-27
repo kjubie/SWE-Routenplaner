@@ -41,7 +41,7 @@
             </Label>
 
 
-            <DatePicker Text="{Binding ModTourLog.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="25"  />
+            <DatePicker Text="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
             <!--<TextBox Text="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  x:Name="From"></TextBox>-->
             <Label>
                 Comment

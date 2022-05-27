@@ -58,7 +58,7 @@ namespace SWEN2_TourPlanner_ViewModels
             //Difficulty to string
             _createdTourLog.SetDifficultyByString();
 
-            _request.PostTourLog(_createdTourLog.Tourname, _createdTourLog.Date, _createdTourLog.Comment, _createdTourLog.Difficulty, _createdTourLog.Time, _createdTourLog.Rating);
+            _request.PostTourLog(_createdTourLog.Tourname, _createdTourLog.FormatedDate, _createdTourLog.Comment, _createdTourLog.Difficulty, _createdTourLog.Time, _createdTourLog.Rating);
             CloseAction();
 
 
