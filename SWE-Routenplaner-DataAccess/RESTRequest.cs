@@ -119,14 +119,14 @@ namespace SWEN2_Tourplanner_DataAccess
         }
         public void GetPDFTourReport(string tourname)
         {
-            string url = "https://localhost:7221/api/" + tourname + "/report";
+            string url = "https://localhost:7221/api/tour" + tourname + "/report";
             using var client = new HttpClient();
             var response = client.GetAsync(url).Result;
         }  
         
         public void GetPDFSummarizedTourReport()
         {
-            string url = "https://localhost:7221/api" + "/sumreport";
+            string url = "https://localhost:7221/api" + "/tour/sumreport";
             using var client = new HttpClient();
             var response = client.GetAsync(url).Result;
         }

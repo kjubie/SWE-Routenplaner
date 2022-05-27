@@ -99,17 +99,17 @@ namespace SWEN2_Tourplanner_ViewModels
 
                 if (value != null)
                 {
-                    
+
                     IsTourLogSelected = true;
 
                 }
 
                 if (value == null)
                 {
-                    
+
                     IsTourLogSelected = false;
 
-                }               
+                }
                 _selectedTourLog = value;
                 OnPropertyChanged("SelectedTourLog");
 
@@ -234,7 +234,7 @@ namespace SWEN2_Tourplanner_ViewModels
             }
         }
 
-        
+
         private ICommand _generateSummarizedTourReport;
         public ICommand GenerateSummarizedTourReport
         {
@@ -248,7 +248,7 @@ namespace SWEN2_Tourplanner_ViewModels
                 }
                 else
                 {
-                    _generateSummarizedTourReport = new Command(() => GeneratePDFTour(), true);
+                    _generateSummarizedTourReport = new Command(() => GeneratePDFSummarizedTour(), true);
                     return _generateSummarizedTourReport;
                 }
 
@@ -311,12 +311,12 @@ namespace SWEN2_Tourplanner_ViewModels
             try
             {
 
-                if (_selectedTourLog != null)
+                if (_selectedTour != null)
                 {
 
 
-                    _request.GetPDFTourReport(_selectedTourLog.Tourname);
-
+                    _request.GetPDFTourReport(_selectedTour.Name);
+                    ErrorMsg = "PDF for " + _selectedTour.Name + " generated";
                     LoadTourList();
                 }
             }
@@ -326,17 +326,13 @@ namespace SWEN2_Tourplanner_ViewModels
             }
         }
 
-        
+
         public void GeneratePDFSummarizedTour()
         {
             try
             {
-
-
-                    _request.GetPDFSummarizedTourReport();
-
-                  ;
-                
+                _request.GetPDFSummarizedTourReport();
+                ErrorMsg = "PDF for summarized report generated";
             }
             catch (Exception ex)
             {

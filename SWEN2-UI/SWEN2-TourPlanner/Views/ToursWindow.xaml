@@ -110,7 +110,7 @@
             </ListView>
 
 
-            <Label Foreground="red" FontWeight="UltraLight" Content="{Binding ErrorMsg, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Foreground="red" FontWeight="UltraLight" Content="{Binding ErrorMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 
 
