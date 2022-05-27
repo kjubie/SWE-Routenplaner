@@ -36,6 +36,28 @@ namespace SWEN2_REST.BL.Controllers {
             return JsonSerializer.Serialize(_tours.GetTour(name).Logs);
         }
 
+        [HttpGet("search/{term}")]
+        public string GetSearch(string term) {
+            _logger.LogInformation("Searching " + term);
+            Dictionary<string, TourLog> logs = new();
+
+            int found = 0;
+
+            foreach (Tour tour in _tours.TourList.Values) {
+                foreach (TourLog log in tour.Logs.Values) {
+                    if (log.Tourname.Contains(term) || log.Date.Contains(term) || log.Comment.Contains(term)) {
+                        logs.Add(log.Tourname + " log number: " + log.Id, log);
+                        found = 1;
+                    }
+                }
+            }
+
+            if (found == 0)
+                return "Nothing found!";
+
+            return JsonSerializer.Serialize(logs);
+        }
+
         [HttpPost]
         public string Post(LogRequest request) {
             try {
