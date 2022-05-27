@@ -1,0 +1,6 @@
+@startuml
+class SearchBar <<partial>> {
+    + SearchBar()
+}
+UserControl <|-- SearchBar
+@enduml

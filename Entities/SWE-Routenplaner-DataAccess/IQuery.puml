@@ -1,0 +1,13 @@
+@startuml
+interface IQuery {
+    + GetTours() : Task<Tours>
+    + GetTour(tourname:String) : Task<Tour>
+    + PostTour(from:string, to:string, tourname:string, type:string, description:string) : Task
+    + UpdateTour(oldTourName:string, from:string, to:string, tourname:string, type:string, description:string) : Task
+    + DeleteTour(tourname:string) : void
+    + DeleteTourLog(nameTourLogToDelete:string, logId:int) : void
+    + GetImageBase64(tourname:String) : Task<string>
+    + PostTourLog(tourname:string, date:string, comment:string, difficulty:int, time:string, rating:int) : Task
+    + UpdateTourLog(tourname:string, date:string, comment:string, difficulty:int, time:string, rating:int, id:int) : Task
+}
+@enduml

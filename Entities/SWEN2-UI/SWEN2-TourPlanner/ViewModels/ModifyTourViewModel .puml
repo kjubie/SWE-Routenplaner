@@ -1,0 +1,13 @@
+@startuml
+class ModifyTourViewModel {
+    - _modTour : TourModel?
+    - _oldTourname : string
+    + ModTour : TourModel? <<get>> <<set>>
+    + ModifyTourViewModel(tour:TourModel)
+    + UpdateTour() : void
+}
+ModifyTourViewModel --> "_request" IQuery
+ModifyTourViewModel --> "_updateTourCommand" ICommand
+ModifyTourViewModel --> "UpdateTourCommand" ICommand
+ModifyTourViewModel --> "CloseAction" Action
+@enduml

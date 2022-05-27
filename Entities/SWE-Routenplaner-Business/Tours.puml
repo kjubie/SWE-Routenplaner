@@ -1,0 +1,13 @@
+@startuml
+class Tours {
+    + Tours()
+    + Tours(urlRESTServer:string)
+    + AddTour(tour:Tour) : int
+    + RemoveTour(name:string) : int
+    + GetTour(name:string) : Tour
+    + UpdateTour(name:string, tour:Tour) : int
+}
+class "Dictionary`2"<T1,T2> {
+}
+Tours --> "TourList<string,Tour>" "Dictionary`2"
+@enduml

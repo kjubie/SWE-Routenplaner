@@ -1,0 +1,32 @@
+@startuml
+class TourController {
+    + TourController(tours:Tours, mapQuestContext:MapQuestContext, tourContext:TourContext, fileHandler:FileHandler, logger:ILogger<TourController>)
+    + Get() : string
+    + Get(name:string) : string
+    + GetJSON(year:int) : string
+    + GetJSON(name:string) : string
+    + GetReport(name:string) : string
+    + GetImage(name:string) : string
+    + Post(request:Request) : string
+    + PostImport(request:string) : string
+    + Put(name:string, request:Request) : string
+    + Delete(name:string) : string
+}
+class "ILogger`1"<T> {
+}
+class Request {
+    + Name : string? <<get>> <<set>>
+    + Description : string? <<get>> <<set>>
+    + From : string? <<get>> <<set>>
+    + To : string? <<get>> <<set>>
+    + RouteType : string? <<get>> <<set>>
+    + Info : string? <<get>> <<set>>
+}
+ControllerBase <|-- TourController
+TourController --> "_tours" Tours
+TourController --> "_mapQuestContext" MapQuestContext
+TourController --> "_tourContext" TourContext
+TourController --> "_fileHandler" FileHandler
+TourController --> "_logger<TourController>" "ILogger`1"
+TourController +-- Request
+@enduml

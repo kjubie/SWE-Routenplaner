@@ -1,0 +1,27 @@
+@startuml
+class ToursViewModel {
+    - _selectedTour : TourModel?
+    + SelectedTour : TourModel? <<get>> <<set>>
+    - _isTourLogSelected : bool
+    + IsTourLogSelected : bool <<get>> <<set>>
+    +  <<event>> PropertyChanged : PropertyChangedEventHandler 
+    - OnPropertyChanged(propertyName:string) : void
+    - _selectedTourLog : TourLogModel?
+    + SelectedTourLog : TourLogModel? <<get>> <<set>>
+    + ToursViewModel()
+    + <<async>> LoadTourList() : void
+    + GetSelectedTour() : TourModel
+    + GetSelectedTourLog() : TourLogModel
+    + DeleteTour() : void
+    + DeleteTourLog() : void
+}
+class "ObservableCollection`1"<T> {
+}
+ToursViewModel --> "_tourlist" TourListModel
+ToursViewModel --> "TourList<TourModel>" "ObservableCollection`1"
+ToursViewModel --> "_request" IQuery
+ToursViewModel --> "_deleteSelectedCommand" ICommand
+ToursViewModel --> "DeleteSelectedCommand" ICommand
+ToursViewModel --> "_deleteSelectedLogCommand" ICommand
+ToursViewModel --> "DeleteSelectedLogCommand" ICommand
+@enduml

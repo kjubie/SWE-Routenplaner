@@ -1,0 +1,37 @@
+@startuml
+class TourLogModel {
+    + TourLogModel()
+    + TourLogModel(tourlog:TourLog)
+    + Tourname : string <<get>> <<set>>
+    + Date : string <<get>> <<set>>
+    + FormatedDate : string <<get>>
+    + Comment : string <<get>> <<set>>
+    + Difficulty : int <<get>> <<set>>
+    + Time : string <<get>> <<set>>
+    + Id : int <<get>> <<set>>
+    + Rating : int <<get>> <<set>>
+    - _tourname : string <<get>> <<set>>
+    - _date : string <<get>> <<set>>
+    - _comment : string <<get>> <<set>>
+    - _difficulty : int <<get>> <<set>>
+    - _time : string <<get>> <<set>>
+    - _rating : int <<get>> <<set>>
+    - _id : int <<get>> <<set>>
+    - _difficultyString : string <<get>> <<set>>
+    + DifficultyString : string <<get>> <<set>>
+    - _ratingString : string <<get>> <<set>>
+    + RatingString : string <<get>> <<set>>
+    + SetDifficultyByString() : void
+    + SetRatingByString() : void
+    + SetDifficultyStringByInt() : void
+    + SetRatingStringByInt() : void
+    +  <<event>> PropertyChanged : PropertyChangedEventHandler? 
+    - OnPropertyChanged(propertyName:string) : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+TourLogModel o-> "ratingDictionary<string,int>" "Dictionary`2"
+TourLogModel o-> "difficultyDictionary<string,int>" "Dictionary`2"
+TourLogModel o-> "ratingDictionaryinverted<int,string>" "Dictionary`2"
+TourLogModel o-> "difficultyDictionaryinverted<int,string>" "Dictionary`2"
+@enduml

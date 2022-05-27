@@ -1,0 +1,7 @@
+@startuml
+class RESTRequestModel {
+    + <<async>> {static} GetTours() : Task<Tours>
+    + <<async>> {static} GetTour(tourname:String) : Task<Tour>
+    + <<async>> {static} PostTour(from:string, to:string, tourname:string, type:string, description:string) : Task<string>
+}
+@enduml
