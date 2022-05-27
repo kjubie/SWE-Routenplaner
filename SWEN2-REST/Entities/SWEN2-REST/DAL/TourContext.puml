@@ -1,0 +1,24 @@
+@startuml
+class TourContext {
+    - ConnectionString : string
+    + TourContext(logger:ILogger<TourContext>, tours:Tours)
+    + LoadTours(tours:Tours) : void
+    + SaveTour(tour:Tour) : int
+    + SaveTourLog(tourLog:TourLog, logID:int) : int
+    + UpdateTour(name:string, tour:Tour) : int
+    + UpdateTourLog(tourLog:TourLog, logID:int) : int
+    + DeleteTour(name:string) : int
+    + DeleteTourLog(id:int) : int
+}
+class "ILogger`1"<T> {
+}
+class connModel {
+    + host : string? <<get>> <<set>>
+    + username : string? <<get>> <<set>>
+    + password : string? <<get>> <<set>>
+    + database : string? <<get>> <<set>>
+}
+TourContext --> "SqlConnection" NpgsqlConnection
+TourContext --> "_logger<TourContext>" "ILogger`1"
+TourContext +-- connModel
+@enduml

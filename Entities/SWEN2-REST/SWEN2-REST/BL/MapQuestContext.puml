@@ -1,0 +1,15 @@
+@startuml
+class MapQuestContext {
+    + MapQuestContext()
+    + <<async>> GetRouteAsync(from:string, to:string, type:string) : Task<string>
+    + <<async>> GetMapAsync(from:string, to:string) : Task<byte[]>
+}
+class API {
+    + Key : string? <<get>> <<set>>
+    + Url : string? <<get>> <<set>>
+    + MapUrl : string? <<get>> <<set>>
+}
+MapQuestContext --> "Api" API
+MapQuestContext --> "HttpClient" HttpClient
+MapQuestContext +-- API
+@enduml

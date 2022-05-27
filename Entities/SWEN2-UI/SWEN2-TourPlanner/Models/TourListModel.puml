@@ -1,0 +1,14 @@
+@startuml
+class TourListModel {
+    - _tourlist : ObservableCollection<TourModel>?
+    + TourListModel()
+    + TourListModel(tours:Tours)
+    + Add(tour:Tour, img:BitmapImage) : void
+    + AddImg(tourName:string, img:BitmapImage) : void
+    + TourList : ObservableCollection<TourModel>? <<get>> <<set>>
+    + ImgList : Dictionary<string, BitmapImage>? <<get>> <<set>>
+}
+class "Dictionary`2"<T1,T2> {
+}
+TourListModel --> "_imgList<string,BitmapImage>" "Dictionary`2"
+@enduml

@@ -19,7 +19,6 @@
             <Setter Property="BorderBrush" Value="Transparent"></Setter>
         </Style>
 
-
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="White"></Setter>
             <Setter Property="BorderThickness" Value="0"></Setter>
@@ -89,9 +88,7 @@
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/refresh.png"  />
                 </Button>
 
-                <Button HorizontalAlignment="Right" Command="{Binding GenerateSummarizedTourReport}">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pdf.png"  />
-                </Button>
+
                 <Label FontSize="24" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
 
 
@@ -105,9 +102,9 @@
                 </Button>
             </Grid>
 
+            <!--SelectionChanged="UpdateTourDetails"-->
 
-
-            <ListView SelectedItem="{Binding SelectedTour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700" ItemsSource="{Binding TourList}">
+            <ListView SelectedItem="{Binding SelectedTour, Mode=TwoWay}" HorizontalContentAlignment="Stretch" Width="Auto"  Margin ="10" VerticalAlignment="Top" MaxHeight="700" ItemsSource="{Binding TourList}">
 
                 <ListView.ItemTemplate>
                     <DataTemplate >
@@ -119,7 +116,6 @@
             </ListView>
 
 
-            <Label Foreground="red" FontWeight="UltraLight" Content="{Binding ErrorMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 
 
@@ -170,19 +166,15 @@
 
 
 
-                <Button IsEnabled="{Binding IsTourSelected}" DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
+                <Button  DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
                 </Button>
 
-                <Button IsEnabled="{Binding IsTourSelected}" Grid.Column="4" HorizontalAlignment="Center" Click="OpenModifyWindow" >
+                <Button Grid.Column="4" HorizontalAlignment="Center" Click="OpenModifyWindow" >
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pen.png"  />
                 </Button>
 
-                <Button IsEnabled="{Binding IsTourSelected}" HorizontalAlignment="Right" Command="{Binding GenerateTourReport}">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pdf.png"  />
-                </Button>
-                
-                <Button IsEnabled="{Binding IsTourSelected}"  Grid.Column="3" HorizontalAlignment="Center">
+                <Button  Grid.Column="3" HorizontalAlignment="Center">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/export.png"  />
 
                 </Button>
@@ -216,15 +208,12 @@
                 <DockPanel HorizontalAlignment="Right" DockPanel.Dock="Right">
 
 
-                    <Button IsEnabled="{Binding IsTourLogSelected}" HorizontalAlignment="Right" Click="OpenModifyTourlogWindow">
+                    <Button HorizontalAlignment="Right" Click="OpenModifyTourlogWindow">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"   Width ="20" Height="20" Source="../icons/pen.png"  />
                     </Button>
-                    <Button IsEnabled="{Binding IsTourLogSelected}" HorizontalAlignment="Right" Command="{Binding DeleteSelectedLogCommand}">
+                    <Button HorizontalAlignment="Right" Command="{Binding DeleteSelectedLogCommand}">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
                     </Button>
-
-
-
                     <Button Click="OpenCreateTourLogWindow" HorizontalAlignment="Right">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
                     </Button>

@@ -1,0 +1,6 @@
+@startuml
+class DeleteDialogue <<partial>> {
+    + DeleteDialogue()
+}
+Window <|-- DeleteDialogue
+@enduml

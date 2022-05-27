@@ -117,6 +117,7 @@ namespace SWEN2_Tourplanner_DataAccess
             using var client = new HttpClient();
             var response = client.DeleteAsync(url).Result;
         }
+
         public void GetPDFTourReport(string tourname)
         {
             string url = "https://localhost:7221/api/tour/" + tourname + "/report";

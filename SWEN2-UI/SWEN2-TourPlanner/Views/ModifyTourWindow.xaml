@@ -32,15 +32,15 @@
             <Label>
                 From*
             </Label>
-            <TextBox Text="{Binding ModTour.From, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"  x:Name="From"></TextBox>
+            <TextBox Text="{Binding ModTour.From, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  x:Name="From"></TextBox>
             <Label>
                 To*
             </Label>
-            <TextBox Text="{Binding ModTour.To, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"></TextBox>
+            <TextBox Text="{Binding ModTour.To, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label>
                 Mean of transport
             </Label>
-            <ComboBox Text="{Binding ModTour.TransportType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}">
+            <ComboBox Text="{Binding ModTour.TransportType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBoxItem IsSelected="True">bicycle</ComboBoxItem>
                 <ComboBoxItem>pedestrian</ComboBoxItem>
                 <ComboBoxItem>fastest</ComboBoxItem>
@@ -51,19 +51,17 @@
                 Tour name
             </Label>
 
-            <TextBox IsReadOnly="True" Text="{Binding ModTour.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"></TextBox>
+            <TextBox IsReadOnly="True" Text="{Binding ModTour.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label>
                 Description
             </Label>
 
-            <TextBox Text="{Binding ModTour.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" Height="100"></TextBox>
+            <TextBox Text="{Binding ModTour.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="100"></TextBox>
             <DockPanel Margin="0 5 0 5">
                 <Button DockPanel.Dock="Left">Import...</Button>
                 <Button Click="CloseWindow" DockPanel.Dock="Right">Cancel</Button>
                 <Button Command="{Binding UpdateTourCommand}" DockPanel.Dock="Right">Save</Button>
             </DockPanel>
-            <Label Foreground="red" FontWeight="Light" FontStyle="Italic" Content="{Binding ErrorMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
         </StackPanel>
     </Grid>
 </Window>

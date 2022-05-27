@@ -1,0 +1,15 @@
+@startuml
+!include .\\SWEN2-REST\Program.puml
+!include .\\SWEN2-REST\BL\MapQuestContext.puml
+!include .\\SWEN2-REST\DAL\FileHandler.puml
+!include .\\SWEN2-REST\DAL\TourContext.puml
+!include .\\SWEN2-REST\BL\Controllers\TourController.puml
+!include .\\SWEN2-REST\BL\Controllers\TourLogController.puml
+!include .\\SWEN2-REST\BL\Models\Tour.puml
+!include .\\SWEN2-REST\BL\Models\TourLog.puml
+!include .\\SWEN2-REST\BL\Models\Tours.puml
+!include .\\SWEN2-REST\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.puml
+!include .\\SWEN2-REST\obj\Debug\net6.0\SWEN2-REST.AssemblyInfo.puml
+!include .\\SWEN2-REST\obj\Debug\net6.0\SWEN2-REST.GlobalUsings.g.puml
+!include .\\SWEN2-REST\obj\Debug\net6.0\SWEN2-REST.MvcApplicationPartsAssemblyInfo.puml
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+class Tours {
+    + Tours()
+    + Tours(urlRESTServer:string)
+    + AddTour(tour:Tour) : int
+    + RemoveTour(name:string) : int
+    + GetTour(name:string) : Tour
+    + UpdateTour(name:string, tour:Tour) : int
+    <<internal>> GenerateSummarizedReport() : int
+    <<internal>> GenerateRecap(year:int) : int
+    - GenerateRecapPDF(year:int, TRD:TourRecapData) : int
+}
+class "Dictionary`2"<T1,T2> {
+}
+class TourRecapData {
+    + Distance : double <<get>> <<set>> = 0
+    + TotalDistance : double <<get>> <<set>> = 0
+    + Time : double <<get>> <<set>> = 0
+    + TotalTime : double <<get>> <<set>> = 0
+    + Difficulty : int <<get>> <<set>> = 0
+    + Car : int <<get>> <<set>> = 0
+    + Pedestrian : int <<get>> <<set>> = 0
+    + Bicycle : int <<get>> <<set>> = 0
+    + TourCount : int <<get>> <<set>> = 0
+    + LogCount : int <<get>> <<set>> = 0
+}
+Tours --> "TourList<string,Tour>" "Dictionary`2"
+Tours +-- TourRecapData
+@enduml

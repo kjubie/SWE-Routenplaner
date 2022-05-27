@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using SWEN2_Tourplanner_Models;
 using SWEN2_REST.DAL;
 using System.Text.Json;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace SWEN2_REST.BL.Controllers
 {
@@ -52,6 +52,14 @@ namespace SWEN2_REST.BL.Controllers
             return JsonSerializer.Serialize(_tours.GetTour(name));
         }
 
+        [HttpGet("recap/{year}")]
+        public string GetJSON(int year) {
+            _logger.LogInformation("Get recap report");
+            if (_tours.GenerateRecap(year) == -1)
+                return "Error while generating recap!";
+            return "Report generated!";
+        }
+
         [HttpGet("{name}/export")]
         public string GetJSON(string name) {
             _logger.LogInformation("Get " + name + " tour JSON");
@@ -84,7 +92,7 @@ namespace SWEN2_REST.BL.Controllers
             int found = 0;
 
             foreach (Tour tour in _tours.TourList.Values) {
-                if (tour.Name.Contains(term) || tour.Description.Contains(term) || tour.From.Contains(term) || tour.To.Contains(term) || tour.TransportType.Contains(term) || tour.Name.Contains(term) || tour.Info.Contains(term)) {
+                if(tour.Name.Contains(term) || tour.Description.Contains(term) || tour.From.Contains(term) || tour.To.Contains(term) || tour.TransportType.Contains(term) || tour.Name.Contains(term) || tour.Info.Contains(term)) {
                     ts.AddTour(tour);
                     found = 1;
                     continue;
@@ -106,6 +114,13 @@ namespace SWEN2_REST.BL.Controllers
 
         [HttpPost]
         public string Post(Request request) {
+            try {
+                if (!(request.RouteType.Equals("shortest") || request.RouteType.Equals("fastest") || request.RouteType.Equals("pedestrian") || request.RouteType.Equals("bicycle")))
+                    return "Invalid route type!";
+            } catch (Exception ex) {
+                return "Invalid route type!";
+            }
+
             var task = _mapQuestContext.GetRouteAsync(request.From, request.To, request.RouteType);
             task.Wait();
             var result = task.Result.ToString();
@@ -167,12 +182,21 @@ namespace SWEN2_REST.BL.Controllers
                 _logger.LogError("Tour with this name already exists: " + t.Name);
                 return "Tour with this name already exists!";
             }
-
-            return "";
         }
 
         [HttpPut("{name}")]
         public string Put(string name, Request request) {
+            if (!name.Equals(request.Name)) {
+                return "You cannot change the name of the tour!";
+            }
+
+            try {
+                if (!(request.RouteType.Equals("shortest") || request.RouteType.Equals("fastest") || request.RouteType.Equals("pedestrian") || request.RouteType.Equals("bicycle")))
+                    return "Invalid route type!";
+            } catch (Exception ex) {
+                return "Invalid route type!";
+            }
+
             var task = _mapQuestContext.GetRouteAsync(request.From, request.To, request.RouteType);
             task.Wait();
             var result = task.Result.ToString();
