@@ -203,7 +203,11 @@
             <!--<uc:SearchBar Margin="10"/>-->
             <DockPanel Margin="10">
                 <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/search.png"  />
-                <TextBox Text="Search ..." BorderBrush="White" Foreground="Gray"></TextBox>
+                <TextBox Text="{Binding SearchTourLogsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  BorderBrush="White" Foreground="Gray">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding SearchTourLogs}" Key="Return" />
+                    </TextBox.InputBindings>
+                </TextBox>
             </DockPanel>
 
 
@@ -216,10 +220,10 @@
                 <DockPanel HorizontalAlignment="Right" DockPanel.Dock="Right">
 
 
-                    <Button IsEnabled="{Binding IsTourLogSelected}" HorizontalAlignment="Right" Click="OpenModifyTourlogWindow">
+                    <Button IsEnabled="{Binding IsTourLogSelected, Mode=OneWay}" HorizontalAlignment="Right" Click="OpenModifyTourlogWindow">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"   Width ="20" Height="20" Source="../icons/pen.png"  />
                     </Button>
-                    <Button IsEnabled="{Binding IsTourLogSelected}" HorizontalAlignment="Right" Command="{Binding DeleteSelectedLogCommand}">
+                    <Button IsEnabled="{Binding IsTourLogSelected, Mode=OneWay}" HorizontalAlignment="Right" Command="{Binding DeleteSelectedLogCommand}">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
                     </Button>
 
@@ -233,11 +237,9 @@
 
             </DockPanel>
 
-
-
             <ScrollViewer Height="200">
 
-                <DataGrid SelectedItem="{Binding SelectedTourLog, Mode=TwoWay}" IsReadOnly="True" SelectionUnit="FullRow" Margin="10" MaxHeight="200"  Name="LogGrid" ItemsSource="{Binding SelectedTour.TourLogList}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderThickness="0">
+                <DataGrid SelectedItem="{Binding SelectedTourLog, Mode=OneWay}" IsReadOnly="True" SelectionUnit="FullRow" Margin="10" MaxHeight="200"  Name="LogGrid" ItemsSource="{Binding SelectedTour.TourLogList}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderThickness="0">
 
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="{x:Type DataGridColumnHeader}">

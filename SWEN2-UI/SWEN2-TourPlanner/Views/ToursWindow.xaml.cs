@@ -67,6 +67,7 @@ namespace SWEN2_TourPlanner
             if (modifyTourVM.CloseAction == null)
             {
                 modifyTourVM.CloseAction = new Action(modifyTourWindow.Close);
+                ViewModel.LoadAllTours();
 
             }
         }
@@ -83,6 +84,7 @@ namespace SWEN2_TourPlanner
             if (modifyTourLogVM.CloseAction == null)
             {
                 modifyTourLogVM.CloseAction = new Action(modifyTourLogWindow.Close);
+                ViewModel.LoadAllTours();
 
             }
         }
@@ -90,7 +92,7 @@ namespace SWEN2_TourPlanner
 
         private void ReloadWindow(object sender, RoutedEventArgs e)
         {
-            ViewModel.LoadTourList();
+            ViewModel.LoadAllTours();
         }
 
      

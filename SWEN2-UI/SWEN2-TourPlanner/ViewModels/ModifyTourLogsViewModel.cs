@@ -73,7 +73,7 @@ namespace SWEN2_TourPlanner_ViewModels
                     //Difficulty to string
                     _modTourLog.SetDifficultyByString();
 
-                    _request.UpdateTourLog(_modTourLog.Tourname, _modTourLog.Date, _modTourLog.Comment, _modTourLog.Difficulty, _modTourLog.Time, _modTourLog.Rating, _modTourLog.Id);
+                    _request.UpdateTourLog(_modTourLog.Tourname, _modTourLog.FormatedDate, _modTourLog.Comment, _modTourLog.Difficulty, _modTourLog.Time, _modTourLog.Rating, _modTourLog.Id);
                     CloseAction();
                 }
             }

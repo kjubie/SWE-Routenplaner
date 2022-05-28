@@ -122,8 +122,8 @@ namespace SWEN2_Tourplanner_DataAccess
             string url = "https://localhost:7221/api/tour/" + tourname + "/report";
             using var client = new HttpClient();
             var response = client.GetAsync(url).Result;
-        }  
-        
+        }
+
         public void GetPDFSummarizedTourReport()
         {
             string url = "https://localhost:7221/api" + "/tour/sumreport";
@@ -131,7 +131,7 @@ namespace SWEN2_Tourplanner_DataAccess
             var response = client.GetAsync(url).Result;
         }
 
-        public async Task<Tours> GetToursBySearchAll(string searchterm)
+        public async Task<Tours> GetToursBySearch(string searchterm)
         {
             using var client = new HttpClient();
 
@@ -140,6 +140,7 @@ namespace SWEN2_Tourplanner_DataAccess
             Tours? tours = JsonSerializer.Deserialize<Tours>(response.ToString());
             return tours;
         }
+
 
     }
 }

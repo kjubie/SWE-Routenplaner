@@ -108,9 +108,5 @@ namespace SWEN2_TourPlanner_ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
-
-
-
     }
 }
