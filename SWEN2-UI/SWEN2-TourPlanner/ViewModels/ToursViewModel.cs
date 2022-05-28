@@ -247,6 +247,39 @@ namespace SWEN2_Tourplanner_ViewModels
             }
         }
 
+
+
+        public async Task<int> ImportTour(string tourname)
+        {
+            
+            try
+            {
+
+                string contents = File.ReadAllText("../../../ExportTours/" + tourname + ".json");
+                if (contents == "")
+                {
+                    return -1;
+                }
+                else
+                {
+                    await _request.ImportTour(contents);
+                    LoadAllTours();
+                    return 0;
+                }
+                //File.WriteAllText("../../../ExportTours/" + SelectedTour.Name + ".json", tourJson);
+                //ErrorMsg = SelectedTour.Name + ".json exported to ExportTours folder";
+
+
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+
+            return 0;
+        }
+
+
         private ICommand _deleteSelectedCommand;
         public ICommand DeleteSelectedCommand
         {

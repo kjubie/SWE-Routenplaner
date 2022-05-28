@@ -36,6 +36,8 @@ namespace SWEN2_TourPlanner
             InitializeComponent();
             this.DataContext = ViewModel;
 
+            
+
         }
 
         private void OpenCreateWindow(object sender, RoutedEventArgs e)
@@ -95,6 +97,22 @@ namespace SWEN2_TourPlanner
             ViewModel.LoadAllTours();
         }
 
+        private void OpenImportTourWindow(object sender, RoutedEventArgs e)
+        {
+            ImportTourWindow importTourWindow = new ImportTourWindow();
+            ImportTourViewModel importTourVM = new ImportTourViewModel(ViewModel);
+            importTourWindow.DataContext = importTourVM;
 
+
+            importTourWindow.Show();
+
+            if (importTourVM.CloseAction == null)
+            {
+                importTourVM.CloseAction = new Action(importTourWindow.Close);
+                ViewModel.LoadAllTours();
+
+            }
+
+        }
     }
 }
