@@ -206,12 +206,16 @@ namespace SWEN2_Tourplanner_ViewModels
                 {
                     string img = await _request.GetImageBase64(tour.Name);
                     byte[] binaryData = Convert.FromBase64String(img);
-                    //File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);            
+                    File.WriteAllBytes("../../../mapImg/" + tour.Name + ".png", binaryData);            
 
                     BitmapImage bi = new BitmapImage();
-                    bi.BeginInit();
-                    bi.StreamSource = new MemoryStream(binaryData);
-                    bi.EndInit();
+                    if (img != "")
+                    {
+                        bi.BeginInit();
+                        bi.StreamSource = new MemoryStream(binaryData);
+                        bi.EndInit();
+
+                    }
 
                     _tourlist.Add(tour, bi);
                 }
