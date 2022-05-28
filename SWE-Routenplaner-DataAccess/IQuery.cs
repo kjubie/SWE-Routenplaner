@@ -26,6 +26,8 @@ namespace SWEN2_Tourplanner_DataAccess
         public Task UpdateTourLog(string tourname, string date, string comment, int difficulty, string time, int rating, int id);
 
 
+        public Task<Tours> GetToursBySearchAll(string searchterm);
+
 
     }
 }
