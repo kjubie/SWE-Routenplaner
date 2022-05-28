@@ -134,7 +134,9 @@ namespace SWEN2_Tourplanner_DataAccess
         public async Task<Tours> GetToursBySearchAll(string searchterm)
         {
             using var client = new HttpClient();
-            var response = await client.GetStringAsync("https://localhost:7221/api/tour/search/" + searchterm);
+
+            string url = "https://localhost:7221/api/tour/search/" + searchterm;
+            var response = await client.GetStringAsync(url);
             Tours? tours = JsonSerializer.Deserialize<Tours>(response.ToString());
             return tours;
         }

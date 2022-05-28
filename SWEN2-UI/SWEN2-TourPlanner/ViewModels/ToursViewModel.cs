@@ -156,6 +156,7 @@ namespace SWEN2_Tourplanner_ViewModels
         }
         public async void LoadTourList()
         {
+            ErrorMsg = "";
 
             try
             {
@@ -197,47 +198,62 @@ namespace SWEN2_Tourplanner_ViewModels
                 ErrorMsg = ex.Message;
             }
         }
-           public async void LoadTourListBySearch()
+        public async void LoadTourListBySearch()
         {
+
+
+            ErrorMsg = "";
+
+            if (SearchToursText == "")
+            {
+                LoadTourList();
+                return;
+            }
 
             try
             {
                 _tourlist.TourList.Clear();
                 Tours tours = await _request.GetToursBySearchAll(SearchToursText);
 
-                Dictionary<string, Tour>.ValueCollection values = tours.TourList.Values;
-
-
-                DirectoryInfo di = new DirectoryInfo("../../../mapImg");
-
-
-                foreach (FileInfo file in di.GetFiles())
+                if (tours != null)
                 {
-                    file.Delete();
-                }
-                foreach (DirectoryInfo dir in di.GetDirectories())
-                {
-                    dir.Delete(true);
-                }
+
+                    Dictionary<string, Tour>.ValueCollection values = tours.TourList.Values;
 
 
-                foreach (Tour tour in values)
-                {
-                    string img = await _request.GetImageBase64(tour.Name);
-                    byte[] binaryData = Convert.FromBase64String(img);
-                    //File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);            
+                    DirectoryInfo di = new DirectoryInfo("../../../mapImg");
 
-                    BitmapImage bi = new BitmapImage();
-                    bi.BeginInit();
-                    bi.StreamSource = new MemoryStream(binaryData);
-                    bi.EndInit();
 
-                    _tourlist.Add(tour, bi);
-                }
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+                    foreach (DirectoryInfo dir in di.GetDirectories())
+                    {
+                        dir.Delete(true);
+                    }
+
+
+                    foreach (Tour tour in values)
+                    {
+                        string img = await _request.GetImageBase64(tour.Name);
+                        byte[] binaryData = Convert.FromBase64String(img);
+                        //File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);            
+
+                        BitmapImage bi = new BitmapImage();
+                        bi.BeginInit();
+                        bi.StreamSource = new MemoryStream(binaryData);
+                        bi.EndInit();
+
+                        _tourlist.Add(tour, bi);
+                    }
+                }                
+
             }
             catch (Exception ex)
             {
                 ErrorMsg = ex.Message;
+                ErrorMsg = "No Tours";
             }
         }
 
@@ -321,7 +337,7 @@ namespace SWEN2_Tourplanner_ViewModels
 
             }
         }
-        
+
         private ICommand _searchTours;
         public ICommand SearchTours
         {
