@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.ComponentModel;
+using System.Text.Json;
 
 namespace SWEN2_Tourplanner_ViewModels
 {
@@ -114,6 +115,8 @@ namespace SWEN2_Tourplanner_ViewModels
                     IsTourLogSelected = false;
 
                 }
+
+
                 _selectedTourLog = value;
                 OnPropertyChanged("SelectedTourLog");
 
@@ -206,7 +209,7 @@ namespace SWEN2_Tourplanner_ViewModels
                 {
                     string img = await _request.GetImageBase64(tour.Name);
                     byte[] binaryData = Convert.FromBase64String(img);
-                    File.WriteAllBytes("../../../mapImg/" + tour.Name + ".png", binaryData);            
+                    File.WriteAllBytes("../../../mapImg/" + tour.Name + ".png", binaryData);
 
                     BitmapImage bi = new BitmapImage();
                     if (img != "")
@@ -219,6 +222,24 @@ namespace SWEN2_Tourplanner_ViewModels
 
                     _tourlist.Add(tour, bi);
                 }
+            }
+            catch (Exception ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+        }
+
+        public async void ExportTour()
+        {
+            ErrorMsg = "";
+
+            try
+            {
+                string tourJson = await _request.ExportTour(SelectedTour.Name);
+                File.WriteAllText("../../../ExportTours/" + SelectedTour.Name + ".json", tourJson);
+                ErrorMsg = SelectedTour.Name + ".json exported to ExportTours folder";
+
+
             }
             catch (Exception ex)
             {
@@ -340,6 +361,27 @@ namespace SWEN2_Tourplanner_ViewModels
                 {
                     _searchTourLogs = new Command(() => LoadSearchedTours(), true);
                     return _searchTourLogs;
+                }
+
+            }
+        }
+
+
+        private ICommand _exportTourCommand;
+        public ICommand ExportTourCommand
+        {
+            get
+            {
+
+
+                if (_exportTourCommand != null)
+                {
+                    return _exportTourCommand;
+                }
+                else
+                {
+                    _exportTourCommand = new Command(() => ExportTour(), true);
+                    return _exportTourCommand;
                 }
 
             }

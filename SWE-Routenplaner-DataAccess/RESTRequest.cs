@@ -142,5 +142,31 @@ namespace SWEN2_Tourplanner_DataAccess
         }
 
 
+        public async Task<string> ExportTour(string tourname)
+        {
+            using var client = new HttpClient();
+
+            string url = "https://localhost:7221/api/tour/" + tourname + "/export";
+            string response = await client.GetStringAsync(url);
+            //Tours? tours = JsonSerializer.Deserialize<Tours>(response.ToString());
+            return response;
+        }
+
+        public async Task ImportTour(string json)
+        {
+
+            var url = "https://localhost:7221/api/Tour/import";
+            //string content = "{\"tourname\":\"" + tourname + "\",\"date\":\"" + date + "\",\"comment\":\"" + comment + "\",\"difficulty\":\"" + difficulty + "\",\"time\":\"" + time + "\",\"rating\":\"" + rating + "\"}";
+
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            using var client = new HttpClient();
+
+            var response = await client.PostAsync(url, data);
+
+            var result = await response.Content.ReadAsStringAsync();
+            // Console.WriteLine(result);
+
+        }
     }
 }

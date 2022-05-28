@@ -29,6 +29,8 @@ namespace SWEN2_Tourplanner_DataAccess
         public void GetPDFSummarizedTourReport();
 
         public Task<Tours> GetToursBySearch(string searchterm);
+        public Task<string> ExportTour(string tourname);
+        public Task ImportTour(string tourname);
 
     }
 }

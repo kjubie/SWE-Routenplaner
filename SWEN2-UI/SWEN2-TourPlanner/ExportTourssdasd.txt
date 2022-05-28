@@ -1,0 +1,1 @@
+{"Name":"sdasd","Description":"asdasd","From":"Purkersdorf","To":"Melk","TransportType":"bicycle","Distance":95.7962,"Time":"04:10:28","Info":"info","ImageLocation":null,"Popularity":1,"Childfriendliness":0,"Logs":{}}

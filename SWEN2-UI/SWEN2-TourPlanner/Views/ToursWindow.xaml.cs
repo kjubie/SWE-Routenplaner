@@ -34,8 +34,8 @@ namespace SWEN2_TourPlanner
         public ToursWindow()
         {
             InitializeComponent();
-            this.DataContext = ViewModel;        
-          
+            this.DataContext = ViewModel;
+
         }
 
         private void OpenCreateWindow(object sender, RoutedEventArgs e)
@@ -57,7 +57,7 @@ namespace SWEN2_TourPlanner
 
         private void OpenModifyWindow(object sender, RoutedEventArgs e)
         {
-           ModifyTourWindow modifyTourWindow = new ModifyTourWindow();
+            ModifyTourWindow modifyTourWindow = new ModifyTourWindow();
 
             ModifyTourViewModel modifyTourVM = new ModifyTourViewModel(ViewModel.GetSelectedTour());
 
@@ -95,6 +95,6 @@ namespace SWEN2_TourPlanner
             ViewModel.LoadAllTours();
         }
 
-     
+
     }
 }
