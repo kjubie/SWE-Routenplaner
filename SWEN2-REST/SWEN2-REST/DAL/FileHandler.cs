@@ -2,21 +2,21 @@
 using System.Drawing.Imaging;
 
 namespace SWEN2_REST.DAL {
-    public class FileHandler {
+    public class FileHandler : IFileHandler {
         private readonly ILogger<FileHandler> _logger;
 
         public FileHandler(ILogger<FileHandler> logger) {
             _logger = logger;
         }
 
-        public async Task<int> SaveToFileAsync(string name, string base64) {
+        public async Task<string> SaveToFileAsync(string name, string base64) {
             try {
                 await File.WriteAllTextAsync("../../SWEN2-DB/routeImages/" + name + ".txt", base64);
             } catch (Exception ex) {
                 _logger.LogError("Error while saving image! " + ex);
-                return -1;
+                return "" + ex;
             }
-            return 0;
+            return "";
         }
 
         public string LoadFromFile(string name) {

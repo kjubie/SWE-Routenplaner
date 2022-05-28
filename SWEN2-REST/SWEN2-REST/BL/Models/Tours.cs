@@ -5,13 +5,13 @@ using ceTe.DynamicPDF.PageElements.Charting.Series;
 using System.Text.Json;
 
 namespace SWEN2_Tourplanner_Models {
-    public class Tours {
+    public class Tours : ITours {
         public Dictionary<string, Tour> TourList { get; set; }
 
         public Tours() {
             TourList = new Dictionary<string, Tour>();
         }
-        
+
         public Tours(string urlRESTServer) {
             TourList = new Dictionary<string, Tour>();
         }
@@ -41,7 +41,7 @@ namespace SWEN2_Tourplanner_Models {
         public int RemoveTour(string name) {
             if (TourList.Remove(name))
                 return 0;
-            else 
+            else
                 return -1;
         }
 
@@ -55,8 +55,8 @@ namespace SWEN2_Tourplanner_Models {
 
         public int UpdateTour(string name, Tour tour) {
             try {
-                if(RemoveTour(name) == 0)
-                    if(AddTour(tour) == 0)
+                if (RemoveTour(name) == 0)
+                    if (AddTour(tour) == 0)
                         return 0;
                 return 0;
             } catch (Exception ex) {
@@ -135,13 +135,18 @@ namespace SWEN2_Tourplanner_Models {
                         TRD.LogCount++;
                     }
                 }
-                if(logCount > 0)
+                if (logCount > 0)
                     TRD.TourCount++;
             }
-
-            TRD.Distance /= TRD.LogCount;
-            TRD.Time /= TRD.LogCount;
-            TRD.Difficulty /= TRD.LogCount;
+            try {
+                TRD.Distance /= TRD.LogCount;
+                TRD.Time /= TRD.LogCount;
+                TRD.Difficulty /= TRD.LogCount;
+            } catch {
+                TRD.Distance = 0;
+                TRD.Time = 0;
+                TRD.Difficulty = 0;
+            }
 
             return GenerateRecapPDF(year, TRD);
         }
@@ -152,10 +157,6 @@ namespace SWEN2_Tourplanner_Models {
             Page page = new Page(PageSize.Letter, PageOrientation.Portrait, 54.0f);
             document.Pages.Add(page);
 
-            if (TRD.TourCount == 0) {
-
-            }
-
             string Title = "Recap Year: " + year;
             Label label = new Label(Title, 0, 0, 504, 100, Font.Helvetica, 18, TextAlign.Center);
             page.Elements.Add(label);
@@ -165,7 +166,7 @@ namespace SWEN2_Tourplanner_Models {
                 page.Elements.Add(textNoTour);
             } else {
                 string formattedString = "\n\n\n\nYou have completed " + TRD.LogCount + " tours across " + TRD.TourCount + " different routes!" + "\n\nAverage distance traveled: " + Math.Round(TRD.Distance, 3) + " km" +
-                    "\nTotal distance traveled: " + Math.Round(TRD.TotalDistance, 3) + " km" + "\n\nAverage time traveled: " + Math.Round(TRD.Time, 1) + " h" + "\nTotal time traveled: " + Math.Round(TRD.TotalTime, 1) + 
+                    "\nTotal distance traveled: " + Math.Round(TRD.TotalDistance, 3) + " km" + "\n\nAverage time traveled: " + Math.Round(TRD.Time, 1) + " h" + "\nTotal time traveled: " + Math.Round(TRD.TotalTime, 1) +
                     " h" + "\n\nAverage tour difficulty: " + TRD.Difficulty;
 
                 var text = new TextArea(formattedString, 0, 0, 504, 1000, Font.Helvetica, 12, TextAlign.Left);
@@ -196,11 +197,16 @@ namespace SWEN2_Tourplanner_Models {
                 pieSeries.Elements.Add(TRD.Pedestrian, "Pedestrian");
                 pieSeries.Elements.Add(TRD.Bicycle, "Bicycle");
 
-                pieSeries.Elements[0].Color = autogradient1;
-                pieSeries.Elements[1].Color = autogradient2;
-                pieSeries.Elements[2].Color = autogradient3;
+                try {
+                    pieSeries.Elements[0].Color = autogradient1;
+                    pieSeries.Elements[1].Color = autogradient2;
+                    pieSeries.Elements[2].Color = autogradient3;
 
-                page.Elements.Add(chart);
+                    page.Elements.Add(chart);
+                } catch {
+                    label = new Label("Insufficient date for piechart!", 0, 0, 504, 100, Font.Helvetica, 18, TextAlign.Center);
+                    page.Elements.Add(label);
+                }
             }
 
             try {

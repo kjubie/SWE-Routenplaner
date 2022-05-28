@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWEN2-REST", "SWEN2-REST\SWEN2-REST.csproj", "{28750C5B-28CA-47B5-A1B3-324FAE8AB7DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWEN2-REST", "SWEN2-REST\SWEN2-REST.csproj", "{28750C5B-28CA-47B5-A1B3-324FAE8AB7DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTourplaner", "TestTourplanerN\TestTourplaner.csproj", "{6FBF7002-12A7-4CF7-8555-863E178CBAED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{28750C5B-28CA-47B5-A1B3-324FAE8AB7DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28750C5B-28CA-47B5-A1B3-324FAE8AB7DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28750C5B-28CA-47B5-A1B3-324FAE8AB7DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FBF7002-12A7-4CF7-8555-863E178CBAED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FBF7002-12A7-4CF7-8555-863E178CBAED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FBF7002-12A7-4CF7-8555-863E178CBAED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FBF7002-12A7-4CF7-8555-863E178CBAED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

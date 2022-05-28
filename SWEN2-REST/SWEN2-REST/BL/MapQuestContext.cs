@@ -2,7 +2,7 @@
 using System.Net;
 
 namespace SWEN2_REST.BL {
-    public class MapQuestContext {
+    public class MapQuestContext : IMapQuestContext {
         private API Api;
         private HttpClient HttpClient;
         private class API {
@@ -12,6 +12,15 @@ namespace SWEN2_REST.BL {
         }
         public MapQuestContext() {
             StreamReader streamReader = new("../../SWEN2-REST/apikey.json");
+            string jsonString = streamReader.ReadToEnd();
+#pragma warning disable CS8601 // Possible null reference assignment.
+            Api = JsonConvert.DeserializeObject<API>(jsonString);
+#pragma warning restore CS8601 // Possible null reference assignment.
+            HttpClient = new();
+        }
+
+        public MapQuestContext(string path) {
+            StreamReader streamReader = new(path);
             string jsonString = streamReader.ReadToEnd();
 #pragma warning disable CS8601 // Possible null reference assignment.
             Api = JsonConvert.DeserializeObject<API>(jsonString);
