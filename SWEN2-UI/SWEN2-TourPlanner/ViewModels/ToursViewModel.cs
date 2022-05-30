@@ -45,7 +45,7 @@ namespace SWEN2_Tourplanner_ViewModels
                 if (value != null)
                 {
                     IsTourSelected = true;
-                    IsTourLogSelected = false;       
+                    IsTourLogSelected = false;
                 }
 
                 if (value == null)
@@ -57,7 +57,7 @@ namespace SWEN2_Tourplanner_ViewModels
                 _selectedTour = value;
                 OnPropertyChanged("SelectedTour");
             }
-        }       
+        }
         private bool _isTourSelected;
         public bool IsTourSelected
         {
@@ -70,7 +70,7 @@ namespace SWEN2_Tourplanner_ViewModels
 
             }
 
-        }     
+        }
 
         private string _searchToursText;
         public string SearchToursText
@@ -92,7 +92,7 @@ namespace SWEN2_Tourplanner_ViewModels
             get { return _selectedTourLog; }
             set
             {
-                this.IsTourLogSelected = true;            
+                this.IsTourLogSelected = true;
 
                 if (value == null)
                 {
@@ -162,9 +162,16 @@ namespace SWEN2_Tourplanner_ViewModels
             LoadTourList(tours);
         }
 
-        public async void LoadTourList(Tours tours)
+        public async void LoadTourList(Tours? tours)
         {
             ErrorMsg = "";
+
+            if (tours == null)
+            {
+                ErrorMsg = "No Tours found";
+                return;
+            }
+           
 
             try
             {
@@ -232,7 +239,7 @@ namespace SWEN2_Tourplanner_ViewModels
 
         public async Task<int> ImportTour(string tourname)
         {
-            
+
             try
             {
 
@@ -484,8 +491,8 @@ namespace SWEN2_Tourplanner_ViewModels
         }
 
 
-     
-           
+
+
 
 
         private string _errorMsg { get; set; }

@@ -18,6 +18,7 @@ namespace SWEN2_TourPlanner_ViewModels
     {
 
         private TourModel? _createdTour;
+        private ToursViewModel? _toursViewModel;
 
         public TourModel? CreatedTour
         {
@@ -28,10 +29,10 @@ namespace SWEN2_TourPlanner_ViewModels
 
         private IQuery _request;
 
-        public CreateTourViewModel()
+        public CreateTourViewModel(ToursViewModel tvm)
         {
             ErrorMsg = "";
-
+            _toursViewModel = tvm;
             _request = new RESTRequest();
             _createdTour = new TourModel();
         }
@@ -78,6 +79,7 @@ namespace SWEN2_TourPlanner_ViewModels
             catch (Exception ex)
             {
                 ErrorMsg = ex.Message;
+                _toursViewModel.ErrorMsg = ex.Message;
             }
 
         }

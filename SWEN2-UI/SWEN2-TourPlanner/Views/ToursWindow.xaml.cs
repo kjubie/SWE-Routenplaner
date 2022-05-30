@@ -43,6 +43,15 @@ namespace SWEN2_TourPlanner
         private void OpenCreateWindow(object sender, RoutedEventArgs e)
         {
             CreateTourWindow createTourWindow = new CreateTourWindow();
+            CreateTourViewModel createTourViewModel = new CreateTourViewModel(ViewModel);
+            createTourWindow.DataContext = createTourViewModel;
+
+            if (createTourViewModel.CloseAction == null)
+            {
+                createTourViewModel.CloseAction = new Action(createTourWindow.Close);
+
+            }
+
             createTourWindow.Owner = this;
             createTourWindow.Show();
         }

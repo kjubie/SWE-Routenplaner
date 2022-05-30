@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace SWEN2_Tourplanner_Models
 {
@@ -60,8 +61,13 @@ namespace SWEN2_Tourplanner_Models
             {
                 if (_date != null)
                 {
-                    DateTime datetime = Convert.ToDateTime(_date);
-                    string formateddate = datetime.Month + "/" + datetime.Day + "/" + datetime.Year;
+
+
+                    var regexItemMonth = new Regex("^[0-9][0-9]|^[0-9]");
+                    var regexItemDay = new Regex("/(.{1,2})/");
+                    var regexItemYear = new Regex("([0-9]{4})");                    
+
+                    string formateddate = regexItemDay.Match(_date).Groups[1].Value.ToString() + "/" + regexItemMonth.Match(_date).Groups[0].Value.ToString() + "/" + regexItemYear.Match(_date).Groups[0].Value.ToString();
                     return formateddate;
 
                 }

@@ -137,8 +137,13 @@ namespace SWEN2_Tourplanner_DataAccess
 
             string url = "https://localhost:7221/api/tour/search/" + searchterm;
             var response = await client.GetStringAsync(url);
-            Tours? tours = JsonSerializer.Deserialize<Tours>(response.ToString());
-            return tours;
+            if (response != "Nothing found!")
+            {
+                Tours? tours = JsonSerializer.Deserialize<Tours>(response.ToString());
+                return tours;
+
+            }
+            else { return null; }
         }
 
 
