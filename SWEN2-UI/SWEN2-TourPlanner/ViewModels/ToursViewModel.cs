@@ -42,24 +42,10 @@ namespace SWEN2_Tourplanner_ViewModels
             get { return _selectedTour; }
             set
             {
-<<<<<<< HEAD
                 if (value != null)
                 {
                     IsTourSelected = true;
-                    IsTourLogSelected = false;
-=======
-                  this.IsTourSelected = true;            
-
-                if (value == null)
-                {
-
-                    IsTourSelected = false;
-
-                }
-
-                _selectedTour = value;
->>>>>>> 93d4632f4eb166e76cbbf00d99fe3f874febd213
-
+                    IsTourLogSelected = false;       
                 }
 
                 if (value == null)
@@ -106,17 +92,7 @@ namespace SWEN2_Tourplanner_ViewModels
             get { return _selectedTourLog; }
             set
             {
-
-<<<<<<< HEAD
-                if (value != null)
-                {
-
-                    IsTourLogSelected = true;
-
-                }
-=======
                 this.IsTourLogSelected = true;            
->>>>>>> 93d4632f4eb166e76cbbf00d99fe3f874febd213
 
                 if (value == null)
                 {
@@ -127,7 +103,6 @@ namespace SWEN2_Tourplanner_ViewModels
 
                 _selectedTourLog = value;
                 OnPropertyChanged("SelectedTourLog");
-
             }
 
         }
