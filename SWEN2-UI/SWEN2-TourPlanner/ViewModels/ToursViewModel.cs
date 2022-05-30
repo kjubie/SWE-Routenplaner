@@ -484,61 +484,8 @@ namespace SWEN2_Tourplanner_ViewModels
         }
 
 
-        private string _errorMsg { get; set; }
-
-        public string ErrorMsg
-        {
-            get
-            {
-                return _errorMsg;
-            }
-            set
-            {
-                _errorMsg = value;
-                OnPropertyChanged("ErrorMsg");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        public void GeneratePDFTour()
-        {
-            try
-            {
-
-                if (_selectedTour != null)
-                {
-                    _request.GetPDFTourReport(_selectedTour.Name);
-                    ErrorMsg = "PDF for " + _selectedTour.Name + " generated";
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorMsg = ex.Message;
-            }
-        }
-
-
-        public void GeneratePDFSummarizedTour()
-        {
-            try
-            {
-                _request.GetPDFSummarizedTourReport();
-                ErrorMsg = "PDF for summarized report generated";
-            }
-            catch (Exception ex)
-            {
-                ErrorMsg = ex.Message;
-            }
-        }
+     
+           
 
 
         private string _errorMsg { get; set; }
