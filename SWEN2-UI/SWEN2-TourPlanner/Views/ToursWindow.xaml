@@ -84,6 +84,7 @@
                     <ColumnDefinition Width="15*"/>
                     <ColumnDefinition Width="15*"/>
                     <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="15*"/>
                 </Grid.ColumnDefinitions>
 
                 <Label FontSize="24" FontWeight="Bold" Grid.Column="1" HorizontalAlignment="Left">Tours</Label>
@@ -92,17 +93,21 @@
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/refresh.png"  />
                 </Button>
 
-                <Button Grid.Column="2" HorizontalAlignment="Right" Command="{Binding GenerateSummarizedTourReport}">
+                <Button Grid.Column="3" HorizontalAlignment="Right" Command="{Binding GenerateSummarizedTourReport}">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pdf.png"  />
                 </Button>
 
+                <Button Grid.Column="2" HorizontalAlignment="Right" Command="{Binding SpecialFeature}">
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/special.png"  />
+                </Button>
 
-                <Button  Grid.Column="3" HorizontalAlignment="Center" Click="OpenImportTourWindow">
+
+                <Button  Grid.Column="4" HorizontalAlignment="Center" Click="OpenImportTourWindow">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/import.png"  />
                 </Button>
 
 
-                <Button Click="OpenCreateWindow"  Grid.Column="4" HorizontalAlignment="Center" >
+                <Button Click="OpenCreateWindow"  Grid.Column="5" HorizontalAlignment="Center" >
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
                 </Button>
             </Grid>

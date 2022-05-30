@@ -24,6 +24,7 @@
     <None Remove="icons\plus.png" />
     <None Remove="icons\refresh.png" />
     <None Remove="icons\search.png" />
+    <None Remove="icons\special.png" />
     <None Remove="icons\star0.png" />
     <None Remove="icons\star1.png" />
     <None Remove="icons\star2.png" />
@@ -67,6 +68,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\pedestrian.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\special.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\star0.png">
