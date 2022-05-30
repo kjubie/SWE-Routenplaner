@@ -171,7 +171,7 @@ namespace SWEN2_Tourplanner_ViewModels
                 ErrorMsg = "No Tours found";
                 return;
             }
-           
+
 
             try
             {
@@ -409,6 +409,27 @@ namespace SWEN2_Tourplanner_ViewModels
         }
 
 
+        private ICommand _specialFeature;
+        public ICommand SpecialFeature
+        {
+            get
+            {
+
+
+                if (_specialFeature != null)
+                {
+                    return _specialFeature;
+                }
+                else
+                {
+                    _specialFeature = new Command(() => GeneratePDFSYearReport(), true);
+                    return _specialFeature;
+                }
+
+            }
+        }
+
+
 
         public TourModel GetSelectedTour()
         {
@@ -483,6 +504,20 @@ namespace SWEN2_Tourplanner_ViewModels
             {
                 _request.GetPDFSummarizedTourReport();
                 ErrorMsg = "PDF for summarized report generated";
+            }
+            catch (Exception ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+        }
+
+
+        public void GeneratePDFSYearReport()
+        {
+            try
+            {
+                _request.GetPDFYearReport();
+                ErrorMsg = "Shrimp did fine, you got a PDF";
             }
             catch (Exception ex)
             {

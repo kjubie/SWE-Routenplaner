@@ -16,6 +16,7 @@ namespace SWEN2_Tourplanner_DataAccess
         public async Task<Tours> GetTours()
         {
             using var client = new HttpClient();
+
             var response = await client.GetStringAsync("https://localhost:7221/api/Tour");
             Tours? tours = JsonSerializer.Deserialize<Tours>(response.ToString());
             return tours;
@@ -127,6 +128,14 @@ namespace SWEN2_Tourplanner_DataAccess
         public void GetPDFSummarizedTourReport()
         {
             string url = "https://localhost:7221/api" + "/tour/sumreport";
+            using var client = new HttpClient();
+            var response = client.GetAsync(url).Result;
+        }   
+        
+        
+        public void GetPDFYearReport()
+        {
+            string url = "https://localhost:7221/api/tour/recap/" + DateTime.Now.Year.ToString();
             using var client = new HttpClient();
             var response = client.GetAsync(url).Result;
         }
