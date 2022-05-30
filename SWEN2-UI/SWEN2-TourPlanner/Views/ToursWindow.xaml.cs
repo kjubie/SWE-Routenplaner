@@ -43,6 +43,7 @@ namespace SWEN2_TourPlanner
         private void OpenCreateWindow(object sender, RoutedEventArgs e)
         {
             CreateTourWindow createTourWindow = new CreateTourWindow();
+            createTourWindow.Owner = this;
             createTourWindow.Show();
         }
 
@@ -50,7 +51,7 @@ namespace SWEN2_TourPlanner
         {
             CreateTourLogViewModel CreateLogViewModel = new CreateTourLogViewModel(ViewModel.GetSelectedTour().Name);
             CreateTourLogWindow createTourLogWindow = new CreateTourLogWindow(CreateLogViewModel);
-
+            createTourLogWindow.Owner = this;
 
             //createTourLogWindow.DataContext = CreateLogViewModel;
 
@@ -60,7 +61,7 @@ namespace SWEN2_TourPlanner
         private void OpenModifyWindow(object sender, RoutedEventArgs e)
         {
             ModifyTourWindow modifyTourWindow = new ModifyTourWindow();
-
+            modifyTourWindow.Owner = this;
             ModifyTourViewModel modifyTourVM = new ModifyTourViewModel(ViewModel.GetSelectedTour());
 
             modifyTourWindow.DataContext = modifyTourVM;
@@ -77,7 +78,7 @@ namespace SWEN2_TourPlanner
         private void OpenModifyTourlogWindow(object sender, RoutedEventArgs e)
         {
             ModifyTourLogWindow modifyTourLogWindow = new ModifyTourLogWindow();
-
+            modifyTourLogWindow.Owner= this;
             ModifyTourLogsViewModel modifyTourLogVM = new ModifyTourLogsViewModel(ViewModel.GetSelectedTourLog());
 
             modifyTourLogWindow.DataContext = modifyTourLogVM;
@@ -102,7 +103,7 @@ namespace SWEN2_TourPlanner
             ImportTourWindow importTourWindow = new ImportTourWindow();
             ImportTourViewModel importTourVM = new ImportTourViewModel(ViewModel);
             importTourWindow.DataContext = importTourVM;
-
+            importTourWindow.Owner = this;
 
             importTourWindow.Show();
 
