@@ -16,7 +16,7 @@ namespace SWEN2_REST.BL.Controllers
         private readonly FileHandler _fileHandler;
         private readonly ILogger<TourController> _logger;
 
-        public class Request {
+        public class TRequest {
             public string? Name { get; set; }
             public string? Description { get; set; }
             public string? From { get; set; }
@@ -117,7 +117,10 @@ namespace SWEN2_REST.BL.Controllers
         }
 
         [HttpPost]
-        public string Post(Request request) {
+        public string Post(TRequest request) {
+            if(_tours.TourList.ContainsKey(request.Name))
+                return "Tour with this name already exists!";
+
             try {
                 if (!(request.RouteType.Equals("shortest") || request.RouteType.Equals("fastest") || request.RouteType.Equals("pedestrian") || request.RouteType.Equals("bicycle")))
                     return "Invalid route type!";
@@ -160,14 +163,15 @@ namespace SWEN2_REST.BL.Controllers
         }
 
         [HttpPost("import")]
-        public string PostImport(string request) {
-            Tour t = JsonSerializer.Deserialize<Tour>(request);
+        public async Task<string> PostImport() {
+            var jsonRequest = await new StreamReader(Request.Body).ReadToEndAsync();
+            Tour t = JsonSerializer.Deserialize<Tour>(jsonRequest);
+
             var image = t.ImageLocation;
             t.ImageLocation = "../../SWEN2-DB/routeImages/" + t.Name + ".txt";
 
             _fileHandler.SaveImage(Encoding.ASCII.GetBytes(image), t.Name);
             
-
             Task<string> fileTask;
 
             if (_tours.AddTour(t) == 0) {
@@ -189,7 +193,7 @@ namespace SWEN2_REST.BL.Controllers
         }
 
         [HttpPut("{name}")]
-        public string Put(string name, Request request) {
+        public string Put(string name, TRequest request) {
             if (!name.Equals(request.Name)) {
                 return "You cannot change the name of the tour!";
             }

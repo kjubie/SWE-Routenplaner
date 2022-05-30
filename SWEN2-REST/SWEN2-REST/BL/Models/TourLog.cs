@@ -8,6 +8,10 @@
         public int Rating { get; set; }
         public int Id { get; set; } = 0;
 
+        public TourLog() {
+
+        }
+
         public TourLog(string tourname) {
             Tourname = tourname;
         }
