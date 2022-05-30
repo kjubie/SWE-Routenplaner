@@ -13,26 +13,14 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.ComponentModel;
+using System.Text.Json;
 
 namespace SWEN2_Tourplanner_ViewModels
 {
-    public class ToursViewModel
+    public class ToursViewModel : INotifyPropertyChanged
     {
 
-        // private TourLogModel _tourLogsSelectedTour;
-
-        /*
-        public ObservableCollection<TourLogModel> _tourLogList;
-
-        public ObservableCollection<TourLogModel> TourLogList
-        {
-            get { return _tourLogList; }
-            set { _tourLogList = value; }
-        }
-        */
-
         private TourListModel _tourlist;
-
         public ObservableCollection<TourModel> TourList
         {
             get
@@ -43,20 +31,98 @@ namespace SWEN2_Tourplanner_ViewModels
             set
             {
                 _tourlist.TourList = value;
+                OnPropertyChanged("TourList");
             }
         }
+
+
         private TourModel? _selectedTour;
         public TourModel? SelectedTour
         {
             get { return _selectedTour; }
             set
             {
+                if (value != null)
+                {
+                    IsTourSelected = true;
+                    IsTourLogSelected = false;
+
+                }
+
+                if (value == null)
+                {
+                    IsTourSelected = false;
+                    IsTourLogSelected = false;
+
+                }
                 _selectedTour = value;
+                OnPropertyChanged("SelectedTour");
+            }
+
+        }
+
+        private bool _isTourSelected;
+        public bool IsTourSelected
+        {
+            get { return _isTourSelected; }
+
+            set
+            {
+                _isTourSelected = value;
+                OnPropertyChanged("IsTourSelected");
 
             }
 
         }
 
+
+
+
+        private string _searchToursText;
+        public string SearchToursText
+        {
+            get { return _searchToursText; }
+
+            set
+            {
+                _searchToursText = value;
+                OnPropertyChanged("SearchToursText");
+
+            }
+
+        }
+
+
+
+
+        private TourLogModel? _selectedTourLog;
+        public TourLogModel? SelectedTourLog
+        {
+            get { return _selectedTourLog; }
+            set
+            {
+
+                if (value != null)
+                {
+
+                    IsTourLogSelected = true;
+
+                }
+
+                if (value == null)
+                {
+
+                    IsTourLogSelected = false;
+
+                }
+
+
+                _selectedTourLog = value;
+                OnPropertyChanged("SelectedTourLog");
+
+            }
+
+        }
         private bool _isTourLogSelected;
         public bool IsTourLogSelected
         {
@@ -71,58 +137,6 @@ namespace SWEN2_Tourplanner_ViewModels
             }
 
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        private string _searchToursText;
-        public string SearchToursText
-        {
-            get { return _searchToursText; }
-
-            set
-            {
-                _searchToursText = value;
-                OnPropertyChanged("SearchToursText");
-
-            }
-
-        }
-        private string _searchTourLogsText;
-        public string SearchTourLogsText
-        {
-            get { return _searchTourLogsText; }
-
-            set
-            {
-                _searchTourLogsText = value;
-                OnPropertyChanged("SearchTourLogsText");
-
-            }
-
-        }
-
-
-        private TourLogModel? _selectedTourLog;
-        public TourLogModel? SelectedTourLog
-        {
-            get { return _selectedTourLog; }
-            set
-            {
-
-                this.IsTourLogSelected = true;
-
-                _selectedTourLog = value;
-            }
-
-        }
-
         private IQuery _request;
 
         public ToursViewModel()
@@ -131,16 +145,49 @@ namespace SWEN2_Tourplanner_ViewModels
             _tourlist = new TourListModel();
             _selectedTour = null;
             _selectedTourLog = null;
-            LoadTourList();
+            LoadAllTours();
 
         }
-        public async void LoadTourList()
+
+        public async Task<Tours> GetAllTours()
         {
+            Tours tours = await _request.GetTours();
+            return tours;
+        }
+
+        public async Task<Tours> GetSearchedTours()
+        {
+            Tours tours = await _request.GetToursBySearch(SearchToursText);
+            return tours;
+        }
+
+        public async void LoadAllTours()
+        {
+            Tours tours = await GetAllTours();
+            LoadTourList(tours);
+        }
+        public async void LoadSearchedTours()
+        {
+            ErrorMsg = "";
+
+            if (SearchToursText == "")
+            {
+                LoadAllTours();
+                return;
+            }
+
+
+            Tours tours = await GetSearchedTours();
+            LoadTourList(tours);
+        }
+
+        public async void LoadTourList(Tours tours)
+        {
+            ErrorMsg = "";
 
             try
             {
                 _tourlist.TourList.Clear();
-                Tours tours = await _request.GetTours();
 
                 Dictionary<string, Tour>.ValueCollection values = tours.TourList.Values;
 
@@ -162,12 +209,16 @@ namespace SWEN2_Tourplanner_ViewModels
                 {
                     string img = await _request.GetImageBase64(tour.Name);
                     byte[] binaryData = Convert.FromBase64String(img);
-                    //File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);            
+                    File.WriteAllBytes("../../../mapImg/" + tour.Name + ".png", binaryData);
 
                     BitmapImage bi = new BitmapImage();
-                    bi.BeginInit();
-                    bi.StreamSource = new MemoryStream(binaryData);
-                    bi.EndInit();
+                    if (img != "")
+                    {
+                        bi.BeginInit();
+                        bi.StreamSource = new MemoryStream(binaryData);
+                        bi.EndInit();
+
+                    }
 
                     _tourlist.Add(tour, bi);
                 }
@@ -177,57 +228,63 @@ namespace SWEN2_Tourplanner_ViewModels
                 ErrorMsg = ex.Message;
             }
         }
-           public async void LoadTourListBySearch()
+
+        public async void ExportTour()
         {
+            ErrorMsg = "";
 
             try
             {
-                _tourlist.TourList.Clear();
-                Tours tours = await _request.GetToursBySearchAll(SearchToursText);
-
-                Dictionary<string, Tour>.ValueCollection values = tours.TourList.Values;
-
-
-                DirectoryInfo di = new DirectoryInfo("../../../mapImg");
+                string tourJson = await _request.ExportTour(SelectedTour.Name);
+                File.WriteAllText("../../../ExportTours/" + SelectedTour.Name + ".json", tourJson);
+                ErrorMsg = SelectedTour.Name + ".json exported to ExportTours folder";
 
 
-                foreach (FileInfo file in di.GetFiles())
-                {
-                    file.Delete();
-                }
-                foreach (DirectoryInfo dir in di.GetDirectories())
-                {
-                    dir.Delete(true);
-                }
-
-
-                foreach (Tour tour in values)
-                {
-                    string img = await _request.GetImageBase64(tour.Name);
-                    byte[] binaryData = Convert.FromBase64String(img);
-                    //File.WriteAllBytes("../../../mapImg/" + val.Name + ".png", binaryData);            
-
-                    BitmapImage bi = new BitmapImage();
-                    bi.BeginInit();
-                    bi.StreamSource = new MemoryStream(binaryData);
-                    bi.EndInit();
-
-                    _tourlist.Add(tour, bi);
-                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ErrorMsg = ex.Message;
             }
         }
+
+
+
+        public async Task<int> ImportTour(string tourname)
+        {
+            
+            try
+            {
+
+                string contents = File.ReadAllText("../../../ExportTours/" + tourname + ".json");
+                if (contents == "")
+                {
+                    return -1;
+                }
+                else
+                {
+                    await _request.ImportTour(contents);
+                    LoadAllTours();
+                    return 0;
+                }
+                //File.WriteAllText("../../../ExportTours/" + SelectedTour.Name + ".json", tourJson);
+                //ErrorMsg = SelectedTour.Name + ".json exported to ExportTours folder";
+
+
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+
+            return 0;
+        }
+
 
         private ICommand _deleteSelectedCommand;
         public ICommand DeleteSelectedCommand
         {
             get
             {
-
-
                 if (_deleteSelectedCommand != null)
                 {
                     return _deleteSelectedCommand;
@@ -301,7 +358,7 @@ namespace SWEN2_Tourplanner_ViewModels
 
             }
         }
-        
+
         private ICommand _searchTours;
         public ICommand SearchTours
         {
@@ -315,8 +372,49 @@ namespace SWEN2_Tourplanner_ViewModels
                 }
                 else
                 {
-                    _searchTours = new Command(() => LoadTourListBySearch(), true);
+                    _searchTours = new Command(() => LoadSearchedTours(), true);
                     return _searchTours;
+                }
+
+            }
+        }
+
+        private ICommand _searchTourLogs;
+        public ICommand SearchTourLogs
+        {
+            get
+            {
+
+
+                if (_searchTourLogs != null)
+                {
+                    return _searchTourLogs;
+                }
+                else
+                {
+                    _searchTourLogs = new Command(() => LoadSearchedTours(), true);
+                    return _searchTourLogs;
+                }
+
+            }
+        }
+
+
+        private ICommand _exportTourCommand;
+        public ICommand ExportTourCommand
+        {
+            get
+            {
+
+
+                if (_exportTourCommand != null)
+                {
+                    return _exportTourCommand;
+                }
+                else
+                {
+                    _exportTourCommand = new Command(() => ExportTour(), true);
+                    return _exportTourCommand;
                 }
 
             }
@@ -341,12 +439,12 @@ namespace SWEN2_Tourplanner_ViewModels
                 if (_selectedTour != null)
                 {
                     _request.DeleteTour(_selectedTour.Name);
-                    LoadTourList();
+                    LoadAllTours();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ErrorMsg = ex.Message;
             }
         }
 
@@ -362,14 +460,74 @@ namespace SWEN2_Tourplanner_ViewModels
 
                     _request.DeleteTourLog(_selectedTourLog.Tourname, _selectedTourLog.Id);
 
-                    LoadTourList();
+                    LoadAllTours();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ErrorMsg = ex.Message;
             }
         }
+
+
+
+        public void GeneratePDFTour()
+        {
+            try
+            {
+
+                if (_selectedTour != null)
+                {
+                    _request.GetPDFTourReport(_selectedTour.Name);
+                    ErrorMsg = "PDF for " + _selectedTour.Name + " generated";
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+        }
+
+
+        public void GeneratePDFSummarizedTour()
+        {
+            try
+            {
+                _request.GetPDFSummarizedTourReport();
+                ErrorMsg = "PDF for summarized report generated";
+            }
+            catch (Exception ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+        }
+
+
+        private string _errorMsg { get; set; }
+
+        public string ErrorMsg
+        {
+            get
+            {
+                return _errorMsg;
+            }
+            set
+            {
+                _errorMsg = value;
+                OnPropertyChanged("ErrorMsg");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
     }
 }
 

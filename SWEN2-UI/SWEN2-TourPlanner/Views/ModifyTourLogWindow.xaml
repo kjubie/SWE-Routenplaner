@@ -27,30 +27,18 @@
     </Window.Resources>
     <Grid>
         <StackPanel Margin ="15" >
-            <Label FontSize="25" FontWeight="Bold">
-                Modify Tour Log
-            </Label>
-
-            <Label FontSize="14" Content="{Binding ModTourLog.Tourname}">
-            </Label>
+            <Label FontSize="25" FontWeight="Bold">Modify Tour Log</Label>
+            <Label FontSize="14" Content="{Binding ModTourLog.Tourname}"></Label>
 
             <Border BorderThickness="0 0 0 1" Background="Black" BorderBrush ="Black"></Border>
+            <Label>Date*</Label>
+            <DatePicker Text="{Binding ModTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, StringFormat = {}{0:dd/MM/yyyy}, ValidatesOnExceptions=True}" Height="25"/>
 
-            <Label>
-                Date
-            </Label>
+            <Label>Comment</Label>
+            <TextBox Text="{Binding ModTourLog.Comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"></TextBox>
 
-
-            <DatePicker Text="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
-            <!--<TextBox Text="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  x:Name="From"></TextBox>-->
-            <Label>
-                Comment
-            </Label>
-            <TextBox Text="{Binding ModTourLog.Comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Label>
-                Difficulty
-            </Label>
-            <ComboBox Text="{Binding ModTourLog.DifficultyString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <Label>Difficulty*</Label>
+            <ComboBox Text="{Binding ModTourLog.DifficultyString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}">
 
                 <ComboBoxItem>very easy</ComboBoxItem>
                 <ComboBoxItem>easy</ComboBoxItem>
@@ -60,16 +48,12 @@
 
             </ComboBox>
 
-            <Label>Time</Label>
+            <Label>Time*</Label>
+            <syncfusion:TimeSpanEdit MinValue="0" Format="hh:mm:ss" AllowNull="True" NullString="00:00:00" TextWrapping="Wrap" Text="{Binding ModTourLog.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
 
 
-            <syncfusion:TimeSpanEdit Format="hh:mm:ss" AllowNull="True" NullString="00:00:00" TextWrapping="Wrap" Text="{Binding ModTourLog.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-            <!--
-            <syncfusion:SfTimePicker Value=" SetValueOnLostFocus="True" AllowNull="True"  SelectorFormatString="HH:mm:ss" FormatString="HH:mm:ss" Watermark="Select time.."/> -->
-
-            <Label>Rating</Label>
-            <ComboBox Text="{Binding ModTourLog.RatingString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <Label>Rating*</Label>
+            <ComboBox Text="{Binding ModTourLog.RatingString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}">
 
                 <ComboBoxItem>very bad</ComboBoxItem>
                 <ComboBoxItem>bad</ComboBoxItem>
@@ -83,6 +67,8 @@
                 <Button Click="CloseWindow" DockPanel.Dock="Right">Cancel</Button>
                 <Button Command="{Binding UpdateTourLogCommand}" DockPanel.Dock="Right">Save</Button>
             </DockPanel>
+            <Label Foreground="red" FontWeight="Light" FontStyle="Italic" Content="{Binding ErrorMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
         </StackPanel>
     </Grid>
 </Window>

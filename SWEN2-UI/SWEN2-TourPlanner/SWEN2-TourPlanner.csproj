@@ -9,9 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="mapImgv\**" />
+    <EmbeddedResource Remove="mapImgv\**" />
+    <None Remove="mapImgv\**" />
+    <Page Remove="mapImgv\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="icons\delete.png" />
     <None Remove="icons\export.png" />
     <None Remove="icons\import.png" />
+    <None Remove="icons\pdf.png" />
     <None Remove="icons\pen.png" />
     <None Remove="icons\plus.png" />
     <None Remove="icons\refresh.png" />
@@ -22,7 +30,6 @@
     <None Remove="icons\star3.png" />
     <None Remove="icons\star4.png" />
     <None Remove="icons\star5.png" />
-    <None Remove="mapImg\map_test.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +40,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\import.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pdf.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\pen.png">
@@ -90,6 +100,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\SWE-Routenplaner-Business\SWE-Routenplaner-Business.csproj" />
     <ProjectReference Include="..\..\SWE-Routenplaner-DataAccess\SWE-Routenplaner-DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="mapImg\" />
+    <Folder Include="ExportTours\" />
+    <Folder Include="ExportTours\" />
   </ItemGroup>
 
 </Project>

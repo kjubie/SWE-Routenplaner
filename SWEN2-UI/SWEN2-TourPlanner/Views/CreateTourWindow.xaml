@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SWEN2_TourPlanner.View"
         mc:Ignorable="d"
-        Title="CreateTour" Height="450" Width="400">
+        Title="CreateTour" Height="500" Width="400">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -28,21 +28,21 @@
     <Grid>
         <StackPanel Margin ="15" >
             <Label FontSize="25" FontWeight="Bold">
-               Create Tour
+                Create Tour
             </Label>
             <Border BorderThickness="0 0 0 1" Background="Black" BorderBrush ="Black"></Border>
             <Label>
                 From*
             </Label>
-            <TextBox Text="{Binding CreatedTour.From, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  x:Name="From"></TextBox>
+            <TextBox Text="{Binding CreatedTour.From, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"  x:Name="From"></TextBox>
             <Label>
                 To*
             </Label>
-            <TextBox Text="{Binding CreatedTour.To, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Text="{Binding CreatedTour.To, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"></TextBox>
             <Label>
                 Mean of transport
             </Label>
-            <ComboBox Text="{Binding CreatedTour.TransportType, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox Text="{Binding CreatedTour.TransportType, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}">
                 <ComboBoxItem IsSelected="True">bicycle</ComboBoxItem>
                 <ComboBoxItem>pedestrian</ComboBoxItem>
                 <ComboBoxItem>fastest</ComboBoxItem>
@@ -52,18 +52,22 @@
             <Label>
                 Tour name
             </Label>
-            
-            <TextBox Text="{Binding CreatedTour.Name, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <TextBox Text="{Binding CreatedTour.Name, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"></TextBox>
             <Label>
                 Description
             </Label>
 
-            <TextBox Text="{Binding CreatedTour.Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Height="100"></TextBox>
+            <TextBox Text="{Binding CreatedTour.Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" Height="100"></TextBox>
             <DockPanel Margin="0 5 0 5">
                 <Button DockPanel.Dock="Left">Import...</Button>
                 <Button Click="CloseWindow" DockPanel.Dock="Right">Cancel</Button>
                 <Button Command="{Binding SaveCreatedCommand}" DockPanel.Dock="Right">Save</Button>
             </DockPanel>
+
+            <Label Foreground="red" FontWeight="Light" FontStyle="Italic" Content="{Binding ErrorMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+
         </StackPanel>
     </Grid>
 </Window>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SWEN2_TourPlanner.Views"
          xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
         mc:Ignorable="d"
-       Title="CreateTourLogWindow" Height="420" Width="400">
+       Title="CreateTourLogWindow" Height="480" Width="400">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -21,54 +21,22 @@
             <Setter Property="BorderBrush" Value="Transparent"></Setter>
             <Setter Property="BorderBrush" Value="LightGray"></Setter>
         </Style>
-
-
     </Window.Resources>
     <Grid>
         <StackPanel Margin ="15" >
-            <Label FontSize="25" FontWeight="Bold">
-                Create Tour Log
-            </Label>
-
-            <Label FontSize="14" Content="{Binding CreatedTourLog.Tourname}">
-            </Label>
+            <Label FontSize="25" FontWeight="Bold">Create Tour Log</Label>
+            <Label FontSize="14" Content="{Binding CreatedTourLog.Tourname}"></Label>
 
             <Border BorderThickness="0 0 0 1" Background="Black" BorderBrush ="Black"></Border>
 
-            <Label>
-                Date
-            </Label>
+            <Label>Date*</Label>
+            <DatePicker SelectedDate="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, StringFormat = {}{0:dd/MM/yyyy},  ValidatesOnExceptions=True}"/>
 
-<!--
-            <DatePicker SelectedDate="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:dd.MM.yyyy}}" Height="25">
-                <DatePicker.Resources>
-                    <Style TargetType="DatePickerTextBox">
-                        <Setter Property="Control.Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, StringFormat = {}{0:dd.MM.yyyy}, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </DatePicker.Resources>
-            </DatePicker>
--->
+            <Label>Comment</Label>
+            <TextBox Text="{Binding CreatedTourLog.Comment, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"></TextBox>
 
-            <DatePicker SelectedDate="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, StringFormat = {}{0:dd/MM/yyyy}}"/>
-          
-
-
-
-            <!--<TextBox Text="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  x:Name="From"></TextBox>-->
-            <Label>
-                Comment
-            </Label>
-            <TextBox Text="{Binding CreatedTourLog.Comment, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Label>
-                Difficulty
-            </Label>
-            <ComboBox Text="{Binding CreatedTourLog.DifficultyString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+            <Label>Difficulty*</Label>
+            <ComboBox SelectedIndex="0" Text="{Binding CreatedTourLog.DifficultyString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}">
 
                 <ComboBoxItem>very easy</ComboBoxItem>
                 <ComboBoxItem>easy</ComboBoxItem>
@@ -78,16 +46,11 @@
 
             </ComboBox>
 
-            <Label>Time</Label>
+            <Label>Time*</Label>
+            <syncfusion:TimeSpanEdit MinValue="0" Format="hh:mm:ss" AllowNull="True" NullString="00:00:00" TextWrapping="Wrap" Text="{Binding CreatedTourLog.Time, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged , ValidatesOnExceptions=True}"/>
 
-
-            <syncfusion:TimeSpanEdit Format="hh:mm:ss" AllowNull="True" NullString="00:00:00" TextWrapping="Wrap" Text="{Binding CreatedTourLog.Time, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
-
-            <!--
-            <syncfusion:SfTimePicker Value=" SetValueOnLostFocus="True" AllowNull="True"  SelectorFormatString="HH:mm:ss" FormatString="HH:mm:ss" Watermark="Select time.."/> -->
-
-            <Label>Rating</Label>
-            <ComboBox Text="{Binding CreatedTourLog.RatingString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+            <Label>Rating*</Label>
+            <ComboBox SelectedIndex="0" Text="{Binding CreatedTourLog.RatingString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}">
 
                 <ComboBoxItem>very bad</ComboBoxItem>
                 <ComboBoxItem>bad</ComboBoxItem>
@@ -101,6 +64,9 @@
                 <Button Click="CloseWindow" DockPanel.Dock="Right">Cancel</Button>
                 <Button Command="{Binding SaveCreatedCommand}" DockPanel.Dock="Right">Save</Button>
             </DockPanel>
+
+            <Label Foreground="red" FontWeight="Light" FontStyle="Italic" Content="{Binding ErrorMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
         </StackPanel>
     </Grid>
 </Window>
