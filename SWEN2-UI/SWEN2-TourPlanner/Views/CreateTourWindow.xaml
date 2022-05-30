@@ -60,7 +60,6 @@
 
             <TextBox Text="{Binding CreatedTour.Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" Height="100"></TextBox>
             <DockPanel Margin="0 5 0 5">
-                <Button DockPanel.Dock="Left">Import...</Button>
                 <Button Click="CloseWindow" DockPanel.Dock="Right">Cancel</Button>
                 <Button Command="{Binding SaveCreatedCommand}" DockPanel.Dock="Right">Save</Button>
             </DockPanel>

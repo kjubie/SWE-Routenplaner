@@ -58,7 +58,7 @@
 
             <TextBox Text="{Binding ModTour.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" Height="100"></TextBox>
             <DockPanel Margin="0 5 0 5">
-                <Button DockPanel.Dock="Left">Import...</Button>
+            
                 <Button Click="CloseWindow" DockPanel.Dock="Right">Cancel</Button>
                 <Button Command="{Binding UpdateTourCommand}" DockPanel.Dock="Right">Save</Button>
             </DockPanel>
