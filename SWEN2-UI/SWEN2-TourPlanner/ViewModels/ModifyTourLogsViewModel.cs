@@ -56,7 +56,7 @@ namespace SWEN2_TourPlanner_ViewModels
 
         public void UpdateTourLog()
         {
-            ErrorMsg = "";
+
 
             try
             {
@@ -98,8 +98,6 @@ namespace SWEN2_TourPlanner_ViewModels
             }
         }
 
-        public Action CloseAction { get; set; }
-
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChanged(string propertyName)
@@ -110,5 +108,6 @@ namespace SWEN2_TourPlanner_ViewModels
             }
         }
 
+        public Action CloseAction { get; set; }
     }
 }

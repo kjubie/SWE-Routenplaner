@@ -32,7 +32,7 @@
 
             <Border BorderThickness="0 0 0 1" Background="Black" BorderBrush ="Black"></Border>
             <Label>Date*</Label>
-            <DatePicker Text="{Binding CreatedTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" Height="25"/>
+            <DatePicker Text="{Binding ModTourLog.Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, StringFormat = {}{0:dd/MM/yyyy}, ValidatesOnExceptions=True}" Height="25"/>
 
             <Label>Comment</Label>
             <TextBox Text="{Binding ModTourLog.Comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"></TextBox>

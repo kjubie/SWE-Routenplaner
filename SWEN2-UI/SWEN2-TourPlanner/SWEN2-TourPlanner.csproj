@@ -105,6 +105,7 @@
   <ItemGroup>
     <Folder Include="mapImg\" />
     <Folder Include="ExportTours\" />
+    <Folder Include="ExportTours\" />
   </ItemGroup>
 
 </Project>
