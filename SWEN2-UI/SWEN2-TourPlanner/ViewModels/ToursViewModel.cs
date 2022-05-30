@@ -42,10 +42,23 @@ namespace SWEN2_Tourplanner_ViewModels
             get { return _selectedTour; }
             set
             {
+<<<<<<< HEAD
                 if (value != null)
                 {
                     IsTourSelected = true;
                     IsTourLogSelected = false;
+=======
+                  this.IsTourSelected = true;            
+
+                if (value == null)
+                {
+
+                    IsTourSelected = false;
+
+                }
+
+                _selectedTour = value;
+>>>>>>> 93d4632f4eb166e76cbbf00d99fe3f874febd213
 
                 }
 
@@ -58,9 +71,7 @@ namespace SWEN2_Tourplanner_ViewModels
                 _selectedTour = value;
                 OnPropertyChanged("SelectedTour");
             }
-
-        }
-
+        }       
         private bool _isTourSelected;
         public bool IsTourSelected
         {
@@ -73,10 +84,7 @@ namespace SWEN2_Tourplanner_ViewModels
 
             }
 
-        }
-
-
-
+        }     
 
         private string _searchToursText;
         public string SearchToursText
@@ -92,9 +100,6 @@ namespace SWEN2_Tourplanner_ViewModels
 
         }
 
-
-
-
         private TourLogModel? _selectedTourLog;
         public TourLogModel? SelectedTourLog
         {
@@ -102,12 +107,16 @@ namespace SWEN2_Tourplanner_ViewModels
             set
             {
 
+<<<<<<< HEAD
                 if (value != null)
                 {
 
                     IsTourLogSelected = true;
 
                 }
+=======
+                this.IsTourLogSelected = true;            
+>>>>>>> 93d4632f4eb166e76cbbf00d99fe3f874febd213
 
                 if (value == null)
                 {
@@ -115,7 +124,6 @@ namespace SWEN2_Tourplanner_ViewModels
                     IsTourLogSelected = false;
 
                 }
-
 
                 _selectedTourLog = value;
                 OnPropertyChanged("SelectedTourLog");
@@ -127,7 +135,6 @@ namespace SWEN2_Tourplanner_ViewModels
         public bool IsTourLogSelected
         {
             get { return _isTourLogSelected; }
-
             set
             {
 
@@ -135,7 +142,6 @@ namespace SWEN2_Tourplanner_ViewModels
                 OnPropertyChanged("IsTourLogSelected");
 
             }
-
         }
         private IQuery _request;
 
@@ -528,6 +534,62 @@ namespace SWEN2_Tourplanner_ViewModels
             }
         }
 
+        public void GeneratePDFTour()
+        {
+            try
+            {
+
+                if (_selectedTour != null)
+                {
+                    _request.GetPDFTourReport(_selectedTour.Name);
+                    ErrorMsg = "PDF for " + _selectedTour.Name + " generated";
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+        }
+
+
+        public void GeneratePDFSummarizedTour()
+        {
+            try
+            {
+                _request.GetPDFSummarizedTourReport();
+                ErrorMsg = "PDF for summarized report generated";
+            }
+            catch (Exception ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+        }
+
+
+        private string _errorMsg { get; set; }
+
+        public string ErrorMsg
+        {
+            get
+            {
+                return _errorMsg;
+            }
+            set
+            {
+                _errorMsg = value;
+                OnPropertyChanged("ErrorMsg");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }
 

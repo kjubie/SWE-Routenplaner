@@ -105,7 +105,10 @@
   <ItemGroup>
     <Folder Include="mapImg\" />
     <Folder Include="ExportTours\" />
+<<<<<<< HEAD
     <Folder Include="ExportTours\" />
+=======
+>>>>>>> 93d4632f4eb166e76cbbf00d99fe3f874febd213
   </ItemGroup>
 
 </Project>
