@@ -1,0 +1,11 @@
+@startuml
+class Command {
+    - _canExecute : bool
+    + Command(action:Action, canExecute:bool)
+    + CanExecute(parameter:object) : bool
+    +  <<event>> CanExecuteChanged : EventHandler 
+    + Execute(parameter:object) : void
+}
+ICommand <|-- Command
+Command --> "_action" Action
+@enduml

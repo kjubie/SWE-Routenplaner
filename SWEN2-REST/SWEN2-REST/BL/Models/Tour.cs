@@ -2,7 +2,7 @@
 using ceTe.DynamicPDF.PageElements;
 
 namespace SWEN2_Tourplanner_Models {
-    public class Tour {
+    public class Tour : ITour {
         public string Name { get; set; }
         public string Description { get; set; }
         public string From { get; set; }
@@ -89,6 +89,9 @@ namespace SWEN2_Tourplanner_Models {
 
             var lid = Logs.Count() + 1;
             log.Id = lid;
+
+            Console.WriteLine(Logs.Keys);
+
             if (Logs.TryAdd(lid, log))
                 return lid;
             return -1;
@@ -131,7 +134,12 @@ namespace SWEN2_Tourplanner_Models {
             page = new Page(PageSize.Letter, PageOrientation.Portrait, 54.0f);
             document.Pages.Add(page);
 
-            page.Elements.Add(new Image("../../SWEN2-DB/routeImages/" + Name + ".jpg", 0, 0));
+            try {
+                page.Elements.Add(new Image("../../SWEN2-DB/routeImages/" + Name + ".jpg", 0, 0));
+            } catch {
+                text = new TextArea("Could not open Image at: " + "../../SWEN2-DB/routeImages/" + Name + ".jpg", 0, 0, 504, 1000, Font.Helvetica, 12, TextAlign.Left);
+                page.Elements.Add(text);
+            }
 
             foreach (TourLog log in Logs.Values) {
                 Page logPage = new Page(PageSize.Letter, PageOrientation.Portrait, 54.0f);
@@ -149,7 +157,7 @@ namespace SWEN2_Tourplanner_Models {
             }
 
             try {
-                document.Draw(Name + ".pdf");
+                document.Draw("../../" + Name + ".pdf");
             } catch (Exception ex) {
                 return -1;
             }

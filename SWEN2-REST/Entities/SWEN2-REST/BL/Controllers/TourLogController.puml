@@ -1,0 +1,25 @@
+@startuml
+class TourLogController {
+    + TourLogController(tours:Tours, tourContext:TourContext, logger:ILogger<TourLogController>)
+    + Get(name:string) : string
+    + Post(request:LogRequest) : string
+    + Put(name:string, id:int, request:LogRequest) : string
+    + Delete(name:string, id:int) : string
+}
+class "ILogger`1"<T> {
+}
+class LogRequest {
+    + Tourname : string? <<get>> <<set>>
+    + Date : string? <<get>> <<set>>
+    + Comment : string? <<get>> <<set>>
+    + Difficulty : int <<get>> <<set>>
+    + Time : string? <<get>> <<set>>
+    + Rating : int <<get>> <<set>>
+    + Id : int <<get>> <<set>>
+}
+ControllerBase <|-- TourLogController
+TourLogController --> "_tours" Tours
+TourLogController --> "_tourContext" TourContext
+TourLogController --> "_logger<TourLogController>" "ILogger`1"
+TourLogController +-- LogRequest
+@enduml

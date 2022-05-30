@@ -1,0 +1,13 @@
+@startuml
+class ParaCommand {
+    - _canExecute : bool
+    + ParaCommand(action:Action<object>, canExecute:bool)
+    + CanExecute(parameter:object) : bool
+    +  <<event>> CanExecuteChanged : EventHandler 
+    + Execute(parameter:object) : void
+}
+class "Action`1"<T> {
+}
+ICommand <|-- ParaCommand
+ParaCommand --> "_action<object>" "Action`1"
+@enduml

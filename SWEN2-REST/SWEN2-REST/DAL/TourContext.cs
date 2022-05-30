@@ -4,7 +4,7 @@ using SWEN2_Tourplanner_Models;
 
 namespace SWEN2_REST.DAL
 {
-    public class TourContext {
+    public class TourContext : ITourContext {
         private string ConnectionString;
         public NpgsqlConnection SqlConnection;
         private readonly ILogger<TourContext> _logger;
@@ -20,6 +20,18 @@ namespace SWEN2_REST.DAL
             _logger = logger;
 
             StreamReader streamReader = new StreamReader("../../SWEN2-DB/dbconn.json");
+            string jsonString = streamReader.ReadToEnd();
+            connModel conn = JsonConvert.DeserializeObject<connModel>(jsonString);
+            ConnectionString = "Host=" + conn.host + ";Username=" + conn.username + ";Password=" + conn.password + ";Database=" + conn.database;
+            SqlConnection = new NpgsqlConnection(ConnectionString);
+
+            LoadTours(tours);
+        }
+
+        public TourContext(ILogger<TourContext> logger, Tours tours, string path) {
+            _logger = logger;
+
+            StreamReader streamReader = new StreamReader(path);
             string jsonString = streamReader.ReadToEnd();
             connModel conn = JsonConvert.DeserializeObject<connModel>(jsonString);
             ConnectionString = "Host=" + conn.host + ";Username=" + conn.username + ";Password=" + conn.password + ";Database=" + conn.database;

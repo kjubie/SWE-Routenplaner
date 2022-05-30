@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using SWEN2_Tourplanner_Models;
 using SWEN2_REST.DAL;
 using System.Text.Json;
@@ -33,7 +32,12 @@ namespace SWEN2_REST.BL.Controllers {
         [HttpGet("{name}")]
         public string Get(string name) {
             _logger.LogInformation("Get " + name + " log");
-            return JsonSerializer.Serialize(_tours.GetTour(name).Logs);
+            try {
+                _ = _tours.GetTour(name).Logs;
+                return JsonSerializer.Serialize(_tours.GetTour(name).Logs);
+            } catch (Exception ex) {
+                return "Tour does not exist!";
+            }
         }
 
         [HttpGet("search/{term}")]
@@ -60,6 +64,18 @@ namespace SWEN2_REST.BL.Controllers {
 
         [HttpPost]
         public string Post(LogRequest request) {
+            try {
+                Convert.ToDateTime(request.Date);
+            } catch (Exception ex) {
+                return "Invalid date format!";
+            }
+
+            try {
+                _ = TimeSpan.Parse(request.Time).TotalHours;
+            } catch (Exception ex) {
+                return "Invalid time format!";
+            }
+
             try {
                 TourLog tl = new(request.Tourname, request.Date, request.Comment, request.Difficulty, request.Time, request.Rating);
 
@@ -89,7 +105,7 @@ namespace SWEN2_REST.BL.Controllers {
         [HttpPut("{name}/{id}")]
         public string Put(string name, int id, LogRequest request) {
             if (!name.Equals(request.Tourname))
-                return "Error: Name of the tour and the log must be the same!";
+                return "Name of the tour and the log must be the same!";
             try {
                 TourLog tl = new(request.Tourname, request.Date, request.Comment, request.Difficulty, request.Time, request.Rating);
 
@@ -110,7 +126,7 @@ namespace SWEN2_REST.BL.Controllers {
                 return "Updated Tourlog " + request.Tourname;
             } catch (Exception ex) {
                 _logger.LogError("Error: " + ex);
-                return "Tour with name " + request.Tourname + " does not exist!";
+                return "Tourlog with name " + request.Tourname + " and ID: " + id + "does not exist!";
             }
         }
 

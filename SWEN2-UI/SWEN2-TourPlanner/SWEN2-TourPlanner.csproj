@@ -19,7 +19,6 @@
     <None Remove="icons\delete.png" />
     <None Remove="icons\export.png" />
     <None Remove="icons\import.png" />
-    <None Remove="icons\pdf.png" />
     <None Remove="icons\pen.png" />
     <None Remove="icons\plus.png" />
     <None Remove="icons\refresh.png" />
@@ -40,9 +39,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\import.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\pdf.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\pen.png">

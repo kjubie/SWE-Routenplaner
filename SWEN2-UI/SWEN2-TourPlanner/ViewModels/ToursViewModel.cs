@@ -17,8 +17,20 @@ using System.Text.Json;
 
 namespace SWEN2_Tourplanner_ViewModels
 {
-    public class ToursViewModel : INotifyPropertyChanged
+    public class ToursViewModel
     {
+
+        // private TourLogModel _tourLogsSelectedTour;
+
+        /*
+        public ObservableCollection<TourLogModel> _tourLogList;
+
+        public ObservableCollection<TourLogModel> TourLogList
+        {
+            get { return _tourLogList; }
+            set { _tourLogList = value; }
+        }
+        */
 
         private TourListModel _tourlist;
         public ObservableCollection<TourModel> TourList
@@ -31,7 +43,6 @@ namespace SWEN2_Tourplanner_ViewModels
             set
             {
                 _tourlist.TourList = value;
-                OnPropertyChanged("TourList");
             }
         }
 
@@ -42,25 +53,22 @@ namespace SWEN2_Tourplanner_ViewModels
             get { return _selectedTour; }
             set
             {
-                if (value != null)
-                {
-                    IsTourSelected = true;
-                    IsTourLogSelected = false;
-
-                }
+                  this.IsTourSelected = true;            
 
                 if (value == null)
                 {
+
                     IsTourSelected = false;
-                    IsTourLogSelected = false;
 
                 }
+
                 _selectedTour = value;
-                OnPropertyChanged("SelectedTour");
+
             }
 
-        }
-
+        }         
+          
+          
         private bool _isTourSelected;
         public bool IsTourSelected
         {
@@ -68,12 +76,13 @@ namespace SWEN2_Tourplanner_ViewModels
 
             set
             {
+
                 _isTourSelected = value;
                 OnPropertyChanged("IsTourSelected");
 
             }
 
-        }
+        }     
 
 
 
@@ -93,8 +102,6 @@ namespace SWEN2_Tourplanner_ViewModels
         }
 
 
-
-
         private TourLogModel? _selectedTourLog;
         public TourLogModel? SelectedTourLog
         {
@@ -102,12 +109,7 @@ namespace SWEN2_Tourplanner_ViewModels
             set
             {
 
-                if (value != null)
-                {
-
-                    IsTourLogSelected = true;
-
-                }
+                this.IsTourLogSelected = true;            
 
                 if (value == null)
                 {
@@ -116,10 +118,7 @@ namespace SWEN2_Tourplanner_ViewModels
 
                 }
 
-
                 _selectedTourLog = value;
-                OnPropertyChanged("SelectedTourLog");
-
             }
 
         }
@@ -273,6 +272,7 @@ namespace SWEN2_Tourplanner_ViewModels
             }
             catch (Exception ex)
             {
+
                 return -1;
             }
 
@@ -444,7 +444,7 @@ namespace SWEN2_Tourplanner_ViewModels
             }
             catch (Exception ex)
             {
-                ErrorMsg = ex.Message;
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -465,11 +465,9 @@ namespace SWEN2_Tourplanner_ViewModels
             }
             catch (Exception ex)
             {
-                ErrorMsg = ex.Message;
+                Console.WriteLine(ex.Message);
             }
         }
-
-
 
         public void GeneratePDFTour()
         {

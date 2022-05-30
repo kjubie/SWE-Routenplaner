@@ -1,0 +1,15 @@
+@startuml
+class TourLog {
+    + Tourname : string <<get>> <<set>>
+    + Date : string? <<get>> <<set>>
+    + Comment : string? <<get>> <<set>>
+    + Difficulty : int <<get>> <<set>>
+    + Time : string? <<get>> <<set>>
+    + Rating : int <<get>> <<set>>
+    + Id : int <<get>> <<set>>
+    + TourLog(tourname:string)
+    + TourLog()
+    + TourLog(tourname:string, date:string, comment:string, difficulty:int, time:string, rating:int)
+    + TourLog(tourname:string, date:string, comment:string, difficulty:int, time:string, rating:int, id:int)
+}
+@enduml

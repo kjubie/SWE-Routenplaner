@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using SWEN2_Tourplanner_Models;
 using SWEN2_REST.DAL;
 using System.Text.Json;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace SWEN2_REST.BL.Controllers
 {
@@ -52,6 +52,14 @@ namespace SWEN2_REST.BL.Controllers
             return JsonSerializer.Serialize(_tours.GetTour(name));
         }
 
+        [HttpGet("recap/{year}")]
+        public string GetRecap(int year) {
+            _logger.LogInformation("Get recap report");
+            if (_tours.GenerateRecap(year) == -1)
+                return "Error while generating recap!";
+            return "Report generated!";
+        }
+
         [HttpGet("{name}/export")]
         public string GetJSON(string name) {
             _logger.LogInformation("Get " + name + " tour JSON");
@@ -65,8 +73,12 @@ namespace SWEN2_REST.BL.Controllers
         [HttpGet("{name}/report")]
         public string GetReport(string name) {
             _logger.LogInformation("Get " + name + " report");
-            if (_tours.GetTour(name).GeneratePDF() == -1)
-                return "Error while generating report!";
+            try {
+                if (_tours.GetTour(name).GeneratePDF() == -1)
+                    return "Error while generating report!";
+            } catch {
+                return "Tour with name: " + name + " does not exist!";
+            }
             return "Report generated!";
         }
 
@@ -84,7 +96,7 @@ namespace SWEN2_REST.BL.Controllers
             int found = 0;
 
             foreach (Tour tour in _tours.TourList.Values) {
-                if (tour.Name.Contains(term) || tour.Description.Contains(term) || tour.From.Contains(term) || tour.To.Contains(term) || tour.TransportType.Contains(term) || tour.Name.Contains(term) || tour.Info.Contains(term)) {
+                if(tour.Name.Contains(term) || tour.Description.Contains(term) || tour.From.Contains(term) || tour.To.Contains(term) || tour.TransportType.Contains(term) || tour.Name.Contains(term) || tour.Info.Contains(term)) {
                     ts.AddTour(tour);
                     found = 1;
                     continue;
@@ -106,6 +118,13 @@ namespace SWEN2_REST.BL.Controllers
 
         [HttpPost]
         public string Post(Request request) {
+            try {
+                if (!(request.RouteType.Equals("shortest") || request.RouteType.Equals("fastest") || request.RouteType.Equals("pedestrian") || request.RouteType.Equals("bicycle")))
+                    return "Invalid route type!";
+            } catch (Exception ex) {
+                return "Invalid route type exeption!";
+            }
+
             var task = _mapQuestContext.GetRouteAsync(request.From, request.To, request.RouteType);
             task.Wait();
             var result = task.Result.ToString();
@@ -120,14 +139,14 @@ namespace SWEN2_REST.BL.Controllers
 
             Tour t = new(request.Name, request.Description, request.From, request.To, request.RouteType, (double)res.route.distance, res.route.formattedTime.ToString(), request.Info, "../../SWEN2-DB/routeImages/" + request.Name + ".txt");
 
-            Task<int> fileTask;
+            Task<string> fileTask;
 
             if (_tours.AddTour(t) == 0) {
                 if (_tourContext.SaveTour(t) == 0) {
                     fileTask = _fileHandler.SaveToFileAsync(request.Name, mapResultString);
                     fileTask.Wait();
-                    if (fileTask.Result == -1) {
-                        return "Error while saving image!";
+                    if (fileTask.Result != "") {
+                        return fileTask.Result;
                     }
                     _logger.LogInformation("Added new tour: " + request.Name);
                     return "Added new tour!";
@@ -149,14 +168,14 @@ namespace SWEN2_REST.BL.Controllers
             _fileHandler.SaveImage(Encoding.ASCII.GetBytes(image), t.Name);
             
 
-            Task<int> fileTask;
+            Task<string> fileTask;
 
             if (_tours.AddTour(t) == 0) {
                 if (_tourContext.SaveTour(t) == 0) {
                     fileTask = _fileHandler.SaveToFileAsync(t.Name, image);
                     fileTask.Wait();
-                    if (fileTask.Result == -1) {
-                        return "Error while saving image!";
+                    if (fileTask.Result != "") {
+                        return fileTask.Result;
                     }
                     _logger.LogInformation("Added new tour: " + t.Name);
                     return "Added new tour!";
@@ -167,12 +186,21 @@ namespace SWEN2_REST.BL.Controllers
                 _logger.LogError("Tour with this name already exists: " + t.Name);
                 return "Tour with this name already exists!";
             }
-
-            return "";
         }
 
         [HttpPut("{name}")]
         public string Put(string name, Request request) {
+            if (!name.Equals(request.Name)) {
+                return "You cannot change the name of the tour!";
+            }
+
+            try {
+                if (!(request.RouteType.Equals("shortest") || request.RouteType.Equals("fastest") || request.RouteType.Equals("pedestrian") || request.RouteType.Equals("bicycle")))
+                    return "Invalid route type!";
+            } catch (Exception ex) {
+                return "Invalid route type!";
+            }
+
             var task = _mapQuestContext.GetRouteAsync(request.From, request.To, request.RouteType);
             task.Wait();
             var result = task.Result.ToString();
@@ -184,18 +212,18 @@ namespace SWEN2_REST.BL.Controllers
 
             Tour t = new(request.Name, request.Description, request.From, request.To, request.RouteType, (double)res.route.distance, res.route.formattedTime.ToString(), request.Info, "../../SWEN2-DB/routeImages/" + request.Name + ".txt");
 
-            Task<int> fileTask;
+            Task<string> fileTask;
 
             if (_tours.UpdateTour(name, t) == 0) {
                 if (_tourContext.UpdateTour(name, t) == 0) {
                     fileTask = _fileHandler.SaveToFileAsync(request.Name, mapResultString);
                     fileTask.Wait();
-                    if (fileTask.Result == -1)
-                        return "Error while saving image!";
+                    if (fileTask.Result != "")
+                        return fileTask.Result;
                     _logger.LogInformation("Updated tour: " + request.Name);
-                    return "Added new tour!";
+                    return "Updated tour!";
                 } else
-                    return "Error while saving tour to database!";
+                    return "Error while updating tour to database!";
             } else
                 return "Error while updating tour!";
         }
