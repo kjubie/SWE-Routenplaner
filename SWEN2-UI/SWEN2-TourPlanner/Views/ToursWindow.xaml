@@ -79,28 +79,30 @@
 
             <Grid  Margin ="10" >
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
                     <ColumnDefinition Width="70*"/>
                     <ColumnDefinition Width="15*"/>
                     <ColumnDefinition Width="15*"/>
                     <ColumnDefinition Width="15*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Click="ReloadWindow"  Grid.Column="1" HorizontalAlignment="Center" >
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="15" Height="15" Source="../icons/refresh.png"  />
+                <Label FontSize="24" FontWeight="Bold" Grid.Column="1" HorizontalAlignment="Left">Tours</Label>
+
+                <Button Grid.Column="0" Click="ReloadWindow" HorizontalAlignment="Center" >
+                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/refresh.png"  />
                 </Button>
 
-                <Button HorizontalAlignment="Right" Command="{Binding GenerateSummarizedTourReport}">
+                <Button Grid.Column="2" HorizontalAlignment="Right" Command="{Binding GenerateSummarizedTourReport}">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pdf.png"  />
                 </Button>
-                <Label FontSize="24" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left">Tours</Label>
 
 
-                <Button  Grid.Column="2" HorizontalAlignment="Center" Click="OpenImportTourWindow">
+                <Button  Grid.Column="3" HorizontalAlignment="Center" Click="OpenImportTourWindow">
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/import.png"  />
                 </Button>
 
 
-                <Button Click="OpenCreateWindow"  Grid.Column="3" HorizontalAlignment="Center" >
+                <Button Click="OpenCreateWindow"  Grid.Column="4" HorizontalAlignment="Center" >
                     <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
                 </Button>
             </Grid>
@@ -124,68 +126,74 @@
 
 
         <!-- TOURDETAILS -->
-        <StackPanel Grid.Row="0" Grid.Column="2">
+        <DockPanel Grid.Row="0" Grid.Column="2">
+
+
+            <StackPanel >
+                <StackPanel Height="300">
 
 
 
 
-            <DockPanel >
-                <Image DockPanel.Dock="Right" RenderOptions.BitmapScalingMode="HighQuality"  Width ="40" Height="40" Source="{Binding SelectedTour.IconLocation}"  />
-                <Label DockPanel.Dock="Left" Content="{Binding SelectedTour.Name, Mode=OneWay}" FontSize="24" FontWeight="Bold" ></Label>
-            </DockPanel>
+                    <DockPanel >
+                        <Image DockPanel.Dock="Right" RenderOptions.BitmapScalingMode="HighQuality"  Width ="40" Height="40" Source="{Binding SelectedTour.IconLocation}"  />
+                        <Label DockPanel.Dock="Left" Content="{Binding SelectedTour.Name, Mode=OneWay}" FontSize="24" FontWeight="Bold" ></Label>
+                    </DockPanel>
 
-            <Label Content="{Binding SelectedTour.FormatedFromTo, Mode=OneWay}" FontWeight="Bold"></Label >
-            <Label Content="{Binding SelectedTour.FormatedTime, Mode=OneWay}"></Label>
-            <Label Content="{Binding SelectedTour.FormatedDistance, Mode=OneWay}"></Label>
-            <Label FontWeight="Bold">Description</Label>
-            <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto" Height="30">
+                    <Label Content="{Binding SelectedTour.FormatedFromTo, Mode=OneWay}" FontWeight="Bold"></Label >
+                    <Label Content="{Binding SelectedTour.FormatedTime, Mode=OneWay}"></Label>
+                    <Label Content="{Binding SelectedTour.FormatedDistance, Mode=OneWay}"></Label>
+                    <Label FontWeight="Bold">Description</Label>
+                    <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto" Height="30">
 
-                <TextBlock  Text="{Binding SelectedTour.Description}"  Width="Auto" TextWrapping="Wrap" Height="Auto">
+                        <TextBlock  Text="{Binding SelectedTour.Description}"  Width="Auto" TextWrapping="Wrap" Height="Auto">
 
-                </TextBlock>
-            </ScrollViewer>
+                        </TextBlock>
+                    </ScrollViewer>
 
-            <DockPanel Height="30">
-                <Label VerticalAlignment="Center" DockPanel.Dock="Left" FontWeight="Bold">Childfriendliness</Label>
-                <Image VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="70" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding SelectedTour.ChildfriendlinessImgPath}"  />
-            </DockPanel>
+                    <DockPanel  Height="30">
+                        <Label VerticalAlignment="Center" DockPanel.Dock="Left" FontWeight="Bold">Childfriendliness</Label>
+                        <Image VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="70" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding SelectedTour.ChildfriendlinessImgPath}"  />
+                    </DockPanel>
 
-            <DockPanel Height="30" >
-                <Label VerticalAlignment="Center" DockPanel.Dock="Left" FontWeight="Bold">Popularity</Label>
-                <Image VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="70" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding SelectedTour.PopularityImgPath}"  />
-            </DockPanel>
+                    <DockPanel Height="30" >
+                        <Label VerticalAlignment="Center" DockPanel.Dock="Left" FontWeight="Bold">Popularity</Label>
+                        <Image VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="70" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding SelectedTour.PopularityImgPath}"  />
+                    </DockPanel>
+
+                </StackPanel>
+
+                <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin ="10" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
 
 
-            <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin ="10" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70*"/>
-                    <ColumnDefinition Width="15*"/>
-                    <ColumnDefinition Width="15*"/>
-                    <ColumnDefinition Width="15*"/>
-                    <ColumnDefinition Width="15*"/>
-                </Grid.ColumnDefinitions>
 
+                    <Button  IsEnabled="{Binding IsTourSelected}"  Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
+                        <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
+                    </Button>
 
+                    <Button  IsEnabled="{Binding IsTourSelected}" Grid.Column="4" HorizontalAlignment="Center" Click="OpenModifyWindow" >
+                        <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pen.png"  />
+                    </Button>
 
-                <Button IsEnabled="{Binding IsTourSelected}" DockPanel.Dock="Right" Command="{Binding DeleteSelectedCommand}" Grid.Column="2">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/delete.png"  />
-                </Button>
+                    <Button  IsEnabled="{Binding IsTourSelected}" Grid.Column="1" HorizontalAlignment="Center" Command="{Binding GenerateTourReport}">
+                        <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pdf.png"  />
+                    </Button>
 
-                <Button IsEnabled="{Binding IsTourSelected}" Grid.Column="4" HorizontalAlignment="Center" Click="OpenModifyWindow" >
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pen.png"  />
-                </Button>
+                    <Button  IsEnabled="{Binding IsTourSelected}"  Grid.Column="3" HorizontalAlignment="Center" Command="{Binding ExportTourCommand}">
+                        <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/export.png"  />
+                    </Button>
 
-                <Button IsEnabled="{Binding IsTourSelected}" HorizontalAlignment="Right" Command="{Binding GenerateTourReport}">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/pdf.png"  />
-                </Button>
+                </Grid>
 
-                <Button IsEnabled="{Binding IsTourSelected}"  Grid.Column="3" HorizontalAlignment="Center" Command="{Binding ExportTourCommand}">
-                    <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/export.png"  />
-
-                </Button>
-            </Grid>
-
-        </StackPanel>
+            </StackPanel>
+        </DockPanel>
 
         <Border Grid.Column="3"  BorderBrush="Gray" BorderThickness="0 0 1 0"/>
 
@@ -226,7 +234,7 @@
 
 
 
-                    <Button Click="OpenCreateTourLogWindow" HorizontalAlignment="Right">
+                    <Button IsEnabled="{Binding IsTourSelected, Mode=OneWay}" Click="OpenCreateTourLogWindow" HorizontalAlignment="Right">
                         <Image  RenderOptions.BitmapScalingMode="HighQuality"  Width ="20" Height="20" Source="../icons/plus.png"  />
                     </Button>
 
