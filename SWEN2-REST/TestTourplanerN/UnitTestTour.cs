@@ -116,7 +116,7 @@ namespace TestTourplanerN {
 
         [Test]
         public void Post_Tour() {
-            var result = _tc.Post(JsonSerializer.Deserialize<Request>(@"{""Name"":""TestT"",""Description"":""desc"",""From"":""Vienna, AT"",""To"":""Graz, AT"",""RouteType"":""bicycle"",""Info"":""info""}"));
+            var result = _tc.Post(JsonSerializer.Deserialize<TRequest>(@"{""Name"":""TestT"",""Description"":""desc"",""From"":""Vienna, AT"",""To"":""Graz, AT"",""RouteType"":""bicycle"",""Info"":""info""}"));
             var resultGet = _tc.Get("TestT");
 
             Assert.That(result, Is.EqualTo("Added new tour!"));
@@ -125,21 +125,21 @@ namespace TestTourplanerN {
 
         [Test]
         public void Post_Tour_Invalid_Transport_Type() {
-            var result = _tc.Post(JsonSerializer.Deserialize<Request>(@"{""Name"":""TestT"",""Description"":""desc"",""From"":""Vienna, AT"",""To"":""Graz, AT"",""RouteType"":""invalid"",""Info"":""info""}"));
+            var result = _tc.Post(JsonSerializer.Deserialize<TRequest>(@"{""Name"":""TestT"",""Description"":""desc"",""From"":""Vienna, AT"",""To"":""Graz, AT"",""RouteType"":""invalid"",""Info"":""info""}"));
 
             Assert.That(result, Is.EqualTo("Invalid route type!"));
         }
 
         [Test]
         public void Post_Tour_Existing_Name() {
-            var result = _tc.Post(JsonSerializer.Deserialize<Request>(@"{""Name"":""TestTour"",""Description"":""desc"",""From"":""Vienna, AT"",""To"":""Graz, AT"",""RouteType"":""bicycle"",""Info"":""info""}"));
+            var result = _tc.Post(JsonSerializer.Deserialize<TRequest>(@"{""Name"":""TestTour"",""Description"":""desc"",""From"":""Vienna, AT"",""To"":""Graz, AT"",""RouteType"":""bicycle"",""Info"":""info""}"));
 
             Assert.That(result, Is.EqualTo("Tour with this name already exists!"));
         }
 
         [Test]
         public void Put_Tour() {
-            var result = _tc.Put("Test2Tour", JsonSerializer.Deserialize<Request>(@"{""Name"":""Test2Tour"",""Description"":""desc"",""From"":""Vienna, AT"",""To"":""Graz, AT"",""RouteType"":""bicycle"",""Info"":""info""}"));
+            var result = _tc.Put("Test2Tour", JsonSerializer.Deserialize<TRequest>(@"{""Name"":""Test2Tour"",""Description"":""desc"",""From"":""Vienna, AT"",""To"":""Graz, AT"",""RouteType"":""bicycle"",""Info"":""info""}"));
             var resultGet = _tc.Get("Test2Tour");
 
             Assert.That(result, Is.EqualTo("Updated tour!"));
@@ -148,7 +148,7 @@ namespace TestTourplanerN {
 
         [Test]
         public void Put_Tour_Invalid_Name_Change() {
-            var result = _tc.Put("Test2Tour", JsonSerializer.Deserialize<Request>(@"{""Name"":""Something"",""Description"":""desc"",""From"":""Vienna, AT"",""To"":""Graz, AT"",""RouteType"":""bicycle"",""Info"":""info""}"));
+            var result = _tc.Put("Test2Tour", JsonSerializer.Deserialize<TRequest>(@"{""Name"":""Something"",""Description"":""desc"",""From"":""Vienna, AT"",""To"":""Graz, AT"",""RouteType"":""bicycle"",""Info"":""info""}"));
 
             Assert.That(result, Is.EqualTo("You cannot change the name of the tour!"));
         }
