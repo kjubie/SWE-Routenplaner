@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="mapImgv\**" />
+    <EmbeddedResource Remove="mapImgv\**" />
+    <None Remove="mapImgv\**" />
+    <Page Remove="mapImgv\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="icons\delete.png" />
     <None Remove="icons\export.png" />
     <None Remove="icons\import.png" />
@@ -22,7 +29,6 @@
     <None Remove="icons\star3.png" />
     <None Remove="icons\star4.png" />
     <None Remove="icons\star5.png" />
-    <None Remove="mapImg\map_test.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -90,6 +96,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\SWE-Routenplaner-Business\SWE-Routenplaner-Business.csproj" />
     <ProjectReference Include="..\..\SWE-Routenplaner-DataAccess\SWE-Routenplaner-DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="mapImg\" />
+    <Folder Include="ExportTours\" />
   </ItemGroup>
 
 </Project>
