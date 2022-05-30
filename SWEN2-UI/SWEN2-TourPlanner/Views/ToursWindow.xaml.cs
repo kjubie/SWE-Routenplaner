@@ -34,8 +34,10 @@ namespace SWEN2_TourPlanner
         public ToursWindow()
         {
             InitializeComponent();
-            this.DataContext = ViewModel;        
-          
+            this.DataContext = ViewModel;
+
+            
+
         }
 
         private void OpenCreateWindow(object sender, RoutedEventArgs e)
@@ -57,7 +59,7 @@ namespace SWEN2_TourPlanner
 
         private void OpenModifyWindow(object sender, RoutedEventArgs e)
         {
-           ModifyTourWindow modifyTourWindow = new ModifyTourWindow();
+            ModifyTourWindow modifyTourWindow = new ModifyTourWindow();
 
             ModifyTourViewModel modifyTourVM = new ModifyTourViewModel(ViewModel.GetSelectedTour());
 
@@ -67,6 +69,7 @@ namespace SWEN2_TourPlanner
             if (modifyTourVM.CloseAction == null)
             {
                 modifyTourVM.CloseAction = new Action(modifyTourWindow.Close);
+                ViewModel.LoadAllTours();
 
             }
         }
@@ -83,6 +86,7 @@ namespace SWEN2_TourPlanner
             if (modifyTourLogVM.CloseAction == null)
             {
                 modifyTourLogVM.CloseAction = new Action(modifyTourLogWindow.Close);
+                ViewModel.LoadAllTours();
 
             }
         }
@@ -90,9 +94,25 @@ namespace SWEN2_TourPlanner
 
         private void ReloadWindow(object sender, RoutedEventArgs e)
         {
-            ViewModel.LoadTourList();
+            ViewModel.LoadAllTours();
         }
 
-     
+        private void OpenImportTourWindow(object sender, RoutedEventArgs e)
+        {
+            ImportTourWindow importTourWindow = new ImportTourWindow();
+            ImportTourViewModel importTourVM = new ImportTourViewModel(ViewModel);
+            importTourWindow.DataContext = importTourVM;
+
+
+            importTourWindow.Show();
+
+            if (importTourVM.CloseAction == null)
+            {
+                importTourVM.CloseAction = new Action(importTourWindow.Close);
+                ViewModel.LoadAllTours();
+
+            }
+
+        }
     }
 }

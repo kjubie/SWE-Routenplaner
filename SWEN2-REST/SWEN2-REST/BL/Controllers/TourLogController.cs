@@ -105,7 +105,7 @@ namespace SWEN2_REST.BL.Controllers {
         [HttpPut("{name}/{id}")]
         public string Put(string name, int id, LogRequest request) {
             if (!name.Equals(request.Tourname))
-                return "Error: Name of the tour and the log must be the same!";
+                return "Name of the tour and the log must be the same!";
             try {
                 TourLog tl = new(request.Tourname, request.Date, request.Comment, request.Difficulty, request.Time, request.Rating);
 

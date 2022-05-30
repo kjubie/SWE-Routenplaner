@@ -1,5 +1,5 @@
 ﻿namespace SWEN2_Tourplanner_Models {
-    public class TourLog {
+    public class TourLog : ITourLog {
         public string Tourname { get; set; }
         public string? Date { get; set; }
         public string? Comment { get; set; }
