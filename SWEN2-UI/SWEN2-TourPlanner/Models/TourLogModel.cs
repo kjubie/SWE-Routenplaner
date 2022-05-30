@@ -59,20 +59,31 @@ namespace SWEN2_Tourplanner_Models
         {
             get
             {
+
+                string formateddate = "-";
+
                 if (_date != null)
                 {
+                    var regexItemCheck = new Regex("AM");
+                    if (!regexItemCheck.IsMatch(_date))
+                    {
+                        formateddate = _date.Replace(".", "/");
+                    }
+                    else
+                    {
+                        var regexItemDay = new Regex("/(.{1,2})/");
+                        var regexItemMonth = new Regex("^[0-9][0-9]|^[0-9]");
+                        var regexItemYear = new Regex("([0-9]{4})");
+                        formateddate = regexItemDay.Match(_date).Groups[1].Value.ToString() + "/" + regexItemMonth.Match(_date).Groups[0].Value.ToString() + "/" + regexItemYear.Match(_date).Groups[0].Value.ToString();
+
+                    }
 
 
-                    var regexItemMonth = new Regex("^[0-9][0-9]|^[0-9]");
-                    var regexItemDay = new Regex("/(.{1,2})/");
-                    var regexItemYear = new Regex("([0-9]{4})");                    
-
-                    string formateddate = regexItemDay.Match(_date).Groups[1].Value.ToString() + "/" + regexItemMonth.Match(_date).Groups[0].Value.ToString() + "/" + regexItemYear.Match(_date).Groups[0].Value.ToString();
-                    return formateddate;
 
                 }
 
-                return "-";
+                return formateddate;
+
             }
         }
 
