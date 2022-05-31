@@ -32,8 +32,6 @@ namespace SWEN2_Tourplanner_Models {
             this.Info = Info;
             this.ImageLocation = ImageLocation;
             Logs = new();
-            CalcPopularity();
-            CalcChildfriendliness();
         }
 
         public void CalcChildfriendliness() {
@@ -55,6 +53,8 @@ namespace SWEN2_Tourplanner_Models {
                 Console.WriteLine("Dist: " + Distance);
 
                 int sum = (int)(averageDiff * 5 + averageTime * 2 + Distance);
+
+                Console.WriteLine("\nTEST: " + sum);
 
                 if (sum <= 15)
                     Childfriendliness = 5;

@@ -68,6 +68,11 @@ namespace SWEN2_REST.DAL
                 _logger.LogError("Error while loading tours from database: " + ex);
                 Console.WriteLine(ex.Message);
             }
+
+            foreach (Tour t in tours.TourList.Values) {
+                t.CalcChildfriendliness();
+                t.CalcPopularity();
+            }
         }
 
         public int SaveTour(Tour tour) {
